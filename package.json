@@ -1,0 +1,67 @@
+{
+  "name": "react-jsx-i18n",
+  "version": "0.0.1",
+  "description": "Provides gettext-enhanced React components, a babel plugin for extracting the strings and a script to compile translated strings to a format usable by the components.",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "rm -rf lib/ && babel src/ --out-dir lib/ && chmod +x lib/cli/*.js",
+    "prepublish": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "react-jsx-i18n-extract": "./lib/cli/extract.js",
+    "react-jsx-i18n-compile": "./lib/cli/compile.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThiefMaster/react-jsx-i18n.git"
+  },
+  "keywords": [
+    "react",
+    "jsx",
+    "i18n",
+    "gettext"
+  ],
+  "author": "Adrian Moennich / CERN",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ThiefMaster/react-jsx-i18n/issues"
+  },
+  "homepage": "https://github.com/ThiefMaster/react-jsx-i18n#readme",
+  "dependencies": {
+    "babel-plugin-extract-text": "^0.4.0",
+    "gettext-parser": "^1.3.1",
+    "moment": "^2.22.0"
+  },
+  "peerDependencies": {
+    "@babel/core": "*",
+    "@babel/preset-react": "*",
+    "react": "*",
+    "prop-types": "*"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.43",
+    "@babel/core": "^7.0.0-beta.43",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.43",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.43",
+    "@babel/preset-env": "^7.0.0-beta.43",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.0"
+  },
+  "babel": {
+    "plugins": [
+      "@babel/plugin-proposal-object-rest-spread",
+      "@babel/plugin-proposal-class-properties"
+    ],
+    "presets": [
+      [
+        "@babel/env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  }
+}

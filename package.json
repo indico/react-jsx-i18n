@@ -2,15 +2,15 @@
   "name": "react-jsx-i18n",
   "version": "0.0.1",
   "description": "Provides gettext-enhanced React components, a babel plugin for extracting the strings and a script to compile translated strings to a format usable by the components.",
-  "main": "lib/index.js",
+  "main": "client/index.js",
   "scripts": {
-    "build": "rm -rf lib/ && babel src/ --out-dir lib/ && chmod +x lib/cli/*.js",
+    "build": "rm -rf client/ dev/ && babel src/ --out-dir ./ && chmod +x dev/cli/*.js",
     "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "react-jsx-i18n-extract": "./lib/cli/extract.js",
-    "react-jsx-i18n-compile": "./lib/cli/compile.js"
+    "react-jsx-i18n-extract": "./dev/cli/extract.js",
+    "react-jsx-i18n-compile": "./dev/cli/compile.js"
   },
   "repository": {
     "type": "git",
@@ -47,21 +47,5 @@
     "@babel/preset-env": "^7.0.0-beta.43",
     "prop-types": "^15.6.1",
     "react": "^16.3.0"
-  },
-  "babel": {
-    "plugins": [
-      "@babel/plugin-proposal-object-rest-spread",
-      "@babel/plugin-proposal-class-properties"
-    ],
-    "presets": [
-      [
-        "@babel/env",
-        {
-          "targets": {
-            "node": "current"
-          }
-        }
-      ]
-    ]
   }
 }

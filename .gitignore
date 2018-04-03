@@ -1,9 +1,14 @@
+# Editors
 *.swp
 .idea/
 
+# Node
 node_modules/
-lib/
 *.tgz
+
+# Babel
+/client/
+/dev/
 
 # Only apps should have lockfiles
 yarn.lock

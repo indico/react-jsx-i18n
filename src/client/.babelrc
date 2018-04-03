@@ -1,0 +1,16 @@
+{
+  "plugins": [
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-class-properties"
+  ],
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "browsers": ["last 2 versions", "firefox esr", "not ie<11", "not ie_mob>0"]
+        }
+      }
+    ]
+  ]
+}

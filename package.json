@@ -22,7 +22,7 @@
     "i18n",
     "gettext"
   ],
-  "author": "Adrian Moennich / CERN",
+  "author": "Indico Team",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ThiefMaster/react-jsx-i18n/issues"

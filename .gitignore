@@ -3,6 +3,7 @@
 
 node_modules/
 lib/
+*.tgz
 
 # Only apps should have lockfiles
 yarn.lock

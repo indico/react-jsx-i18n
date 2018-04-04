@@ -69,6 +69,33 @@ const renderTranslation = (translation, values) => {
 };
 
 
+const jsonToText = (component, props, ...children) => {
+    if (component === 'Param') {
+        if (children.length) {
+            return `{${props.name}}${children.join('')}{/${props.name}}`;
+        } else {
+            return `{${props.name}}`;
+        }
+    }
+    return children.map((child) => {
+        return typeof child === 'string' ? child : jsonToText(...child);
+    }).join('');
+};
+
+
+const renderStringTranslation = (translation) => {
+    if (typeof translation === 'string') {
+        return translation;
+    } else {
+        // we do not support placeholders in Translate.string(), but
+        // when compiling a translation dict to JSON we cannot know in
+        // which context a string is used, so we have to replace the params
+        // with the original placeholders
+        return jsonToText(...translation)
+    }
+};
+
+
 export class Singular extends React.Component {
     static propTypes = {
         children: PropTypes.any.isRequired,
@@ -144,7 +171,7 @@ export const makeComponents = (...args) => {
 
         static string(string, context = undefined) {
             const gettextFunc = pickGettextFunc(context, gettext, pgettext);
-            return gettextFunc(string);
+            return renderStringTranslation(gettextFunc(string));
         }
 
         constructor(props) {
@@ -185,7 +212,7 @@ export const makeComponents = (...args) => {
 
         static string(singular, plural, count = 1, context = undefined) {
             const gettextFunc = pickGettextFunc(context, ngettext, npgettext);
-            return gettextFunc(singular, plural, count);
+            return renderStringTranslation(gettextFunc(singular, plural, count));
         }
 
         constructor(props) {

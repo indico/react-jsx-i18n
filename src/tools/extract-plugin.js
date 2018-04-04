@@ -1,4 +1,5 @@
 import cleanJSXElementLiteralChild from '@babel/types/lib/utils/react/cleanJSXElementLiteralChild';
+import {extractFuncArg} from 'babel-plugin-extract-text/src/extractors';
 
 
 const collapseWhitespace = (string) => {
@@ -65,7 +66,7 @@ const processTranslatableElement = (path) => {
 
 
 const getLocation = (path, state) => {
-    return `${state.file.opts.filename}:${path.node.openingElement.loc.start.line}`;
+    return `${state.file.opts.filename}:${path.node.loc.start.line}`;
 };
 
 
@@ -81,6 +82,18 @@ const processTranslate = (path, state) => {
     return {
         msgid: translatableString,
         msgctxt: getContext(path),
+        reference: getLocation(path, state),
+    };
+};
+
+
+const processTranslateString = (path, state, funcName, types) => {
+    const args = path.node.arguments;
+    const msgid = extractFuncArg(args[0], 0, funcName, types, path);
+    const msgctxt = args[1] ? extractFuncArg(args[1], 1, funcName, types, path) : undefined;
+    return {
+        msgid,
+        msgctxt,
         reference: getLocation(path, state),
     };
 };
@@ -120,9 +133,23 @@ const processPluralTranslate = (path, state) => {
 };
 
 
+const processPluralTranslateString = (path, state, funcName, types) => {
+    const args = path.node.arguments;
+    const msgid = extractFuncArg(args[0], 0, funcName, types, path);
+    const msgid_plural = extractFuncArg(args[1], 1, funcName, types, path);
+    const msgctxt = args[3] ? extractFuncArg(args[3], 3, funcName, types, path) : undefined;
+    return {
+        msgid,
+        msgid_plural,
+        msgctxt,
+        reference: getLocation(path, state),
+    };
+};
+
+
 const makeI18nPlugin = () => {
     const entries = [];
-    const i18nPlugin = () => {
+    const i18nPlugin = ({types}) => {
         return {
             visitor: {
                 JSXElement(path, state) {
@@ -133,6 +160,32 @@ const makeI18nPlugin = () => {
                         entries.push(processPluralTranslate(path, state));
                     }
                 },
+                CallExpression(path, state) {
+                    const callee = path.node.callee;
+                    if (callee.type !== 'MemberExpression' || callee.object.type !== 'Identifier') {
+                        return
+                    }
+                    const elementName = callee.object.name;
+                    if (elementName !== 'Translate' && elementName !== 'PluralTranslate') {
+                        return;
+                    }
+                    const property = callee.property;
+                    const funcName = callee.computed ? property.value : property.name;
+                    if (callee.computed && property.type !== 'StringLiteral') {
+                        return;
+                    } else if (!callee.computed && property.type !== 'Identifier') {
+                        return;
+                    } else if (funcName !== 'string') {
+                        return;
+                    }
+                    // we got a proper call of one of our translation functions
+                    const qualifiedFuncName = `${elementName}.${funcName}`;
+                    if (elementName === 'Translate') {
+                        entries.push(processTranslateString(path, state, qualifiedFuncName, types));
+                    } else if (elementName === 'PluralTranslate') {
+                        entries.push(processPluralTranslateString(path, state, qualifiedFuncName, types));
+                    }
+                }
             }
         };
     };

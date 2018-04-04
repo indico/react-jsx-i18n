@@ -142,6 +142,11 @@ export const makeComponents = (...args) => {
             context: undefined,
         };
 
+        static string(string, context = undefined) {
+            const gettextFunc = pickGettextFunc(context, gettext, pgettext);
+            return gettextFunc(string);
+        }
+
         constructor(props) {
             super(props);
             this.paramValues = Object.create(null);
@@ -177,6 +182,11 @@ export const makeComponents = (...args) => {
         static defaultProps = {
             context: undefined,
         };
+
+        static string(singular, plural, count = 1, context = undefined) {
+            const gettextFunc = pickGettextFunc(context, ngettext, npgettext);
+            return gettextFunc(singular, plural, count);
+        }
 
         constructor(props) {
             super(props);

@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import {makeComponents, Param, Singular, Plural} from './index';
+import {makeComponents, Param, Singular, Plural} from '../src/client';
 
 const expectJSX = (jsx) => expect(renderer.create(jsx).toJSON());
 const gettext = expression => expression.split('').reverse().join('');

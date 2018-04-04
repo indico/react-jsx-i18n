@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rm -rf client/ dev/ && babel src/ --out-dir ./ && chmod +x dev/cli.js",
     "prepare": "npm run build",
-    "test": "jest src/ --coverage"
+    "test": "jest tests/ --coverage"
   },
   "bin": {
     "react-jsx-i18n": "./dev/cli.js"

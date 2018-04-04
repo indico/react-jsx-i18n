@@ -4,13 +4,12 @@
   "description": "Provides gettext-enhanced React components, a babel plugin for extracting the strings and a script to compile translated strings to a format usable by the components.",
   "main": "client/index.js",
   "scripts": {
-    "build": "rm -rf client/ dev/ && babel src/ --out-dir ./ && chmod +x dev/cli/*.js",
+    "build": "rm -rf client/ dev/ && babel src/ --out-dir ./ && chmod +x dev/cli.js",
     "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "react-jsx-i18n-extract": "./dev/cli/extract.js",
-    "react-jsx-i18n-compile": "./dev/cli/compile.js"
+    "react-jsx-i18n": "./dev/cli.js"
   },
   "repository": {
     "type": "git",
@@ -30,8 +29,11 @@
   "homepage": "https://github.com/indico/react-jsx-i18n#readme",
   "dependencies": {
     "babel-plugin-extract-text": "^0.4.0",
+    "chalk": "^2.3.2",
     "gettext-parser": "^1.3.1",
-    "moment": "^2.22.0"
+    "lodash.uniq": "^4.5.0",
+    "moment": "^2.22.0",
+    "yargs": "^11.0.0"
   },
   "peerDependencies": {
     "@babel/core": "*",
@@ -45,6 +47,7 @@
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.43",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.43",
     "@babel/preset-env": "^7.0.0-beta.43",
+    "@babel/preset-react": "^7.0.0-beta.44",
     "prop-types": "^15.6.1",
     "react": "^16.3.0"
   }

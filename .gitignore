@@ -8,7 +8,7 @@ node_modules/
 
 # Babel
 /client/
-/dev/
+/tools/
 
 # Only apps should have lockfiles
 yarn.lock

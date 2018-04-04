@@ -69,10 +69,18 @@ const getLocation = (path, state) => {
 };
 
 
+const getContext = (path) => {
+    const element = path.node.openingElement;
+    const contextAttr = element.attributes.filter((attr) => attr.name.name === 'context')[0];
+    return contextAttr ? contextAttr.value.value : undefined;
+};
+
+
 const processTranslate = (path, state) => {
     const translatableString = processTranslatableElement(path);
     return {
         msgid: translatableString,
+        msgctxt: getContext(path),
         reference: getLocation(path, state),
     };
 };
@@ -106,6 +114,7 @@ const processPluralTranslate = (path, state) => {
     return {
         msgid: processTranslatableElement(singularPath),
         msgid_plural: processTranslatableElement(pluralPath),
+        msgctxt: getContext(path),
         reference: getLocation(path, state),
     };
 };

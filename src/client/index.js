@@ -93,23 +93,53 @@ export class Plural extends React.Component {
 }
 
 
-
-export const makeComponents = (...args) => {
-    let gettext, ngettext;
+const getGettextFuncs = (args) => {
+    let gettext, ngettext, pgettext, npgettext;
     if (args.length === 1) {
         const [obj] = args;
         gettext = obj.gettext.bind(obj);
         ngettext = obj.ngettext.bind(obj);
+        pgettext = obj.pgettext ? obj.pgettext.bind(obj) : undefined;
+        npgettext = obj.npgettext ? obj.npgettext.bind(obj) : undefined;
     } else if (args.length === 2) {
         [gettext, ngettext] = args;
+    } else if (args.length === 4) {
+        [gettext, ngettext, pgettext, npgettext] = args;
     } else {
-        throw new Error('Expected object containing gettext/ngettext or the two functions as args');
+        throw new Error('Expected object containing gettext/ngettext(/pgettext/npgattext) or 2/4 args with the funcs');
     }
 
+    if (!pgettext) {
+        pgettext = (ctx, ...params) => gettext(...params);
+    }
+    if (!npgettext) {
+        npgettext = (ctx, ...params) => ngettext(...params);
+    }
+
+    return {gettext, ngettext, pgettext, npgettext};
+};
+
+
+const pickGettextFunc = (context, gettext, pgettext) => {
+    if (context) {
+        return (...args) => pgettext(context, ...args);
+    } else {
+        return gettext;
+    }
+};
+
+
+export const makeComponents = (...args) => {
+    const {gettext, ngettext, pgettext, npgettext} = getGettextFuncs(args);
 
     class Translate extends React.Component {
         static propTypes = {
-            children: PropTypes.any.isRequired
+            children: PropTypes.any.isRequired,
+            context: PropTypes.string,
+        };
+
+        static defaultProps = {
+            context: undefined,
         };
 
         constructor(props) {
@@ -124,8 +154,9 @@ export const makeComponents = (...args) => {
         }
 
         render() {
-            const {children} = this.props;
-            const translation = gettext(this.original);
+            const {children, context} = this.props;
+            const gettextFunc = pickGettextFunc(context, gettext, pgettext);
+            const translation = gettextFunc(this.original);
             if (translation === this.original) {
                 // if there's no translation gettext gives us the input string
                 // which does not contain the information needed to render it!
@@ -140,6 +171,11 @@ export const makeComponents = (...args) => {
         static propTypes = {
             children: PropTypes.any.isRequired,
             count: PropTypes.number.isRequired,
+            context: PropTypes.string,
+        };
+
+        static defaultProps = {
+            context: undefined,
         };
 
         constructor(props) {
@@ -173,8 +209,9 @@ export const makeComponents = (...args) => {
         }
 
         render() {
-            const {count} = this.props;
-            const translation = ngettext(this.singularString, this.pluralString, count);
+            const {count, context} = this.props;
+            const gettextFunc = pickGettextFunc(context, ngettext, npgettext);
+            const translation = gettextFunc(this.singularString, this.pluralString, count);
             if (translation === this.singularString) {
                 return this.singular.props.children;
             } else if (translation === this.pluralString) {

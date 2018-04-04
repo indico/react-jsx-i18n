@@ -33,13 +33,17 @@ const jsonifyMessage = (message) => {
 const poToReact = (poFile, domain = 'messages') => {
     const po = gettextParser.po.parse(fs.readFileSync(poFile), 'UTF-8');
 
-    const translations = Object.values(po.translations['']).map((item) => {
-        return {[item.msgid]: item.msgstr.map(jsonifyMessage)};
+    const translations = Object.create(null);
+    Object.values(po.translations).forEach((items) => {
+        Object.values(items).forEach((item) => {
+            const msgid = item.msgctxt ? `${item.msgctxt}\u0004${item.msgid}` : item.msgid;
+            translations[msgid] = item.msgstr.map(jsonifyMessage);
+        });
     });
 
     return {
         [domain]: {
-            ...Object.assign(Object.create(null), ...translations),
+            ...translations,
             '': {
                 domain,
                 lang: po.headers.language,

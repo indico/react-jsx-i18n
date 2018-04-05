@@ -23,6 +23,7 @@ const extractFromFiles = (files, headers = undefined) => {
         } catch (exc) {
             // babel errors already contain the file name
             console.error(exc.message);
+            process.exit(1);
         }
     });
 

@@ -1,5 +1,4 @@
 import cleanJSXElementLiteralChild from '@babel/types/lib/utils/react/cleanJSXElementLiteralChild';
-import {extractFuncArg} from 'babel-plugin-extract-text/src/extractors';
 
 
 const collapseWhitespace = (string) => {
@@ -35,22 +34,30 @@ const processParam = (path) => {
 };
 
 
-const processExpression = (path) => {
-    const expression = path.node.expression;
-    if (expression.type !== 'StringLiteral') {
-        throw path.buildCodeFrameError(`{...} expression blocks may only contain a string literal; got ${expression.type}`);
+const processExpression = (path, expression, types) => {
+    if (types.isStringLiteral(expression)) {
+        return expression.value;
+    } else if (types.isBinaryExpression(expression)) {
+        if (expression.operator !== '+') {
+            throw path.buildCodeFrameError(
+                `Expected '+' operator in binary expression; found '${expression.operator}' instead`
+            );
+        }
+        return processExpression(path, expression.left, types) + processExpression(path, expression.right, types);
     }
-    return expression.value;
+    throw path.buildCodeFrameError(
+        `Expressions may only contain a string literal or a concatenation of them; found ${expression.type} instead`
+    );
 };
 
 
-const processTranslatableElement = (path) => {
+const processTranslatableElement = (path, types) => {
     const elementName = path.node.openingElement.name.name;
     const stringParts = path.get('children').map((childPath) => {
         if (childPath.type === 'JSXText') {
             return processText(childPath);
         } else if (childPath.type === 'JSXExpressionContainer') {
-            return processExpression(childPath);
+            return processExpression(childPath, childPath.node.expression, types);
         } else if (childPath.type === 'JSXElement') {
             const childElement = childPath.node.openingElement;
             if (childElement.name.name !== 'Param') {
@@ -77,8 +84,8 @@ const getContext = (path) => {
 };
 
 
-const processTranslate = (path, state) => {
-    const translatableString = processTranslatableElement(path);
+const processTranslate = (path, state, types) => {
+    const translatableString = processTranslatableElement(path, types);
     return {
         msgid: translatableString,
         msgctxt: getContext(path),
@@ -89,8 +96,8 @@ const processTranslate = (path, state) => {
 
 const processTranslateString = (path, state, funcName, types) => {
     const args = path.node.arguments;
-    const msgid = extractFuncArg(args[0], 0, funcName, types, path);
-    const msgctxt = args[1] ? extractFuncArg(args[1], 1, funcName, types, path) : undefined;
+    const msgid = processExpression(path, args[0], types);
+    const msgctxt = args[1] ? processExpression(path, args[1], types) : undefined;
     return {
         msgid,
         msgctxt,
@@ -99,7 +106,7 @@ const processTranslateString = (path, state, funcName, types) => {
 };
 
 
-const processPluralTranslate = (path, state) => {
+const processPluralTranslate = (path, state, types) => {
     let singularPath, pluralPath;
     path.get('children').filter((x) => x.node.type === 'JSXElement').forEach((childPath) => {
         const element = childPath.node.openingElement;
@@ -125,8 +132,8 @@ const processPluralTranslate = (path, state) => {
         throw path.buildCodeFrameError('No Plural tag found');
     }
     return {
-        msgid: processTranslatableElement(singularPath),
-        msgid_plural: processTranslatableElement(pluralPath),
+        msgid: processTranslatableElement(singularPath, types),
+        msgid_plural: processTranslatableElement(pluralPath, types),
         msgctxt: getContext(path),
         reference: getLocation(path, state),
     };
@@ -135,9 +142,9 @@ const processPluralTranslate = (path, state) => {
 
 const processPluralTranslateString = (path, state, funcName, types) => {
     const args = path.node.arguments;
-    const msgid = extractFuncArg(args[0], 0, funcName, types, path);
-    const msgid_plural = extractFuncArg(args[1], 1, funcName, types, path);  // eslint-disable-line camelcase
-    const msgctxt = args[3] ? extractFuncArg(args[3], 3, funcName, types, path) : undefined;
+    const msgid = processExpression(path, args[0], types);
+    const msgid_plural = processExpression(path, args[1], types);  // eslint-disable-line camelcase
+    const msgctxt = args[3] ? processExpression(path, args[3], types) : undefined;
     return {
         msgid,
         msgid_plural,
@@ -155,9 +162,9 @@ const makeI18nPlugin = () => {
                 JSXElement(path, state) {
                     const elementName = path.node.openingElement.name.name;
                     if (elementName === 'Translate') {
-                        entries.push(processTranslate(path, state));
+                        entries.push(processTranslate(path, state, types));
                     } else if (elementName === 'PluralTranslate') {
-                        entries.push(processPluralTranslate(path, state));
+                        entries.push(processPluralTranslate(path, state, types));
                     }
                 },
                 CallExpression(path, state) {

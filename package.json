@@ -6,6 +6,7 @@
   "scripts": {
     "build": "rm -rf client/ tools/ && babel src/ --out-dir ./ && chmod +x tools/cli.js",
     "prepare": "npm run build",
+    "eslint": "eslint src/",
     "test": "jest tests/ --coverage"
   },
   "bin": {
@@ -49,7 +50,12 @@
     "@babel/preset-env": "^7.0.0-beta.43",
     "@babel/preset-react": "^7.0.0-beta.44",
     "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^8.2.2",
     "babel-jest": "^22.4.3",
+    "eslint": "~4.19.1",
+    "eslint-plugin-babel": "^5.0.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-react": "^7.7.0",
     "jest": "^22.4.3",
     "prop-types": "^15.6.1",
     "react": "^16.3.0",

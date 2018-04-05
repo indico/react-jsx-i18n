@@ -24,11 +24,11 @@ const processParam = (path) => {
     if (children.length === 0) {
         return `{${paramName}}`;
     } else if (children.length !== 1) {
-        throw new Error(`Param has too many children (${children.length}), expected max. 1`);
+        throw children[1].buildCodeFrameError(`Param has too many children (${children.length}), expected max. 1`);
     }
     const childPath = children[0];
     if (childPath.type !== 'JSXText') {
-        throw new Error(`Unexpected Param child node: ${childPath.type}`);
+        throw childPath.buildCodeFrameError(`Unexpected Param child node: ${childPath.type}`);
     }
     const body = processText(childPath);
     return `{${paramName}}${body}{/${paramName}}`;
@@ -38,7 +38,7 @@ const processParam = (path) => {
 const processExpression = (path) => {
     const expression = path.node.expression;
     if (expression.type !== 'StringLiteral') {
-        throw new Error(`{...} expression blocks may only contain a string literal; got ${expression.type}`);
+        throw path.buildCodeFrameError(`{...} expression blocks may only contain a string literal; got ${expression.type}`);
     }
     return expression.value;
 };
@@ -54,11 +54,11 @@ const processTranslatableElement = (path) => {
         } else if (childPath.type === 'JSXElement') {
             const childElement = childPath.node.openingElement;
             if (childElement.name.name !== 'Param') {
-                throw new Error(`Unexpected ${elementName} child tag: ${childElement.name.name}`);
+                throw childPath.buildCodeFrameError(`Unexpected ${elementName} child tag: ${childElement.name.name}`);
             }
             return processParam(childPath);
         } else {
-            throw new Error(`Unexpected ${elementName} child node: ${childPath.type}`);
+            throw childPath.buildCodeFrameError(`Unexpected ${elementName} child node: ${childPath.type}`);
         }
     });
     return collapseWhitespace(stringParts.join('')).trim();
@@ -106,23 +106,23 @@ const processPluralTranslate = (path, state) => {
         const elementName = element.name.name;
         if (elementName === 'Singular') {
             if (singularPath) {
-                throw new Error('More than one Singular tag found');
+                throw childPath.buildCodeFrameError('More than one Singular tag found');
             }
             singularPath = childPath;
         } else if (elementName === 'Plural') {
             if (pluralPath) {
-                throw new Error('More than one Plural tag found');
+                throw childPath.buildCodeFrameError('More than one Plural tag found');
             }
             pluralPath = childPath;
         } else {
-            throw new Error(`Unexpected PluralTranslate child tag: ${elementName}`);
+            throw childPath.buildCodeFrameError(`Unexpected PluralTranslate child tag: ${elementName}`);
         }
     });
     if (!singularPath) {
-        throw new Error('No Singular tag found');
+        throw path.buildCodeFrameError('No Singular tag found');
     }
     if (!pluralPath) {
-        throw new Error('No Plural tag found');
+        throw path.buildCodeFrameError('No Plural tag found');
     }
     return {
         msgid: processTranslatableElement(singularPath),

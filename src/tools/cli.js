@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
+import path from 'path';
 import fs from 'fs';
 import chalk from 'chalk';
 import glob from 'glob';
-import path from 'path';
-import uniq from 'lodash.uniq'
+import uniq from 'lodash.uniq';
 import yargs from 'yargs';
 import extractFromFiles from './extract';
 import poToReact from './po2react';
@@ -67,9 +67,7 @@ yargs
         }
         const data = poToReact(argv.pofile, argv.domain);
         process.stdout.write(JSON.stringify(data) + '\n');
-
     })
     .demandCommand()
     .help()
     .argv;
-

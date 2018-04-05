@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 export class Param extends React.Component {
     static propTypes = {
+        // eslint-disable-next-line react/no-unused-prop-types
         name: PropTypes.string.isRequired,
         value: PropTypes.any.isRequired,
         children: PropTypes.string,
@@ -49,6 +50,7 @@ const getTranslatableString = (children) => {
 
 
 const jsonToReact = (values, component, props, ...children) => {
+    /* eslint-disable react/prop-types */
     component = {Fragment: React.Fragment, Param}[component];
     if (component === Param) {
         // inject the value from the original Param in the translated string's Param
@@ -91,7 +93,7 @@ const renderStringTranslation = (translation) => {
         // when compiling a translation dict to JSON we cannot know in
         // which context a string is used, so we have to replace the params
         // with the original placeholders
-        return jsonToText(...translation)
+        return jsonToText(...translation);
     }
 };
 
@@ -260,5 +262,5 @@ export const makeComponents = (...args) => {
     }
 
 
-    return {Translate, PluralTranslate}
+    return {Translate, PluralTranslate};
 };

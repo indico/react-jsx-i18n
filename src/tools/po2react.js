@@ -51,7 +51,6 @@ const poToReact = (poFile, domain = 'messages') => {
             }
         }
     };
-
 };
 
 export default poToReact;

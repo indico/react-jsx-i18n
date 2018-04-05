@@ -136,7 +136,7 @@ const processPluralTranslate = (path, state) => {
 const processPluralTranslateString = (path, state, funcName, types) => {
     const args = path.node.arguments;
     const msgid = extractFuncArg(args[0], 0, funcName, types, path);
-    const msgid_plural = extractFuncArg(args[1], 1, funcName, types, path);
+    const msgid_plural = extractFuncArg(args[1], 1, funcName, types, path);  // eslint-disable-line camelcase
     const msgctxt = args[3] ? extractFuncArg(args[3], 3, funcName, types, path) : undefined;
     return {
         msgid,
@@ -163,7 +163,7 @@ const makeI18nPlugin = () => {
                 CallExpression(path, state) {
                     const callee = path.node.callee;
                     if (callee.type !== 'MemberExpression' || callee.object.type !== 'Identifier') {
-                        return
+                        return;
                     }
                     const elementName = callee.object.name;
                     if (elementName !== 'Translate' && elementName !== 'PluralTranslate') {

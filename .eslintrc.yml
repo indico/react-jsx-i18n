@@ -78,6 +78,8 @@ rules:
   max-len:
     - warn
     - code: 120
+      ignoreStrings: true
+      ignoreTemplateLiterals: true
   max-statements-per-line: error
   new-cap: error
   no-unmodified-loop-condition: error
@@ -215,7 +217,7 @@ rules:
   react/jsx-first-prop-new-line:
     - error
     - never
-  react/jsx-filename-extension: error
+  react/jsx-filename-extension: off
   react/jsx-indent: error
   react/jsx-indent-props: off
   react/jsx-key: error

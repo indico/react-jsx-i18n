@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rm -rf client/ tools/ && babel src/ --out-dir ./ && chmod +x tools/cli.js",
     "prepare": "npm run build",
-    "eslint": "eslint src/",
+    "eslint": "eslint src/ tests/",
     "test": "jest tests/ --coverage"
   },
   "bin": {

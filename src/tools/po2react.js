@@ -2,7 +2,7 @@ import fs from 'fs';
 import gettextParser from 'gettext-parser';
 
 
-const jsonifyMessage = (message) => {
+export const jsonifyMessage = (message) => {
     if (!/{[a-z]+}/.test(message)) {
         return message;
     }

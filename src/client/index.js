@@ -219,22 +219,15 @@ export const makeComponents = (...args) => {
 
         constructor(props) {
             super(props);
-            this.singular = null;
-            this.plural = null;
-            this.paramValues = {};
             React.Children.forEach(props.children, (child) => {
                 if (!React.isValidElement(child)) {
                     throw new Error(`Unexpected PluralTranslate child: ${child}`);
                 } else if (child.type === Singular) {
-                    this.singular = child;
-                    this.paramValues.singular = this.getParamValues(child);
+                    this.singularString = getTranslatableString(child.props.children);
                 } else if (child.type === Plural) {
-                    this.plural = child;
-                    this.paramValues.plural = this.getParamValues(child);
+                    this.pluralString = getTranslatableString(child.props.children);
                 }
             });
-            this.singularString = getTranslatableString(this.singular.props.children);
-            this.pluralString = getTranslatableString(this.plural.props.children);
         }
 
         getParamValues(element) {
@@ -247,16 +240,26 @@ export const makeComponents = (...args) => {
             return obj;
         }
 
+        getChild(plural) {
+            const {children} = this.props;
+            const component = plural ? Plural : Singular;
+            for (const child of React.Children.toArray(children)) {
+                if (React.isValidElement(child) && child.type === component) {
+                    return child;
+                }
+            }
+        }
+
         render() {
             const {count, context} = this.props;
             const gettextFunc = pickGettextFunc(context, ngettext, npgettext);
             const translation = gettextFunc(this.singularString, this.pluralString, count);
             if (translation === this.singularString) {
-                return this.singular.props.children;
+                return this.getChild(false).props.children;
             } else if (translation === this.pluralString) {
-                return this.plural.props.children;
+                return this.getChild(true).props.children;
             }
-            const values = count === 1 ? this.paramValues.singular : this.paramValues.plural;
+            const values = this.getParamValues(this.getChild(count !== 1));
             return renderTranslation(translation, values);
         }
     }

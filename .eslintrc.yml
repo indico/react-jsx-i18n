@@ -21,7 +21,9 @@ plugins:
   - jest
 
 settings:
-  import/resolver: node
+  import/resolver:
+    node:
+      extensions: [.js, .jsx, .json]
 
 rules:
   array-bracket-spacing: error

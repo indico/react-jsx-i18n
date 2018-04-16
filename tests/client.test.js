@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 
 import {makeComponents, Param, Singular, Plural} from '../src/client';
 import {jsonifyMessage} from '../src/tools/po2react';
+import {TestComponent, testStrings} from '../test-data/example';
 
 
 const expectJSX = (jsx) => expect(renderer.create(jsx).toJSON());
@@ -65,9 +66,24 @@ test('Pluralized translation works', () => {
     expectJSX(PluralTranslate.string('Fetchez la Vache', 'Fetchez les vaches', 2)).toBe('plural-Fetchez les vaches');
 });
 
-test('JSX expressions work', () => {
+test('JSX expressions evaluating to static strings work', () => {
     expectJSX(<Translate>This is a {'test'}</Translate>).toBe('translated-This is a test');
-    expectJSXWrapper(<Translate>5 + 5 = {5 + 5}</Translate>).toThrow();
+    expectJSX(<Translate>This is a {'te' + 'st'}</Translate>).toBe('translated-This is a test');
+});
+
+test('Invalid translate children fail', () => {
+    expectJSXWrapper(<Translate>5 + 5 = {5 + 5}</Translate>).toThrow(/Unexpected Translate child type/);
+    expectJSXWrapper(<Translate><span>test</span></Translate>).toThrow(/must be of type Param/);
+    expectJSXWrapper(<Translate><Singular>test</Singular></Translate>).toThrow(/must be of type Param/);
+    expectJSXWrapper(
+        <Translate>
+            <Param name="test" value="foo" />
+            <Param name="test" value="foo" />
+        </Translate>
+    ).toThrow(/found test more than once/);
+    expectJSXWrapper(
+        <Translate><Param name="test" value="foo">{123}</Param></Translate>
+    ).toThrow(/Unexpected Param child type/);
 });
 
 test('Translate component can only contain elements of specific type', () => {
@@ -120,4 +136,20 @@ test('Whitespaces are handled correctly', () => {
 
     expectJSX(pluralMessage(1)).toEqual(['singular-fetchez la vache ', '1']);
     expectJSX(pluralMessage(2)).toEqual(['plural-FETCHEZ LES VACHES ', '2']);
+});
+
+test('Example component works properly without translations', () => {
+    expectJSX(<TestComponent />).toMatchSnapshot();
+});
+
+test('Example component works properly with translations', () => {
+    expectJSX(<TestComponent translate />).toMatchSnapshot();
+});
+
+test('Example strings work properly without translations', () => {
+    expect(testStrings(false)).toMatchSnapshot();
+});
+
+test('Example strings work properly with translations', () => {
+    expect(testStrings(true)).toMatchSnapshot();
 });

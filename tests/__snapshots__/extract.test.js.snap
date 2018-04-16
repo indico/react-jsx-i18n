@@ -1,0 +1,399 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Invalid stuff fails 1`] = `
+Object {
+  "errors": Array [
+    "test-data/invalid/invalid-binary-expression.jsx: Expected '+' operator in binary expression; found '-' instead
+  1 | const InvalidBinaryExpression = () => (
+  2 |     <Translate>
+> 3 |         {'foo' - 'bar'}
+    |         ^
+  4 |     </Translate>
+  5 | );
+  6 | ",
+  ],
+}
+`;
+
+exports[`Invalid stuff fails 2`] = `
+Object {
+  "errors": Array [
+    "test-data/invalid/invalid-expression.jsx: Expressions may only contain a string literal or a concatenation of them; found CallExpression instead
+  1 | const InvalidExpression = () => (
+  2 |     <Translate>
+> 3 |         {'foo'.toString()}
+    |         ^
+  4 |     </Translate>
+  5 | );
+  6 | ",
+  ],
+}
+`;
+
+exports[`Invalid stuff fails 3`] = `
+Object {
+  "errors": Array [
+    "test-data/invalid/param-invalid-child.jsx: Unexpected Param child node: JSXExpressionContainer
+  1 | const ParamInvalidChild = () => (
+  2 |     <Translate>
+> 3 |         <Param name=\\"foo\\">{1}</Param>
+    |                           ^
+  4 |     </Translate>
+  5 | );
+  6 | ",
+  ],
+}
+`;
+
+exports[`Invalid stuff fails 4`] = `
+Object {
+  "errors": Array [
+    "test-data/invalid/param-too-many-children.jsx: Param has too many children (3), expected max. 1
+  3 |         <Param name=\\"foo\\">
+  4 |             a
+> 5 |             <span />
+    |             ^
+  6 |         </Param>
+  7 |     </Translate>
+  8 | );",
+  ],
+}
+`;
+
+exports[`Invalid stuff fails 5`] = `
+Object {
+  "errors": Array [
+    "test-data/invalid/translate-invalid-child-element.jsx: Unexpected Translate child tag: span
+  1 | const Test = () => (
+  2 |     <Translate>
+> 3 |         <span />
+    |         ^
+  4 |     </Translate>
+  5 | );
+  6 | ",
+  ],
+}
+`;
+
+exports[`Invalid stuff fails 6`] = `
+Object {
+  "errors": Array [
+    "test-data/invalid/translate-invalid-child.jsx: Unexpected Translate child node: JSXSpreadChild
+  1 | const Test = () => (
+  2 |     <Translate>
+> 3 |         {...foo}
+    |         ^
+  4 |     </Translate>
+  5 | );
+  6 | ",
+  ],
+}
+`;
+
+exports[`Invalid stuff fails 7`] = `
+Object {
+  "errors": Array [
+    "test-data/invalid/multiple-singular.jsx: More than one Singular tag found
+  2 |     <PluralTranslate>
+  3 |         <Singular />
+> 4 |         <Singular />
+    |         ^
+  5 |     </PluralTranslate>
+  6 | );
+  7 | ",
+  ],
+}
+`;
+
+exports[`Invalid stuff fails 8`] = `
+Object {
+  "errors": Array [
+    "test-data/invalid/multiple-plural.jsx: More than one Plural tag found
+  2 |     <PluralTranslate>
+  3 |         <Plural />
+> 4 |         <Plural />
+    |         ^
+  5 |     </PluralTranslate>
+  6 | );
+  7 | ",
+  ],
+}
+`;
+
+exports[`Invalid stuff fails 9`] = `
+Object {
+  "errors": Array [
+    "test-data/invalid/no-singular.jsx: No Singular tag found
+  1 | const Test = () => (
+> 2 |     <PluralTranslate>
+    |     ^
+  3 |         <Plural />
+  4 |     </PluralTranslate>
+  5 | );",
+  ],
+}
+`;
+
+exports[`Invalid stuff fails 10`] = `
+Object {
+  "errors": Array [
+    "test-data/invalid/no-plural.jsx: No Plural tag found
+  1 | const Test = () => (
+> 2 |     <PluralTranslate>
+    |     ^
+  3 |         <Singular />
+  4 |     </PluralTranslate>
+  5 | );",
+  ],
+}
+`;
+
+exports[`Invalid stuff fails 11`] = `
+Object {
+  "errors": Array [
+    "test-data/invalid/pluraltranslate-invalid-child-element.jsx: Unexpected PluralTranslate child tag: Param
+  1 | const Test = () => (
+  2 |     <PluralTranslate>
+> 3 |         <Param />
+    |         ^
+  4 |     </PluralTranslate>
+  5 | );
+  6 | ",
+  ],
+}
+`;
+
+exports[`Invalid stuff fails 12`] = `
+Object {
+  "errors": Array [
+    "test-data/invalid/translate-string-no-args.jsx: Translate.string() called with no arguments
+  1 | const Test = () => {
+> 2 |     Translate.string();
+    |     ^
+  3 | };
+  4 | ",
+  ],
+}
+`;
+
+exports[`Invalid stuff fails 13`] = `
+Object {
+  "errors": Array [
+    "test-data/invalid/pluraltranslate-string-missing-args.jsx: PluralTranslate.string() called with less than 2 arguments
+  1 | const Test = () => {
+> 2 |     PluralTranslate.string('foo');
+    |     ^
+  3 | };
+  4 | ",
+  ],
+}
+`;
+
+exports[`Messages are properly extracted 1`] = `
+Object {
+  "pot": "msgid \\"\\"
+msgstr \\"\\"
+\\"Custom: Headers\\\\n\\"
+\\"Content-Type: text/plain;\\\\n\\"
+
+#: test-data/example.jsx:44
+#: test-data/example.jsx:45
+#: test-data/example.jsx:61
+msgid \\"\\\\\\"<strong>Rats.</strong>\\\\\\"\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:46
+#: test-data/example.jsx:47
+msgid \\"foobar\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:49
+msgid \\"You    are ugly!\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:50
+msgid \\"cat\\"
+msgid_plural \\"cats\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: test-data/example.jsx:52
+msgid \\"foo   {weird} bar {hello}meow{/world} {test} xxx{/test}\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:63
+#: test-data/example.jsx:101
+msgid \\"You have {count} rat.\\"
+msgid_plural \\"You have {count} rats.\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: test-data/example.jsx:74
+msgid \\"Hello & World\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:76
+msgid \\"Hey {name}, you want to {link}click me{/link} and you know it!\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:81
+#: test-data/example.jsx:83
+msgid \\"Bye World\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:85
+msgid \\"Some <HTML> & entities: → &\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:87
+msgid \\"Hover me\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:89
+msgid \\"<HTML> is unescaped when extracted\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:94
+msgid \\"xxx foo bar{test}{x} y{/x} moo\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:111
+msgid \\"Little cats:\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:113
+msgid \\"Little dogs:\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:48
+#: test-data/example.jsx:111
+msgctxt \\"cat\\"
+msgid \\"offspring\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:51
+msgctxt \\"big\\"
+msgid \\"cat\\"
+msgid_plural \\"cats\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: test-data/example.jsx:113
+msgctxt \\"dog\\"
+msgid \\"offspring\\"
+msgstr \\"\\"",
+}
+`;
+
+exports[`Messages are properly extracted 2`] = `
+Object {
+  "pot": "msgid \\"\\"
+msgstr \\"\\"
+\\"POT-Creation-Date: 2018-04-18 12:20+0200\\\\n\\"
+\\"Content-Type: text/plain; charset=utf-8\\\\n\\"
+\\"Content-Transfer-Encoding: 8bit\\\\n\\"
+\\"MIME-Version: 1.0\\\\n\\"
+\\"Generated-By: react-jsx-i18n-extract\\\\n\\"
+\\"Content-Type: text/plain;\\\\n\\"
+
+#: test-data/example.jsx:44
+#: test-data/example.jsx:45
+#: test-data/example.jsx:61
+msgid \\"\\\\\\"<strong>Rats.</strong>\\\\\\"\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:46
+#: test-data/example.jsx:47
+msgid \\"foobar\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:49
+msgid \\"You    are ugly!\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:50
+msgid \\"cat\\"
+msgid_plural \\"cats\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: test-data/example.jsx:52
+msgid \\"foo   {weird} bar {hello}meow{/world} {test} xxx{/test}\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:63
+#: test-data/example.jsx:101
+msgid \\"You have {count} rat.\\"
+msgid_plural \\"You have {count} rats.\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: test-data/example.jsx:74
+msgid \\"Hello & World\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:76
+msgid \\"Hey {name}, you want to {link}click me{/link} and you know it!\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:81
+#: test-data/example.jsx:83
+msgid \\"Bye World\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:85
+msgid \\"Some <HTML> & entities: → &\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:87
+msgid \\"Hover me\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:89
+msgid \\"<HTML> is unescaped when extracted\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:94
+msgid \\"xxx foo bar{test}{x} y{/x} moo\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:111
+msgid \\"Little cats:\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:113
+msgid \\"Little dogs:\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:48
+#: test-data/example.jsx:111
+msgctxt \\"cat\\"
+msgid \\"offspring\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:51
+msgctxt \\"big\\"
+msgid \\"cat\\"
+msgid_plural \\"cats\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: test-data/example.jsx:113
+msgctxt \\"dog\\"
+msgid \\"offspring\\"
+msgstr \\"\\"",
+}
+`;
+
+exports[`Non-string call ignored 1`] = `
+Object {
+  "pot": "msgid \\"\\"
+msgstr \\"\\"
+\\"POT-Creation-Date: 2018-04-18 12:20+0200\\\\n\\"
+\\"Content-Type: text/plain; charset=utf-8\\\\n\\"
+\\"Content-Transfer-Encoding: 8bit\\\\n\\"
+\\"MIME-Version: 1.0\\\\n\\"
+\\"Generated-By: react-jsx-i18n-extract\\\\n\\"
+\\"Content-Type: text/plain;\\\\n\\"",
+}
+`;

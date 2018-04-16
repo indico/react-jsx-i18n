@@ -1,0 +1,97 @@
+# German (Germany) translations.
+msgid ""
+msgstr ""
+"Project-Id-Version:  Test\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2018-04-18 02:59+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de_DE\n"
+"Language-Team: de_DE <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
+
+#: test-data/example.jsx:44 test-data/example.jsx:45 test-data/example.jsx:61
+msgid "\"<strong>Rats.</strong>\""
+msgstr "\"<strong>Ratten.</strong>\""
+
+#: test-data/example.jsx:46 test-data/example.jsx:47
+msgid "foobar"
+msgstr "FooBar"
+
+#: test-data/example.jsx:49
+msgid "You    are ugly!"
+msgstr "Du    bist hässlich!"
+
+#: test-data/example.jsx:50
+msgid "cat"
+msgid_plural "cats"
+msgstr[0] "Katze"
+msgstr[1] "Katzen"
+
+#: test-data/example.jsx:52
+msgid "foo   {weird} bar {hello}meow{/world} {test} xxx{/test}"
+msgstr "Foo   {komisch} Bar {Hallo}miau{/Welt} {test} XXX{/test}"
+
+#: test-data/example.jsx:63 test-data/example.jsx:101
+msgid "You have {count} rat."
+msgid_plural "You have {count} rats."
+msgstr[0] "Du hast {count} Ratte."
+msgstr[1] "Du hast {count} Ratten."
+
+#: test-data/example.jsx:74
+msgid "Hello & World"
+msgstr "Hallo & Welt"
+
+#: test-data/example.jsx:76
+msgid "Hey {name}, you want to {link}click me{/link} and you know it!"
+msgstr "Hey {name}, du willst {link}mich anklicken{/link} und weißt das auch!"
+
+#: test-data/example.jsx:81 test-data/example.jsx:83
+msgid "Bye World"
+msgstr "Tschüss Welt"
+
+#: test-data/example.jsx:85
+msgid "Some <HTML> & entities: → &"
+msgstr "Etwas <HTML> & Entities: → &"
+
+#: test-data/example.jsx:87
+msgid "Hover me"
+msgstr "Hover mich"
+
+#: test-data/example.jsx:89
+msgid "<HTML> is unescaped when extracted"
+msgstr "<HTML> wird unescaped extracted"
+
+#: test-data/example.jsx:94
+msgid "xxx foo bar{test}{x} y{/x} moo"
+msgstr "xxx foo bar{test}{x} y{/x} muh"
+
+#: test-data/example.jsx:111
+msgid "Little cats:"
+msgstr "Junge Katzen:"
+
+#: test-data/example.jsx:113
+msgid "Little dogs:"
+msgstr "Junge Hunde:"
+
+#: test-data/example.jsx:48 test-data/example.jsx:111
+msgctxt "cat"
+msgid "offspring"
+msgstr "Kätzchen"
+
+#: test-data/example.jsx:51
+msgctxt "big"
+msgid "cat"
+msgid_plural "cats"
+msgstr[0] "KATZE"
+msgstr[1] "KATZEN"
+
+#: test-data/example.jsx:113
+msgctxt "dog"
+msgid "offspring"
+msgstr "Welpe"
+

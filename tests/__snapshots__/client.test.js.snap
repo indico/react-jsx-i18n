@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Example component works properly with translations 1`] = `
+<div>
+  Hallo & Welt
+  <br />
+  Hey 
+  dude
+  , du willst 
+  <a
+    onClick={[Function]}
+  >
+    mich anklicken
+  </a>
+   und weißt das auch!
+  <br />
+  Tschüss Welt
+  <br />
+  Tschüss Welt
+  <br />
+  Etwas &lt;HTML&gt; & Entities: → &
+  <br />
+  <span
+    title="\\"<strong>Ratten.</strong>\\""
+  >
+    Hover mich
+  </span>
+  <br />
+  &lt;HTML&gt; wird unescaped extracted
+  <br />
+  xxx foo bar
+  1
+  2
+   muh
+  <hr />
+  Du hast 
+  1
+   Ratte.
+  <br />
+  Du hast 
+  0
+   Ratten.
+  <br />
+  Du hast 
+  1
+   Ratte.
+  <br />
+  Du hast 
+  2
+   Ratten.
+  <br />
+  Junge Katzen:
+   
+  Kätzchen
+  <br />
+  Junge Hunde:
+   
+  Welpe
+</div>
+`;
+
+exports[`Example component works properly without translations 1`] = `
+<div>
+  Hello & World
+  <br />
+  Hey 
+  dude
+  , you want to 
+  <a
+    onClick={[Function]}
+  >
+    click me
+  </a>
+   and you know it!
+  <br />
+  Bye World
+  <br />
+  Bye World
+  <br />
+  Some &lt;HTML&gt; & entities: → &
+  <br />
+  <span
+    title="\\"<strong>Rats.</strong>\\""
+  >
+    Hover me
+  </span>
+  <br />
+  &lt;HTML&gt; is unescaped when extracted
+  <br />
+  xxx foo bar
+  1
+  2
+   
+  moo
+  <hr />
+  You have 
+  1
+   rat.
+  <br />
+  You have 
+  0
+   rats.
+  <br />
+  You have 
+  1
+   rat.
+  <br />
+  You have 
+  2
+   rats.
+  <br />
+  Little cats:
+   
+  offspring
+  <br />
+  Little dogs:
+   
+  offspring
+</div>
+`;
+
+exports[`Example strings work properly with translations 1`] = `
+Object {
+  "bigCat1": "KATZE",
+  "bigCat2": "KATZEN",
+  "cat1": "Katze",
+  "cat2": "Katzen",
+  "meow": "Kätzchen",
+  "ugly": "Du    bist hässlich!",
+  "v1": "\\"<strong>Ratten.</strong>\\"",
+  "v2": "\\"<strong>Ratten.</strong>\\"",
+  "v3": "FooBar",
+  "v4": "FooBar",
+  "weird": "Foo   {komisch} Bar {Hallo}miau{/Welt} {test} XXX{/test}",
+}
+`;
+
+exports[`Example strings work properly without translations 1`] = `
+Object {
+  "bigCat1": "cat",
+  "bigCat2": "cats",
+  "cat1": "cat",
+  "cat2": "cats",
+  "meow": "offspring",
+  "ugly": "You    are ugly!",
+  "v1": "\\"<strong>Rats.</strong>\\"",
+  "v2": "\\"<strong>Rats.</strong>\\"",
+  "v3": "foobar",
+  "v4": "foobar",
+  "weird": "foo   {weird} bar {hello}meow{/world} {test} xxx{/test}",
+}
+`;

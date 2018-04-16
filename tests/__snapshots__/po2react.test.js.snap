@@ -1,0 +1,203 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Messages are properly converted to JSON 1`] = `"This is a test"`;
+
+exports[`Messages are properly converted to JSON 2`] = `
+Array [
+  "Fragment",
+  null,
+  "This is a ",
+  Array [
+    "Param",
+    Object {
+      "name": "link",
+    },
+    "test",
+  ],
+  ".",
+]
+`;
+
+exports[`Messages are properly converted to JSON 3`] = `
+Array [
+  "Fragment",
+  null,
+  "This is ",
+  Array [
+    "Param",
+    Object {
+      "name": "dynamic",
+    },
+  ],
+  ".",
+]
+`;
+
+exports[`Messages are properly converted to JSON 4`] = `
+Array [
+  "Fragment",
+  null,
+  "This is ",
+  Array [
+    "Param",
+    Object {
+      "name": "dynamic",
+    },
+  ],
+  " ",
+  Array [
+    "Param",
+    Object {
+      "name": "link",
+    },
+    "link",
+  ],
+  ".",
+]
+`;
+
+exports[`PO file is properly converted to JSON 1`] = `
+Object {
+  "messages-test": Object {
+    "": Object {
+      "domain": "messages-test",
+      "lang": "de_DE",
+      "plural_forms": "nplurals=2; plural=(n != 1)",
+    },
+    "\\"<strong>Rats.</strong>\\"": Array [
+      "\\"<strong>Ratten.</strong>\\"",
+    ],
+    "<HTML> is unescaped when extracted": Array [
+      "<HTML> wird unescaped extracted",
+    ],
+    "Bye World": Array [
+      "Tschüss Welt",
+    ],
+    "Hello & World": Array [
+      "Hallo & Welt",
+    ],
+    "Hey {name}, you want to {link}click me{/link} and you know it!": Array [
+      Array [
+        "Fragment",
+        null,
+        "Hey ",
+        Array [
+          "Param",
+          Object {
+            "name": "name",
+          },
+        ],
+        ", du willst ",
+        Array [
+          "Param",
+          Object {
+            "name": "link",
+          },
+          "mich anklicken",
+        ],
+        " und weißt das auch!",
+      ],
+    ],
+    "Hover me": Array [
+      "Hover mich",
+    ],
+    "Little cats:": Array [
+      "Junge Katzen:",
+    ],
+    "Little dogs:": Array [
+      "Junge Hunde:",
+    ],
+    "Some <HTML> & entities: → &": Array [
+      "Etwas <HTML> & Entities: → &",
+    ],
+    "You    are ugly!": Array [
+      "Du    bist hässlich!",
+    ],
+    "You have {count} rat.": Array [
+      Array [
+        "Fragment",
+        null,
+        "Du hast ",
+        Array [
+          "Param",
+          Object {
+            "name": "count",
+          },
+        ],
+        " Ratte.",
+      ],
+      Array [
+        "Fragment",
+        null,
+        "Du hast ",
+        Array [
+          "Param",
+          Object {
+            "name": "count",
+          },
+        ],
+        " Ratten.",
+      ],
+    ],
+    "bigcat": Array [
+      "KATZE",
+      "KATZEN",
+    ],
+    "cat": Array [
+      "Katze",
+      "Katzen",
+    ],
+    "catoffspring": Array [
+      "Kätzchen",
+    ],
+    "dogoffspring": Array [
+      "Welpe",
+    ],
+    "foo   {weird} bar {hello}meow{/world} {test} xxx{/test}": Array [
+      Array [
+        "Fragment",
+        null,
+        "Foo   ",
+        Array [
+          "Param",
+          Object {
+            "name": "komisch",
+          },
+        ],
+        " Bar {Hallo}miau{/Welt} ",
+        Array [
+          "Param",
+          Object {
+            "name": "test",
+          },
+          " XXX",
+        ],
+      ],
+    ],
+    "foobar": Array [
+      "FooBar",
+    ],
+    "xxx foo bar{test}{x} y{/x} moo": Array [
+      Array [
+        "Fragment",
+        null,
+        "xxx foo bar",
+        Array [
+          "Param",
+          Object {
+            "name": "test",
+          },
+        ],
+        Array [
+          "Param",
+          Object {
+            "name": "x",
+          },
+          " y",
+        ],
+        " muh",
+      ],
+    ],
+  },
+}
+`;

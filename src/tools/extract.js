@@ -2,7 +2,7 @@
 
 import * as babel from '@babel/core';
 import gettextParser from 'gettext-parser';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import {mergeEntries} from 'babel-plugin-extract-text/src/builders';
 import makeI18nPlugin from './extract-plugin';
 
@@ -34,7 +34,7 @@ const extractFromFiles = (files, headers = undefined, highlightErrors = true) =>
 
     const data = mergeEntries({}, entries);
     data.headers = headers || {
-        'POT-Creation-Date': moment().format('YYYY-MM-YY hh:mmZZ'),
+        'POT-Creation-Date': moment().format('YYYY-MM-YY HH:mmZZ'),
         'Content-Type': 'text/plain; charset=utf-8',
         'Content-Transfer-Encoding': '8bit',
         'MIME-Version': '1.0',

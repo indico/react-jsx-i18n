@@ -3,9 +3,7 @@ import extractFromFiles from '../src/tools/extract';
 
 const expectExtracted = (file, headers) => expect(extractFromFiles([file], headers, false));
 
-
 test('Messages are properly extracted', () => {
-    Date.now = jest.fn(() => 1523874000000);
     expectExtracted('test-data/example.jsx', {Custom: 'Headers'}).toMatchSnapshot();
     expectExtracted('test-data/example.jsx').toMatchSnapshot();
 });

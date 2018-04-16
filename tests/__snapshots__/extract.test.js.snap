@@ -289,7 +289,7 @@ exports[`Messages are properly extracted 2`] = `
 Object {
   "pot": "msgid \\"\\"
 msgstr \\"\\"
-\\"POT-Creation-Date: 2018-04-18 12:20+0200\\\\n\\"
+\\"POT-Creation-Date: 2018-04-18 22:20+0000\\\\n\\"
 \\"Content-Type: text/plain; charset=utf-8\\\\n\\"
 \\"Content-Transfer-Encoding: 8bit\\\\n\\"
 \\"MIME-Version: 1.0\\\\n\\"
@@ -389,7 +389,7 @@ exports[`Non-string call ignored 1`] = `
 Object {
   "pot": "msgid \\"\\"
 msgstr \\"\\"
-\\"POT-Creation-Date: 2018-04-18 12:20+0200\\\\n\\"
+\\"POT-Creation-Date: 2018-04-18 22:20+0000\\\\n\\"
 \\"Content-Type: text/plain; charset=utf-8\\\\n\\"
 \\"Content-Transfer-Encoding: 8bit\\\\n\\"
 \\"MIME-Version: 1.0\\\\n\\"

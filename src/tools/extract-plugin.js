@@ -96,6 +96,9 @@ const processTranslate = (path, state, types) => {
 
 const processTranslateString = (path, state, funcName, types) => {
     const args = path.node.arguments;
+    if (args.length === 0) {
+        throw path.buildCodeFrameError('Translate.string() called with no arguments');
+    }
     const msgid = processExpression(path, args[0], types);
     const msgctxt = args[1] ? processExpression(path, args[1], types) : undefined;
     return {
@@ -142,6 +145,9 @@ const processPluralTranslate = (path, state, types) => {
 
 const processPluralTranslateString = (path, state, funcName, types) => {
     const args = path.node.arguments;
+    if (args.length < 2) {
+        throw path.buildCodeFrameError('PluralTranslate.string() called with less than 2 arguments');
+    }
     const msgid = processExpression(path, args[0], types);
     const msgid_plural = processExpression(path, args[1], types);  // eslint-disable-line camelcase
     const msgctxt = args[3] ? processExpression(path, args[3], types) : undefined;

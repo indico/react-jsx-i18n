@@ -4,4 +4,5 @@ src/
 *.tgz
 coverage/
 tests/
+test-data/
 .*

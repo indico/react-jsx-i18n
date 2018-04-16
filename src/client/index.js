@@ -255,9 +255,9 @@ export const makeComponents = (...args) => {
             const gettextFunc = pickGettextFunc(context, ngettext, npgettext);
             const translation = gettextFunc(this.singularString, this.pluralString, count);
             if (translation === this.singularString) {
-                return this.getChild(false).props.children;
+                return this.getChild(false);
             } else if (translation === this.pluralString) {
-                return this.getChild(true).props.children;
+                return this.getChild(true);
             }
             const values = this.getParamValues(this.getChild(count !== 1));
             return renderTranslation(translation, values);

@@ -67,7 +67,8 @@
     "setupFiles": ["./tests/setup.js"],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
-      "/test-data/"
+      "/test-data/",
+      "/tests/setup.js"
     ]
   }
 }

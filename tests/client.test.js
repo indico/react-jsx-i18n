@@ -1,5 +1,3 @@
-/* global test:false, expect:false */
-
 import React from 'react';
 import renderer from 'react-test-renderer';
 
@@ -10,7 +8,9 @@ import {jsonifyMessage} from '../src/tools/po2react';
 const expectJSX = (jsx) => expect(renderer.create(jsx).toJSON());
 const expectJSXWrapper = (jsx) => expect(() => renderer.create(jsx).toJSON());
 const gettext = expression => jsonifyMessage(`translated-${expression}`);
-const ngettext = (sExpression, pExpression, n) => jsonifyMessage(n === 0 || n > 1 ? `plural-${pExpression}` : `singular-${sExpression}`);
+const ngettext = (sExpression, pExpression, n) => (
+    jsonifyMessage(n !== 1 ? `plural-${pExpression}` : `singular-${sExpression}`)
+);
 
 const {Translate, PluralTranslate} = makeComponents(gettext, ngettext);
 
@@ -28,7 +28,8 @@ afterEach(() => {
 test('Basic translation works', () => {
     expectJSX(<Translate>kajak</Translate>).toBe('translated-kajak');
     expectJSX(<Translate>Fetchez la vache</Translate>).toBe('translated-Fetchez la vache');
-    expectJSX(<Translate>Fetchez la vache <Param name="number" value={5} /></Translate>).toEqual(expect.arrayContaining(['translated-Fetchez la vache ', '5']));
+    expectJSX(<Translate>Fetchez la vache <Param name="number" value={5} /></Translate>).toEqual(
+        ['translated-Fetchez la vache ', '5']);
     expectJSX(Translate.string('kajak')).toBe('translated-kajak');
 });
 
@@ -45,7 +46,7 @@ test('Pluralized translation works', () => {
     );
 
     expectJSX(message(1)).toBe('singular-This is a vache');
-    expectJSX(message(2)).toEqual(expect.arrayContaining(['plural-This is ', '2', ' vaches']));
+    expectJSX(message(2)).toEqual(['plural-This is ', '2', ' vaches']);
 
     const secondMessage = count => (
         <PluralTranslate count={count}>
@@ -104,7 +105,7 @@ test('Whitespaces are handled correctly', () => {
         </Translate>
     );
 
-    expectJSX(secondElement).toEqual(expect.arrayContaining(['translated-Fetchez la ', 'vache', 'test', ' ', '5']));
+    expectJSX(secondElement).toEqual(['translated-Fetchez la ', 'vache', 'test', ' ', '5']);
 
     const pluralMessage = count => (
         <PluralTranslate count={count}>
@@ -117,6 +118,6 @@ test('Whitespaces are handled correctly', () => {
         </PluralTranslate>
     );
 
-    expectJSX(pluralMessage(1)).toEqual(expect.arrayContaining(['singular-fetchez la vache ', '1']));
-    expectJSX(pluralMessage(2)).toEqual(expect.arrayContaining(['plural-FETCHEZ LES VACHES ', '2']));
+    expectJSX(pluralMessage(1)).toEqual(['singular-fetchez la vache ', '1']);
+    expectJSX(pluralMessage(2)).toEqual(['plural-FETCHEZ LES VACHES ', '2']);
 });

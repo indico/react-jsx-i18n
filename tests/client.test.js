@@ -138,6 +138,76 @@ test('Whitespaces are handled correctly', () => {
     expectJSX(pluralMessage(2)).toEqual(['plural-FETCHEZ LES VACHES ', '2']);
 });
 
+test('Prop updates are working with translation', () => {
+    class MyComponent extends React.Component {
+        constructor() {
+            super();
+            this.state = {name: 'user', count: 0};
+        }
+
+        render() {
+            const {name, count} = this.state;
+            return (
+                <div>
+                    <Translate>
+                        Hello, <Param name="name" value={name} />
+                    </Translate>
+                    <br />
+                    <PluralTranslate count={count}>
+                        <Singular>You have a new message.</Singular>
+                        <Plural>You have <Param name="count" value={count} /> new messages.</Plural>
+                    </PluralTranslate>
+                </div>
+            );
+        }
+    }
+
+    const testRenderer = renderer.create(<MyComponent />);
+    expect(testRenderer.toJSON()).toMatchSnapshot();
+    testRenderer.getInstance().setState({name: 'world'});
+    expect(testRenderer.toJSON()).toMatchSnapshot();
+    testRenderer.getInstance().setState({name: 'important dude', count: 1});
+    expect(testRenderer.toJSON()).toMatchSnapshot();
+});
+
+test('Prop updates are working without translation', () => {
+    // eslint-disable-next-line no-shadow
+    const {Translate, PluralTranslate} = makeComponents(
+        (msg) => msg,
+        (msg, msgpl, n) => (n === 1 ? msg : msgpl)
+    );
+
+    class MyComponent extends React.Component {
+        constructor() {
+            super();
+            this.state = {name: 'user', count: 0};
+        }
+
+        render() {
+            const {name, count} = this.state;
+            return (
+                <div>
+                    <Translate>
+                        Hello, <Param name="name" value={name} />
+                    </Translate>
+                    <br />
+                    <PluralTranslate count={count}>
+                        <Singular>You have a new message.</Singular>
+                        <Plural>You have <Param name="count" value={count} /> new messages.</Plural>
+                    </PluralTranslate>
+                </div>
+            );
+        }
+    }
+
+    const testRenderer = renderer.create(<MyComponent />);
+    expect(testRenderer.toJSON()).toMatchSnapshot();
+    testRenderer.getInstance().setState({name: 'world'});
+    expect(testRenderer.toJSON()).toMatchSnapshot();
+    testRenderer.getInstance().setState({name: 'important dude', count: 1});
+    expect(testRenderer.toJSON()).toMatchSnapshot();
+});
+
 test('Example component works properly without translations', () => {
     expectJSX(<TestComponent />).toMatchSnapshot();
 });

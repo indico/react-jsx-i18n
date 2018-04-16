@@ -150,3 +150,65 @@ Object {
   "weird": "foo   {weird} bar {hello}meow{/world} {test} xxx{/test}",
 }
 `;
+
+exports[`Prop updates are working with translation 1`] = `
+<div>
+  translated-Hello, 
+  user
+  <br />
+  plural-You have 
+  0
+   new messages.
+</div>
+`;
+
+exports[`Prop updates are working with translation 2`] = `
+<div>
+  translated-Hello, 
+  world
+  <br />
+  plural-You have 
+  0
+   new messages.
+</div>
+`;
+
+exports[`Prop updates are working with translation 3`] = `
+<div>
+  translated-Hello, 
+  important dude
+  <br />
+  singular-You have a new message.
+</div>
+`;
+
+exports[`Prop updates are working without translation 1`] = `
+<div>
+  Hello, 
+  user
+  <br />
+  You have 
+  0
+   new messages.
+</div>
+`;
+
+exports[`Prop updates are working without translation 2`] = `
+<div>
+  Hello, 
+  world
+  <br />
+  You have 
+  0
+   new messages.
+</div>
+`;
+
+exports[`Prop updates are working without translation 3`] = `
+<div>
+  Hello, 
+  important dude
+  <br />
+  You have a new message.
+</div>
+`;

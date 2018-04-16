@@ -158,6 +158,17 @@ const pickGettextFunc = (context, gettext, pgettext) => {
 };
 
 
+const getParamValues = (element) => {
+    const obj = Object.create(null);
+    React.Children.forEach(element.props.children, (child) => {
+        if (React.isValidElement(child) && child.type === Param) {
+            obj[child.props.name] = child.props.value;
+        }
+    });
+    return obj;
+};
+
+
 export const makeComponents = (...args) => {
     const {gettext, ngettext, pgettext, npgettext} = getGettextFuncs(args);
 
@@ -178,12 +189,6 @@ export const makeComponents = (...args) => {
 
         constructor(props) {
             super(props);
-            this.paramValues = Object.create(null);
-            React.Children.forEach(props.children, (child) => {
-                if (React.isValidElement(child) && child.type === Param) {
-                    this.paramValues[child.props.name] = child.props.value;
-                }
-            });
             this.original = getTranslatableString(props.children);
         }
 
@@ -196,7 +201,7 @@ export const makeComponents = (...args) => {
                 // which does not contain the information needed to render it!
                 return children;
             }
-            return renderTranslation(translation, this.paramValues);
+            return renderTranslation(translation, getParamValues(this));
         }
     }
 
@@ -230,16 +235,6 @@ export const makeComponents = (...args) => {
             });
         }
 
-        getParamValues(element) {
-            const obj = Object.create(null);
-            React.Children.forEach(element.props.children, (child) => {
-                if (React.isValidElement(child) && child.type === Param) {
-                    obj[child.props.name] = child.props.value;
-                }
-            });
-            return obj;
-        }
-
         getChild(plural) {
             const {children} = this.props;
             const component = plural ? Plural : Singular;
@@ -259,7 +254,7 @@ export const makeComponents = (...args) => {
             } else if (translation === this.pluralString) {
                 return this.getChild(true);
             }
-            const values = this.getParamValues(this.getChild(count !== 1));
+            const values = getParamValues(this.getChild(count !== 1));
             return renderTranslation(translation, values);
         }
     }

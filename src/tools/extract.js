@@ -7,12 +7,14 @@ import {mergeEntries} from 'babel-plugin-extract-text/src/builders';
 import makeI18nPlugin from './extract-plugin';
 
 
-const extractFromFiles = (files, headers = undefined) => {
+const extractFromFiles = (files, headers = undefined, highlightErrors = true) => {
+    const errors = [];
     const {i18nPlugin, entries} = makeI18nPlugin();
 
     files.forEach((file) => {
         try {
             babel.transformFileSync(file, {
+                highlightCode: highlightErrors,
                 code: false,
                 presets: ['@babel/react'],
                 plugins: [i18nPlugin],
@@ -22,10 +24,13 @@ const extractFromFiles = (files, headers = undefined) => {
             });
         } catch (exc) {
             // babel errors already contain the file name
-            console.error(exc.message);
-            process.exit(1);
+            errors.push(exc.message);
         }
     });
+
+    if (errors.length) {
+        return {errors};
+    }
 
     const data = mergeEntries({}, entries);
     data.headers = headers || {
@@ -36,7 +41,7 @@ const extractFromFiles = (files, headers = undefined) => {
         'Generated-By': 'react-jsx-i18n-extract'
     };
 
-    return gettextParser.po.compile(data);
+    return {pot: gettextParser.po.compile(data).toString()};
 };
 
 

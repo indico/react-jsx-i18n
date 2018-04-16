@@ -46,7 +46,11 @@ yargs
         });
     }, (argv) => {
         const files = flattenPaths(argv.paths, argv.ext);
-        const pot = extractFromFiles(files);
+        const {pot, errors} = extractFromFiles(files);
+        if (errors) {
+            errors.forEach(console.error.bind(console));
+            process.exit(1);
+        }
         process.stdout.write(pot + '\n');
     })
     .command('compile <pofile>', 'Compile translated strings', (y) => {

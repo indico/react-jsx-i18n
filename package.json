@@ -53,10 +53,11 @@
     "babel-eslint": "^8.2.2",
     "babel-jest": "^22.4.3",
     "eslint": "~4.19.1",
+    "eslint-config-indico": "^1.0.0",
     "eslint-plugin-babel": "^5.0.0",
     "eslint-plugin-import": "^2.10.0",
     "eslint-plugin-jest": "^21.15.0",
-    "eslint-plugin-react": "^7.7.0",
+    "eslint-plugin-react": "github:ThiefMaster/eslint-plugin-react#jsx-props",
     "jed": "^1.1.1",
     "jest": "^22.4.3",
     "prop-types": "^15.6.1",
@@ -64,7 +65,9 @@
     "react-test-renderer": "^16.3.0"
   },
   "jest": {
-    "setupFiles": ["./tests/setup.js"],
+    "setupFiles": [
+      "./tests/setup.js"
+    ],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "/test-data/",

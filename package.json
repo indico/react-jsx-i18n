@@ -1,6 +1,6 @@
 {
   "name": "react-jsx-i18n",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Provides gettext-enhanced React components, a babel plugin for extracting the strings and a script to compile translated strings to a format usable by the components.",
   "main": "client/index.js",
   "scripts": {

@@ -71,29 +71,38 @@ const renderTranslation = (translation, values) => {
 };
 
 
-const jsonToText = (component, props, ...children) => {
+const jsonToText = (values, component, props, ...children) => {
     if (component === 'Param') {
         if (children.length) {
-            return `{${props.name}}${children.join('')}{/${props.name}}`;
+            throw new Error('Placeholders with content are not supported in string()');
         } else {
-            return `{${props.name}}`;
+            if (!values.hasOwnProperty(props.name)) {
+                throw new Error(`Placeholder '{${props.name}}' got no value`);
+            }
+            return values[props.name];
         }
     }
     return children.map((child) => {
-        return typeof child === 'string' ? child : jsonToText(...child);
+        return typeof child === 'string' ? child : jsonToText(values, ...child);
     }).join('');
 };
 
 
-const renderStringTranslation = (translation) => {
+const interpolateValues = (string, values) => {
+    return string.replace(/{([a-z]+)}/g, (match, name) => {
+        if (!values.hasOwnProperty(name)) {
+            throw new Error(`Placeholder '{${name}}' got no value`);
+        }
+        return values[name];
+    });
+};
+
+
+const renderStringTranslation = (translation, values) => {
     if (typeof translation === 'string') {
-        return translation;
+        return interpolateValues(translation, values);
     } else {
-        // we do not support placeholders in Translate.string(), but
-        // when compiling a translation dict to JSON we cannot know in
-        // which context a string is used, so we have to replace the params
-        // with the original placeholders
-        return jsonToText(...translation);
+        return jsonToText(values, ...translation);
     }
 };
 
@@ -169,6 +178,21 @@ const getParamValues = (element) => {
 };
 
 
+const getContextParams = (args) => {
+    if (args.length === 0) {
+        return {context: undefined, params: {}};
+    } else if (args.length === 1) {
+        if (typeof args[0] === 'object') {
+            return {context: undefined, params: args[0]};
+        } else {
+            return {context: args[0], params: {}};
+        }
+    } else {
+        return {context: args[0], params: args[1]};
+    }
+};
+
+
 export const makeComponents = (...args) => {
     const {gettext, ngettext, pgettext, npgettext} = getGettextFuncs(args);
 
@@ -182,9 +206,11 @@ export const makeComponents = (...args) => {
             context: undefined,
         };
 
-        static string(string, context = undefined) {
+        // eslint-disable-next-line no-shadow
+        static string(string, ...args) {
+            const {context, params} = getContextParams(args);
             const gettextFunc = pickGettextFunc(context, gettext, pgettext);
-            return renderStringTranslation(gettextFunc(string));
+            return renderStringTranslation(gettextFunc(string), params);
         }
 
         constructor(props) {
@@ -217,9 +243,11 @@ export const makeComponents = (...args) => {
             context: undefined,
         };
 
-        static string(singular, plural, count = 1, context = undefined) {
+        // eslint-disable-next-line no-shadow
+        static string(singular, plural, count = 1, ...args) {
+            const {context, params} = getContextParams(args);
             const gettextFunc = pickGettextFunc(context, ngettext, npgettext);
-            return renderStringTranslation(gettextFunc(singular, plural, count));
+            return renderStringTranslation(gettextFunc(singular, plural, count), params);
         }
 
         constructor(props) {

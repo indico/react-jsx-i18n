@@ -31,7 +31,8 @@ test('Basic translation works', () => {
     expectJSX(<Translate>Fetchez la vache</Translate>).toBe('translated-Fetchez la vache');
     expectJSX(<Translate>Fetchez la vache <Param name="number" value={5} /></Translate>).toEqual(
         ['translated-Fetchez la vache ', '5']);
-    expectJSX(Translate.string('kajak')).toBe('translated-kajak');
+    expect(Translate.string('kajak')).toBe('translated-kajak');
+    expect(Translate.string('hello {what}', {what: 'world'})).toBe('translated-hello world');
 });
 
 test('Pluralized translation works', () => {
@@ -62,8 +63,8 @@ test('Pluralized translation works', () => {
 
     expectJSX(secondMessage(1)).toBe('singular-fetchez la vache');
     expectJSX(secondMessage(2)).toBe('plural-FETCHEZ LES VACHES');
-    expectJSX(PluralTranslate.string('Fetchez la Vache', 'Fetchez les vaches', 1)).toBe('singular-Fetchez la Vache');
-    expectJSX(PluralTranslate.string('Fetchez la Vache', 'Fetchez les vaches', 2)).toBe('plural-Fetchez les vaches');
+    expect(PluralTranslate.string('Fetchez la Vache', 'Fetchez les vaches', 1)).toBe('singular-Fetchez la Vache');
+    expect(PluralTranslate.string('Fetchez la Vache', 'Fetchez les vaches', 2)).toBe('plural-Fetchez les vaches');
 });
 
 test('JSX expressions evaluating to static strings work', () => {
@@ -84,6 +85,28 @@ test('Invalid translate children fail', () => {
     expectJSXWrapper(
         <Translate><Param name="test" value="foo">{123}</Param></Translate>
     ).toThrow(/Unexpected Param child type/);
+});
+
+test('Missing params in string translations fail (without translations)', () => {
+    // eslint-disable-next-line no-shadow
+    const {Translate, PluralTranslate} = makeComponents(
+        (msg) => msg,
+        (msg, msgpl, n) => (n === 1 ? msg : msgpl)
+    );
+
+    expect(() => Translate.string('{foo}')).toThrow("Placeholder '{foo}' got no value");
+    expect(() => PluralTranslate.string('{foo}', '{bar}', 1)).toThrow("Placeholder '{foo}' got no value");
+    expect(() => PluralTranslate.string('{foo}', '{bar}', 2)).toThrow("Placeholder '{bar}' got no value");
+});
+
+test('Missing params in string translations fail (with translations)', () => {
+    expect(() => Translate.string('{foo}')).toThrow("Placeholder '{foo}' got no value");
+    expect(() => PluralTranslate.string('{foo}', '{bar}', 1)).toThrow("Placeholder '{foo}' got no value");
+    expect(() => PluralTranslate.string('{foo}', '{bar}', 2)).toThrow("Placeholder '{bar}' got no value");
+});
+
+test('Invalid params in string translations fail', () => {
+    expect(() => Translate.string('{foo}bar{/foo}')).toThrow('Placeholders with content are not supported');
 });
 
 test('Translate component can only contain elements of specific type', () => {

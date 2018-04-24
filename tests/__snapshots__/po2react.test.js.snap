@@ -153,7 +153,7 @@ Object {
     "dogoffspring": Array [
       "Welpe",
     ],
-    "foo   {weird} bar {hello}meow{/world} {test} xxx{/test}": Array [
+    "foo   {weird} bar {hello}{test} xxx": Array [
       Array [
         "Fragment",
         null,
@@ -161,21 +161,53 @@ Object {
         Array [
           "Param",
           Object {
-            "name": "komisch",
+            "name": "weird",
           },
         ],
-        " Bar {Hallo}miau{/Welt} ",
+        " Bar ",
+        Array [
+          "Param",
+          Object {
+            "name": "hello",
+          },
+        ],
         Array [
           "Param",
           Object {
             "name": "test",
           },
-          " XXX",
+        ],
+        " XXX",
+      ],
+    ],
+    "foo: {foo}": Array [
+      Array [
+        "Fragment",
+        null,
+        "Foo: ",
+        Array [
+          "Param",
+          Object {
+            "name": "foo",
+          },
         ],
       ],
     ],
     "foobar": Array [
       "FooBar",
+    ],
+    "params-testfoo: {foo}": Array [
+      Array [
+        "Fragment",
+        null,
+        "Foo: ",
+        Array [
+          "Param",
+          Object {
+            "name": "foo",
+          },
+        ],
+      ],
     ],
     "xxx foo bar{test}{x} y{/x} moo": Array [
       Array [

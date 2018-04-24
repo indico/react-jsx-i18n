@@ -34,7 +34,7 @@ const processParam = (path) => {
 };
 
 
-const processExpression = (path, expression, types) => {
+const processExpression = (path, expression, types, skipNonString = false) => {
     if (types.isStringLiteral(expression)) {
         return expression.value;
     } else if (types.isBinaryExpression(expression)) {
@@ -44,6 +44,8 @@ const processExpression = (path, expression, types) => {
             );
         }
         return processExpression(path, expression.left, types) + processExpression(path, expression.right, types);
+    } else if (skipNonString) {
+        return;
     }
     throw path.buildCodeFrameError(
         `Expressions may only contain a string literal or a concatenation of them; found ${expression.type} instead`
@@ -100,7 +102,7 @@ const processTranslateString = (path, state, funcName, types) => {
         throw path.buildCodeFrameError('Translate.string() called with no arguments');
     }
     const msgid = processExpression(path, args[0], types);
-    const msgctxt = args[1] ? processExpression(path, args[1], types) : undefined;
+    const msgctxt = args[1] ? processExpression(path, args[1], types, true) : undefined;
     return {
         msgid,
         msgctxt,

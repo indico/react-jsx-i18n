@@ -49,8 +49,15 @@ export const testStrings = (translate) => {
     const ugly = Translate.string('You    are ugly!');
     const cat = (count) => PluralTranslate.string('cat', 'cats', count);
     const bigCat = (count) => PluralTranslate.string('cat', 'cats', count, 'big');
-    const weird = Translate.string('foo   {weird} bar {hello}meow{/world} {test} xxx{/test}');
-    return {v1, v2, v3, v4, meow, ugly, weird, cat1: cat(1), cat2: cat(2), bigCat1: bigCat(1), bigCat2: bigCat(2)};
+    const weird = Translate.string('foo   {weird} bar {hello}{test} xxx', {weird: 'stuff', hello: 'world', test: 123});
+    const oneParam = Translate.string('foo: {foo}', {foo: 'bar'});
+    const twoParams = Translate.string('foo: {foo}', 'params-test', {foo: 'bar'});
+    /* eslint-disable object-property-newline */
+    return {
+        v1, v2, v3, v4, meow, ugly, weird, oneParam, twoParams,
+        cat1: cat(1), cat2: cat(2),
+        bigCat1: bigCat(1), bigCat2: bigCat(2),
+    };
 };
 
 

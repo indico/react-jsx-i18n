@@ -126,12 +126,14 @@ Object {
   "cat1": "Katze",
   "cat2": "Katzen",
   "meow": "Kätzchen",
+  "oneParam": "Foo: bar",
+  "twoParams": "Foo: bar",
   "ugly": "Du    bist hässlich!",
   "v1": "\\"<strong>Ratten.</strong>\\"",
   "v2": "\\"<strong>Ratten.</strong>\\"",
   "v3": "FooBar",
   "v4": "FooBar",
-  "weird": "Foo   {komisch} Bar {Hallo}miau{/Welt} {test} XXX{/test}",
+  "weird": "Foo   stuff Bar world123 XXX",
 }
 `;
 
@@ -142,12 +144,14 @@ Object {
   "cat1": "cat",
   "cat2": "cats",
   "meow": "offspring",
+  "oneParam": "foo: bar",
+  "twoParams": "foo: bar",
   "ugly": "You    are ugly!",
   "v1": "\\"<strong>Rats.</strong>\\"",
   "v2": "\\"<strong>Rats.</strong>\\"",
   "v3": "foobar",
   "v4": "foobar",
-  "weird": "foo   {weird} bar {hello}meow{/world} {test} xxx{/test}",
+  "weird": "foo   stuff bar world123 xxx",
 }
 `;
 

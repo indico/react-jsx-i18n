@@ -16,3 +16,6 @@ package-lock.json
 
 # Jest
 coverage/
+
+# Other stuff
+*.pot

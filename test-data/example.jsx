@@ -1,4 +1,4 @@
-/* eslint-disable quotes, react/prop-types */
+/* eslint-disable babel/quotes, react/prop-types, react/jsx-curly-brace-presence */
 
 import React from 'react';
 import Jed from 'jed';

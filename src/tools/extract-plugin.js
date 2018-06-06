@@ -1,3 +1,4 @@
+import {relative} from 'path';
 import cleanJSXElementLiteralChild from '@babel/types/lib/utils/react/cleanJSXElementLiteralChild';
 
 
@@ -75,7 +76,8 @@ const processTranslatableElement = (path, types) => {
 
 
 const getLocation = (path, state) => {
-    return `${state.file.opts.filename}:${path.node.loc.start.line}`;
+    const filename = relative(process.cwd(), state.file.opts.filename);
+    return `${filename}:${path.node.loc.start.line}`;
 };
 
 

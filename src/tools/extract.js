@@ -24,7 +24,7 @@ const extractFromFiles = (files, headers = undefined, highlightErrors = true) =>
             });
         } catch (exc) {
             // babel errors already contain the file name
-            errors.push(exc.message);
+            errors.push(exc.message.replace(process.cwd() + '/', ''));
         }
     });
 

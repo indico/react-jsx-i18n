@@ -110,6 +110,33 @@ Object {
     "Some <HTML> & entities: → &": Array [
       "Etwas <HTML> & Entities: → &",
     ],
+    "This is an emphasized dynamic value: {number}": Array [
+      Array [
+        "Fragment",
+        null,
+        "Das ist ein hervorgehobener dynamischer Wert: ",
+        Array [
+          "Param",
+          Object {
+            "name": "number",
+          },
+        ],
+      ],
+    ],
+    "This is an emphasized translated value: {tag}hello{/tag}": Array [
+      Array [
+        "Fragment",
+        null,
+        "Das ist ein hervorgehobener übersetzter Wert: ",
+        Array [
+          "Param",
+          Object {
+            "name": "tag",
+          },
+          "hallo",
+        ],
+      ],
+    ],
     "You    are ugly!": Array [
       "Du    bist hässlich!",
     ],

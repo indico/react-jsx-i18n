@@ -269,6 +269,14 @@ msgstr \\"\\"
 msgid \\"Little dogs:\\"
 msgstr \\"\\"
 
+#: test-data/example.jsx:122
+msgid \\"This is an emphasized dynamic value: {number}\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:125
+msgid \\"This is an emphasized translated value: {tag}hello{/tag}\\"
+msgstr \\"\\"
+
 #: test-data/example.jsx:48
 #: test-data/example.jsx:118
 msgctxt \\"cat\\"
@@ -376,6 +384,14 @@ msgstr \\"\\"
 
 #: test-data/example.jsx:120
 msgid \\"Little dogs:\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:122
+msgid \\"This is an emphasized dynamic value: {number}\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx:125
+msgid \\"This is an emphasized translated value: {tag}hello{/tag}\\"
 msgstr \\"\\"
 
 #: test-data/example.jsx:48

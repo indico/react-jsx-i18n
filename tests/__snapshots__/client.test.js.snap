@@ -56,6 +56,15 @@ exports[`Example component works properly with translations 1`] = `
   Junge Hunde:
    
   Welpe
+  <br />
+  Das ist ein hervorgehobener dynamischer Wert: 
+  <em>
+    1000
+  </em>
+  Das ist ein hervorgehobener übersetzter Wert: 
+  <em>
+    hallo
+  </em>
 </div>
 `;
 
@@ -116,6 +125,15 @@ exports[`Example component works properly without translations 1`] = `
   Little dogs:
    
   offspring
+  <br />
+  This is an emphasized dynamic value: 
+  <em>
+    1000
+  </em>
+  This is an emphasized translated value: 
+  <em>
+    hello
+  </em>
 </div>
 `;
 

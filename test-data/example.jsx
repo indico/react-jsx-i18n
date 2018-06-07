@@ -82,7 +82,7 @@ export const TestComponent = ({translate}) => {
             <br />
             <Translate>
                 Hey <Param name="name" value={name} />,
-                you want to <Param name="link" value={link}>click me</Param> and you know it!
+                you want to <Param name="link" wrapper={link}>click me</Param> and you know it!
             </Translate>
             <br />
             <Translate>Bye World</Translate>
@@ -118,6 +118,13 @@ export const TestComponent = ({translate}) => {
             <Translate>Little cats:</Translate> <Translate context="cat">offspring</Translate>
             <br />
             <Translate>Little dogs:</Translate> <Translate context="dog">offspring</Translate>
+            <br />
+            <Translate>
+                This is an emphasized dynamic value: <Param name="number" wrapper={<em />} value={10 ** 3} />
+            </Translate>
+            <Translate>
+                This is an emphasized translated value: <Param name="tag" wrapper={<em />}>hello</Param>
+            </Translate>
         </div>
     );
 };

@@ -6,17 +6,20 @@ export class Param extends React.Component {
     static propTypes = {
         // eslint-disable-next-line react/no-unused-prop-types
         name: PropTypes.string.isRequired,
-        value: PropTypes.any.isRequired,
+        value: PropTypes.any,
+        wrapper: PropTypes.element,
         children: PropTypes.string,
     };
 
     static defaultProps = {
+        value: undefined,
+        wrapper: undefined,
         children: undefined,
     };
 
     render() {
-        const {value, children} = this.props;
-        return React.isValidElement(value) ? React.cloneElement(value, {}, children) : value;
+        const {wrapper, value, children} = this.props;
+        return wrapper ? React.cloneElement(wrapper, {}, value !== undefined ? value : children) : value;
     }
 }
 
@@ -54,7 +57,7 @@ const jsonToReact = (values, component, props, ...children) => {
     component = {Fragment: React.Fragment, Param}[component];
     if (component === Param) {
         // inject the value from the original Param in the translated string's Param
-        props = {...props, value: values[props.name]};
+        props = {...props, ...values[props.name]};
     }
     return React.createElement(component, props, ...children.map((child) => {
         return typeof child === 'string' ? child : jsonToReact(values, ...child);
@@ -171,7 +174,7 @@ const getParamValues = (element) => {
     const obj = Object.create(null);
     React.Children.forEach(element.props.children, (child) => {
         if (React.isValidElement(child) && child.type === Param) {
-            obj[child.props.name] = child.props.value;
+            obj[child.props.name] = {value: child.props.value, wrapper: child.props.wrapper};
         }
     });
     return obj;

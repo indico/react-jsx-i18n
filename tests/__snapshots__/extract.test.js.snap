@@ -189,6 +189,36 @@ Object {
 }
 `;
 
+exports[`Invalid stuff fails 14`] = `
+Object {
+  "errors": Array [
+    "test-data/invalid/param-no-name.jsx: Param has no name
+  1 | const Test = () => (
+  2 |     <Translate>
+> 3 |         <Param />
+    |         ^
+  4 |     </Translate>
+  5 | );
+  6 | ",
+  ],
+}
+`;
+
+exports[`Invalid stuff fails 15`] = `
+Object {
+  "errors": Array [
+    "test-data/invalid/param-no-children-value.jsx: Param has no value nor children
+  1 | const Test = () => (
+  2 |     <Translate>
+> 3 |         <Param name=\\"test\\" />
+    |         ^
+  4 |     </Translate>
+  5 | );
+  6 | ",
+  ],
+}
+`;
+
 exports[`Messages are properly extracted 1`] = `
 Object {
   "pot": "msgid \\"\\"

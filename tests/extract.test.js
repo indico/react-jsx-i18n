@@ -23,6 +23,8 @@ test('Invalid stuff fails', () => {
     expectExtracted('test-data/invalid/pluraltranslate-invalid-child-element.jsx').toMatchSnapshot();
     expectExtracted('test-data/invalid/translate-string-no-args.jsx').toMatchSnapshot();
     expectExtracted('test-data/invalid/pluraltranslate-string-missing-args.jsx').toMatchSnapshot();
+    expectExtracted('test-data/invalid/param-no-name.jsx').toMatchSnapshot();
+    expectExtracted('test-data/invalid/param-no-children-value.jsx').toMatchSnapshot();
 });
 
 

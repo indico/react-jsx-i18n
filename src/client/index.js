@@ -35,14 +35,13 @@ const getTranslatableString = (children) => {
         } else if (child.type !== Param) {
             throw new Error(`Translate child components must be of type Param; got ${child.type.name}`);
         } else {
-            const {name: paramName, children: paramContent} = child.props;
+            const {name: paramName, children: paramContent, value: paramValue} = child.props;
             if (usedParams.has(paramName)) {
                 throw new Error(`Translate params must be unique; found ${paramName} more than once`);
-            } else if (
-                paramContent !== undefined &&
-                typeof paramContent !== 'string'
-            ) {
+            } else if (paramContent !== undefined && typeof paramContent !== 'string') {
                 throw new Error(`Unexpected Param child type: ${typeof paramContent}`);
+            } else if (paramContent === undefined && paramValue === undefined) {
+                throw new Error(`Param has no value nor children`);
             }
             usedParams.add(paramName);
             return paramContent === undefined ? `{${paramName}}` : `{${paramName}}${paramContent}{/${paramName}}`;

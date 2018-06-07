@@ -83,8 +83,11 @@ test('Invalid translate children fail', () => {
         </Translate>
     ).toThrow(/found test more than once/);
     expectJSXWrapper(
-        <Translate><Param name="test" value="foo">{123}</Param></Translate>
+        <Translate><Param name="test">{123}</Param></Translate>
     ).toThrow(/Unexpected Param child type/);
+    expectJSXWrapper(
+        <Translate><Param name="test" /></Translate>
+    ).toThrow(/Param has no value nor children/);
 });
 
 test('Missing params in string translations fail (without translations)', () => {

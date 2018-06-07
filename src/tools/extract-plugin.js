@@ -15,13 +15,30 @@ const processText = (path) => {
 };
 
 
-const processParam = (path) => {
+const getParamValue = (path, name) => {
     const childElement = path.node.openingElement;
-    const paramName = childElement.attributes.filter((attr) => (
-        attr.name.name === 'name'
-    ))[0].value.value;
+    const matches = childElement.attributes.filter(attr => attr.name.name === name);
+    return matches.length ? matches[0].value.value : undefined;
+};
+
+
+const hasParam = (path, name) => {
+    const childElement = path.node.openingElement;
+    const matches = childElement.attributes.filter(attr => attr.name.name === name);
+    return !!matches.length;
+};
+
+
+const processParam = (path) => {
+    const paramName = getParamValue(path, 'name');
+    if (!paramName) {
+        throw path.buildCodeFrameError('Param has no name');
+    }
     const children = path.get('children');
     if (children.length === 0) {
+        if (!hasParam(path, 'value')) {
+            throw path.buildCodeFrameError('Param has no value nor children');
+        }
         return `{${paramName}}`;
     } else if (children.length !== 1) {
         throw children[1].buildCodeFrameError(`Param has too many children (${children.length}), expected max. 1`);

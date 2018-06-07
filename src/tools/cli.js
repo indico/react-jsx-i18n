@@ -64,13 +64,18 @@ yargs
             type: 'string',
             describe: 'gettext domain to use in the output data',
         });
+        y.option('pretty', {
+            alias: 'p',
+            boolean: true,
+            describe: 'pretty-print the generated json',
+        });
     }, (argv) => {
         if (!fs.existsSync(argv.pofile)) {
             console.error(chalk.red.bold(`Invalid path: ${chalk.yellow.bold(argv.pofile)}`));
             return;
         }
         const data = poToReact(argv.pofile, argv.domain);
-        process.stdout.write(JSON.stringify(data) + '\n');
+        process.stdout.write(JSON.stringify(data, null, argv.pretty ? 2 : 0) + '\n');
     })
     .demandCommand()
     .help()

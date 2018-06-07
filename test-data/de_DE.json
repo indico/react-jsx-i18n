@@ -1,1 +1,202 @@
-{"messages-test":{"":{"domain":"messages-test","lang":"de_DE","plural_forms":"nplurals=2; plural=(n != 1)"},"\"<strong>Rats.</strong>\"":["\"<strong>Ratten.</strong>\""],"foobar":["FooBar"],"You    are ugly!":["Du    bist hässlich!"],"cat":["Katze","Katzen"],"foo   {weird} bar {hello}{test} xxx":[["Fragment",null,"Foo   ",["Param",{"name":"weird"}]," Bar ",["Param",{"name":"hello"}],["Param",{"name":"test"}]," XXX"]],"foo: {foo}":[["Fragment",null,"Foo: ",["Param",{"name":"foo"}]]],"You have {count} rat.":[["Fragment",null,"Du hast ",["Param",{"name":"count"}]," Ratte."],["Fragment",null,"Du hast ",["Param",{"name":"count"}]," Ratten."]],"Hello & World":["Hallo & Welt"],"Hey {name}, you want to {link}click me{/link} and you know it!":[["Fragment",null,"Hey ",["Param",{"name":"name"}],", du willst ",["Param",{"name":"link"},"mich anklicken"]," und weißt das auch!"]],"Bye World":["Tschüss Welt"],"Some <HTML> & entities: → &":["Etwas <HTML> & Entities: → &"],"Hover me":["Hover mich"],"<HTML> is unescaped when extracted":["<HTML> wird unescaped extracted"],"xxx foo bar{test}{x} y{/x} moo":[["Fragment",null,"xxx foo bar",["Param",{"name":"test"}],["Param",{"name":"x"}," y"]," muh"]],"Little cats:":["Junge Katzen:"],"Little dogs:":["Junge Hunde:"],"This is an emphasized dynamic value: {number}":[["Fragment",null,"Das ist ein hervorgehobener dynamischer Wert: ",["Param",{"name":"number"}]]],"This is an emphasized translated value: {tag}hello{/tag}":[["Fragment",null,"Das ist ein hervorgehobener übersetzter Wert: ",["Param",{"name":"tag"},"hallo"]]],"cat\u0004offspring":["Kätzchen"],"big\u0004cat":["KATZE","KATZEN"],"params-test\u0004foo: {foo}":[["Fragment",null,"Foo: ",["Param",{"name":"foo"}]]],"dog\u0004offspring":["Welpe"]}}
+{
+  "messages-test": {
+    "": {
+      "domain": "messages-test",
+      "lang": "de_DE",
+      "plural_forms": "nplurals=2; plural=(n != 1)"
+    },
+    "\"<strong>Rats.</strong>\"": [
+      "\"<strong>Ratten.</strong>\""
+    ],
+    "foobar": [
+      "FooBar"
+    ],
+    "You    are ugly!": [
+      "Du    bist hässlich!"
+    ],
+    "cat": [
+      "Katze",
+      "Katzen"
+    ],
+    "foo   {weird} bar {hello}{test} xxx": [
+      [
+        "Fragment",
+        null,
+        "Foo   ",
+        [
+          "Param",
+          {
+            "name": "weird"
+          }
+        ],
+        " Bar ",
+        [
+          "Param",
+          {
+            "name": "hello"
+          }
+        ],
+        [
+          "Param",
+          {
+            "name": "test"
+          }
+        ],
+        " XXX"
+      ]
+    ],
+    "foo: {foo}": [
+      [
+        "Fragment",
+        null,
+        "Foo: ",
+        [
+          "Param",
+          {
+            "name": "foo"
+          }
+        ]
+      ]
+    ],
+    "You have {count} rat.": [
+      [
+        "Fragment",
+        null,
+        "Du hast ",
+        [
+          "Param",
+          {
+            "name": "count"
+          }
+        ],
+        " Ratte."
+      ],
+      [
+        "Fragment",
+        null,
+        "Du hast ",
+        [
+          "Param",
+          {
+            "name": "count"
+          }
+        ],
+        " Ratten."
+      ]
+    ],
+    "Hello & World": [
+      "Hallo & Welt"
+    ],
+    "Hey {name}, you want to {link}click me{/link} and you know it!": [
+      [
+        "Fragment",
+        null,
+        "Hey ",
+        [
+          "Param",
+          {
+            "name": "name"
+          }
+        ],
+        ", du willst ",
+        [
+          "Param",
+          {
+            "name": "link"
+          },
+          "mich anklicken"
+        ],
+        " und weißt das auch!"
+      ]
+    ],
+    "Bye World": [
+      "Tschüss Welt"
+    ],
+    "Some <HTML> & entities: → &": [
+      "Etwas <HTML> & Entities: → &"
+    ],
+    "Hover me": [
+      "Hover mich"
+    ],
+    "<HTML> is unescaped when extracted": [
+      "<HTML> wird unescaped extracted"
+    ],
+    "xxx foo bar{test}{x} y{/x} moo": [
+      [
+        "Fragment",
+        null,
+        "xxx foo bar",
+        [
+          "Param",
+          {
+            "name": "test"
+          }
+        ],
+        [
+          "Param",
+          {
+            "name": "x"
+          },
+          " y"
+        ],
+        " muh"
+      ]
+    ],
+    "Little cats:": [
+      "Junge Katzen:"
+    ],
+    "Little dogs:": [
+      "Junge Hunde:"
+    ],
+    "This is an emphasized dynamic value: {number}": [
+      [
+        "Fragment",
+        null,
+        "Das ist ein hervorgehobener dynamischer Wert: ",
+        [
+          "Param",
+          {
+            "name": "number"
+          }
+        ]
+      ]
+    ],
+    "This is an emphasized translated value: {tag}hello{/tag}": [
+      [
+        "Fragment",
+        null,
+        "Das ist ein hervorgehobener übersetzter Wert: ",
+        [
+          "Param",
+          {
+            "name": "tag"
+          },
+          "hallo"
+        ]
+      ]
+    ],
+    "cat\u0004offspring": [
+      "Kätzchen"
+    ],
+    "big\u0004cat": [
+      "KATZE",
+      "KATZEN"
+    ],
+    "params-test\u0004foo: {foo}": [
+      [
+        "Fragment",
+        null,
+        "Foo: ",
+        [
+          "Param",
+          {
+            "name": "foo"
+          }
+        ]
+      ]
+    ],
+    "dog\u0004offspring": [
+      "Welpe"
+    ]
+  }
+}

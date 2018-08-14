@@ -170,6 +170,30 @@ Object {
       "KATZE",
       "KATZEN",
     ],
+    "cone {foo}": Array [
+      Array [
+        "Fragment",
+        null,
+        "ein ",
+        Array [
+          "Param",
+          Object {
+            "name": "foo",
+          },
+        ],
+      ],
+      Array [
+        "Fragment",
+        null,
+        "viele ",
+        Array [
+          "Param",
+          Object {
+            "name": "foo",
+          },
+        ],
+      ],
+    ],
     "cat": Array [
       "Katze",
       "Katzen",
@@ -222,6 +246,30 @@ Object {
     ],
     "foobar": Array [
       "FooBar",
+    ],
+    "one {foo}": Array [
+      Array [
+        "Fragment",
+        null,
+        "ein ",
+        Array [
+          "Param",
+          Object {
+            "name": "foo",
+          },
+        ],
+      ],
+      Array [
+        "Fragment",
+        null,
+        "viele ",
+        Array [
+          "Param",
+          Object {
+            "name": "foo",
+          },
+        ],
+      ],
     ],
     "params-testfoo: {foo}": Array [
       Array [

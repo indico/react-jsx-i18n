@@ -171,7 +171,7 @@ const processPluralTranslateString = (path, state, funcName, types) => {
     }
     const msgid = processExpression(path, args[0], types);
     const msgid_plural = processExpression(path, args[1], types);  // eslint-disable-line camelcase
-    const msgctxt = args[3] ? processExpression(path, args[3], types) : undefined;
+    const msgctxt = args[3] ? processExpression(path, args[3], types, true) : undefined;
     return {
         msgid,
         msgid_plural,

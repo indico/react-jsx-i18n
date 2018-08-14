@@ -49,6 +49,8 @@ export const testStrings = (translate) => {
     const ugly = Translate.string('You    are ugly!');
     const cat = (count) => PluralTranslate.string('cat', 'cats', count);
     const bigCat = (count) => PluralTranslate.string('cat', 'cats', count, 'big');
+    const formattedPlural = (count) => PluralTranslate.string('one {foo}', 'many {foo}', count, {foo: 'bar'});
+    const formattedPluralCtx = (count) => PluralTranslate.string('one {foo}', 'many {foo}', count, 'c', {foo: 'baz'});
     const weird = Translate.string('foo   {weird} bar {hello}{test} xxx', {weird: 'stuff', hello: 'world', test: 123});
     const oneParam = Translate.string('foo: {foo}', {foo: 'bar'});
     const twoParams = Translate.string('foo: {foo}', 'params-test', {foo: 'bar'});
@@ -57,6 +59,8 @@ export const testStrings = (translate) => {
         v1, v2, v3, v4, meow, ugly, weird, oneParam, twoParams,
         cat1: cat(1), cat2: cat(2),
         bigCat1: bigCat(1), bigCat2: bigCat(2),
+        formattedPlural1: formattedPlural(1), formattedPlural2: formattedPlural(2),
+        formattedPluralCtx1: formattedPluralCtx(1), formattedPluralCtx2: formattedPluralCtx(2),
     };
 };
 

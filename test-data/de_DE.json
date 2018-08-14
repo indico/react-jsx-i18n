@@ -18,6 +18,30 @@
       "Katze",
       "Katzen"
     ],
+    "one {foo}": [
+      [
+        "Fragment",
+        null,
+        "ein ",
+        [
+          "Param",
+          {
+            "name": "foo"
+          }
+        ]
+      ],
+      [
+        "Fragment",
+        null,
+        "viele ",
+        [
+          "Param",
+          {
+            "name": "foo"
+          }
+        ]
+      ]
+    ],
     "foo   {weird} bar {hello}{test} xxx": [
       [
         "Fragment",
@@ -181,6 +205,30 @@
     "big\u0004cat": [
       "KATZE",
       "KATZEN"
+    ],
+    "c\u0004one {foo}": [
+      [
+        "Fragment",
+        null,
+        "ein ",
+        [
+          "Param",
+          {
+            "name": "foo"
+          }
+        ]
+      ],
+      [
+        "Fragment",
+        null,
+        "viele ",
+        [
+          "Param",
+          {
+            "name": "foo"
+          }
+        ]
+      ]
     ],
     "params-test\u0004foo: {foo}": [
       [

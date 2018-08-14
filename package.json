@@ -44,26 +44,26 @@
     "prop-types": "*"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.51",
-    "@babel/core": "^7.0.0-beta.51",
-    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.51",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.51",
-    "@babel/preset-env": "^7.0.0-beta.51",
-    "@babel/preset-react": "^7.0.0-beta.51",
+    "@babel/cli": "^7.0.0-rc.1",
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-rc.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "@babel/preset-react": "^7.0.0-rc.1",
     "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^8.2.5",
+    "babel-eslint": "^8.2.6",
     "babel-jest": "^22.4.3",
     "eslint": "~5.0.1",
     "eslint-config-indico": "^1.1.0",
     "eslint-plugin-babel": "^5.0.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-jest": "^21.15.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^21.21.0",
     "eslint-plugin-react": "github:ThiefMaster/eslint-plugin-react#jsx-props",
     "jed": "^1.1.1",
     "jest": "^22.4.3",
     "prop-types": "^15.6.2",
-    "react": "^16.4.1",
-    "react-test-renderer": "^16.4.1"
+    "react": "^16.4.2",
+    "react-test-renderer": "^16.4.2"
   },
   "jest": {
     "setupFiles": [

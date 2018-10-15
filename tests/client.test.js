@@ -33,6 +33,7 @@ test('Basic translation works', () => {
         ['translated-Fetchez la vache ', '5']);
     expect(Translate.string('kajak')).toBe('translated-kajak');
     expect(Translate.string('hello {what}', {what: 'world'})).toBe('translated-hello world');
+    expect(Translate.string('hello {whatElse}', {whatElse: 'planet'})).toBe('translated-hello planet');
 });
 
 test('Pluralized translation works', () => {

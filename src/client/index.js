@@ -91,7 +91,7 @@ const jsonToText = (values, component, props, ...children) => {
 
 
 const interpolateValues = (string, values) => {
-    return string.replace(/{([a-z]+)}/g, (match, name) => {
+    return string.replace(/{([^}]+)}/g, (match, name) => {
         if (!values.hasOwnProperty(name)) {
             throw new Error(`Placeholder '{${name}}' got no value`);
         }

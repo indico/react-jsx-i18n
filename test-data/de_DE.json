@@ -82,6 +82,19 @@
         ]
       ]
     ],
+    "mixed: {mixedCase}": [
+      [
+        "Fragment",
+        null,
+        "gemischt: ",
+        [
+          "Param",
+          {
+            "name": "mixedCase"
+          }
+        ]
+      ]
+    ],
     "You have {count} rat.": [
       [
         "Fragment",

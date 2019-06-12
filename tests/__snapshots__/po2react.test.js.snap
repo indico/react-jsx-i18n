@@ -262,6 +262,19 @@ Object {
     "foobar": Array [
       "FooBar",
     ],
+    "mixed: {mixedCase}": Array [
+      Array [
+        "Fragment",
+        null,
+        "gemischt: ",
+        Array [
+          "Param",
+          Object {
+            "name": "mixedCase",
+          },
+        ],
+      ],
+    ],
     "one {foo}": Array [
       Array [
         "Fragment",

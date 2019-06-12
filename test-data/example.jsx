@@ -54,9 +54,10 @@ export const testStrings = (translate) => {
     const weird = Translate.string('foo   {weird} bar {hello}{test} xxx', {weird: 'stuff', hello: 'world', test: 123});
     const oneParam = Translate.string('foo: {foo}', {foo: 'bar'});
     const twoParams = Translate.string('foo: {foo}', 'params-test', {foo: 'bar'});
+    const mixedCase = Translate.string('mixed: {mixedCase}', {mixedCase: 'bar'});
     /* eslint-disable object-property-newline */
     return {
-        v1, v2, v3, v4, meow, ugly, weird, oneParam, twoParams,
+        v1, v2, v3, v4, meow, ugly, weird, oneParam, twoParams, mixedCase,
         cat1: cat(1), cat2: cat(2),
         bigCat1: bigCat(1), bigCat2: bigCat(2),
         formattedPlural1: formattedPlural(1), formattedPlural2: formattedPlural(2),

@@ -56,6 +56,21 @@ Array [
 ]
 `;
 
+exports[`Messages are properly converted to JSON 5`] = `
+Array [
+  "Fragment",
+  null,
+  "This is ",
+  Array [
+    "Param",
+    Object {
+      "name": "dynamicString",
+    },
+  ],
+  ".",
+]
+`;
+
 exports[`PO file is properly converted to JSON 1`] = `
 Object {
   "messages-test": Object {

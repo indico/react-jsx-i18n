@@ -3,14 +3,14 @@ import gettextParser from 'gettext-parser';
 
 
 export const jsonifyMessage = (message) => {
-    if (!/{[a-z]+}/.test(message)) {
+    if (!/{[a-zA-Z_]+}/.test(message)) {
         return message;
     }
 
     const json = ['Fragment', null];
-    const parts = message.split(/({\/?[a-z]+})/).filter((part) => !!part);
+    const parts = message.split(/({\/?[a-zA-Z_]+})/).filter((part) => !!part);
     for (let i = 0; i < parts.length; i++) {
-        const match = parts[i].match(/^{([a-z]+)}$/);
+        const match = parts[i].match(/^{([a-zA-Z_]+)}$/);
         if (!match) {
             // plain string
             json.push(parts[i]);

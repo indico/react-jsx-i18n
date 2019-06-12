@@ -9,6 +9,7 @@ test('Messages are properly converted to JSON', () => {
     expectJSON('This is a {link}test{/link}.').toMatchSnapshot();
     expectJSON('This is {dynamic}.').toMatchSnapshot();
     expectJSON('This is {dynamic} {link}link{/link}.').toMatchSnapshot();
+    expectJSON('This is {dynamicString}.').toMatchSnapshot();
 });
 
 

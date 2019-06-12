@@ -31,10 +31,10 @@
   "homepage": "https://github.com/indico/react-jsx-i18n#readme",
   "dependencies": {
     "babel-plugin-extract-text": "^0.4.0",
-    "chalk": "^2.3.2",
+    "chalk": "^2.4.2",
     "gettext-parser": "^1.4.0",
     "lodash.uniq": "^4.5.0",
-    "moment-timezone": "^0.5.21",
+    "moment-timezone": "^0.5.25",
     "yargs": "^11.1.0"
   },
   "peerDependencies": {
@@ -44,26 +44,26 @@
     "prop-types": "*"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-rc.1",
-    "@babel/core": "^7.0.0-rc.1",
-    "@babel/plugin-proposal-class-properties": "^7.0.0-rc.1",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-rc.1",
-    "@babel/preset-env": "^7.0.0-rc.1",
-    "@babel/preset-react": "^7.0.0-rc.1",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^8.2.6",
     "babel-jest": "^22.4.3",
-    "eslint": "~5.0.1",
+    "eslint": "^5.16.0",
     "eslint-config-indico": "^1.1.0",
-    "eslint-plugin-babel": "^5.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jest": "^21.21.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jest": "^21.27.2",
     "eslint-plugin-react": "github:ThiefMaster/eslint-plugin-react#jsx-props",
     "jed": "^1.1.1",
     "jest": "^24.6",
-    "prop-types": "^15.6.2",
-    "react": "^16.4.2",
-    "react-test-renderer": "^16.4.2"
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-test-renderer": "^16.8.6"
   },
   "jest": {
     "setupFiles": [

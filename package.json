@@ -35,6 +35,7 @@
     "gettext-parser": "^1.4.0",
     "lodash.uniq": "^4.5.0",
     "moment-timezone": "^0.5.25",
+    "node-glob": "^1.2.0",
     "yargs": "^11.1.0"
   },
   "peerDependencies": {

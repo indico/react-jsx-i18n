@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  Test\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-19 10:48+0200\n"
+"POT-Creation-Date: 2019-06-19 12:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de_DE\n"
@@ -50,7 +50,7 @@ msgstr "Foo: {foo}"
 msgid "mixed: {mixedCase}"
 msgstr "gemischt: {mixedCase}"
 
-#: test-data/example.jsx:86 test-data/example.jsx:126
+#: test-data/example.jsx:86 test-data/example.jsx:129
 msgid "You have {count} rat."
 msgid_plural "You have {count} rats."
 msgstr[0] "Du hast {count} Ratte."
@@ -81,26 +81,32 @@ msgid "<HTML> is unescaped when extracted"
 msgstr "<HTML> wird unescaped extracted"
 
 #: test-data/example.jsx:119
-msgid "xxx foo bar{test}{x} y{/x} moo"
-msgstr "xxx foo bar{test}{x} y{/x} muh"
+msgid "xxx foo bar{test}{x}y{/x} moo"
+msgstr "xxx foo bar{test}{x}y{/x} muh"
 
-#: test-data/example.jsx:136
+#: test-data/example.jsx:139
 msgid "Little cats:"
 msgstr "Junge Katzen:"
 
-#: test-data/example.jsx:138
+#: test-data/example.jsx:141
 msgid "Little dogs:"
 msgstr "Junge Hunde:"
 
-#: test-data/example.jsx:140
+#: test-data/example.jsx:143
 msgid "This is an emphasized dynamic value: {number}"
 msgstr "Das ist ein hervorgehobener dynamischer Wert: {number}"
 
-#: test-data/example.jsx:144
+#: test-data/example.jsx:147
 msgid "This is an emphasized translated value: {tag}hello{/tag}"
 msgstr "Das ist ein hervorgehobener übersetzter Wert: {tag}hallo{/tag}"
 
-#: test-data/example.jsx:41 test-data/example.jsx:136
+#: test-data/example.jsx:153
+msgid "This param is using string literals: {emphasize}hello world{/emphasize}"
+msgstr ""
+"Dieser Parameter verwendet String Literals: {emphasize}Hallo "
+"Welt{/emphasize}"
+
+#: test-data/example.jsx:41 test-data/example.jsx:139
 msgctxt "cat"
 msgid "offspring"
 msgstr "Kätzchen"
@@ -124,7 +130,7 @@ msgctxt "params-test"
 msgid "foo: {foo}"
 msgstr "Foo: {foo}"
 
-#: test-data/example.jsx:138
+#: test-data/example.jsx:141
 msgctxt "dog"
 msgid "offspring"
 msgstr "Welpe"

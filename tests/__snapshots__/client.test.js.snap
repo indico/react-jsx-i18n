@@ -65,6 +65,10 @@ exports[`Example component works properly with translations 1`] = `
   <em>
     hallo
   </em>
+  Dieser Parameter verwendet String Literals: 
+  <em>
+    Hallo Welt
+  </em>
 </div>
 `;
 
@@ -137,6 +141,11 @@ exports[`Example component works properly without translations 1`] = `
    
   <em>
     hello
+  </em>
+  This param is using string literals:
+   
+  <em>
+    hello world
   </em>
 </div>
 `;

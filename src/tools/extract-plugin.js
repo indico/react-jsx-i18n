@@ -24,7 +24,7 @@ const hasParam = (path, name) => {
   return !!matches.length;
 };
 
-const processParam = path => {
+const processParam = (path, types) => {
   const paramName = getParamValue(path, 'name');
   if (!paramName) {
     throw path.buildCodeFrameError('Param has no name');
@@ -35,16 +35,9 @@ const processParam = path => {
       throw path.buildCodeFrameError('Param has no value nor children');
     }
     return `{${paramName}}`;
-  } else if (children.length !== 1) {
-    throw children[1].buildCodeFrameError(
-      `Param has too many children (${children.length}), expected max. 1`
-    );
   }
-  const childPath = children[0];
-  if (childPath.type !== 'JSXText') {
-    throw childPath.buildCodeFrameError(`Unexpected Param child node: ${childPath.type}`);
-  }
-  const body = processText(childPath);
+  // eslint-disable-next-line no-use-before-define
+  const body = processElement(path, types);
   return `{${paramName}}${body}{/${paramName}}`;
 };
 
@@ -69,7 +62,7 @@ const processExpression = (path, expression, types, skipNonString = false) => {
   );
 };
 
-const processTranslatableElement = (path, types) => {
+const processElement = (path, types, allowParam = false) => {
   const elementName = path.node.openingElement.name.name;
   const stringParts = path.get('children').map(childPath => {
     if (childPath.type === 'JSXText') {
@@ -78,12 +71,12 @@ const processTranslatableElement = (path, types) => {
       return processExpression(childPath, childPath.node.expression, types);
     } else if (childPath.type === 'JSXElement') {
       const childElement = childPath.node.openingElement;
-      if (childElement.name.name !== 'Param') {
+      if (!allowParam || childElement.name.name !== 'Param') {
         throw childPath.buildCodeFrameError(
           `Unexpected ${elementName} child tag: ${childElement.name.name}`
         );
       }
-      return processParam(childPath);
+      return processParam(childPath, types);
     } else {
       throw childPath.buildCodeFrameError(
         `Unexpected ${elementName} child node: ${childPath.type}`
@@ -105,7 +98,7 @@ const getContext = path => {
 };
 
 const processTranslate = (path, state, types) => {
-  const translatableString = processTranslatableElement(path, types);
+  const translatableString = processElement(path, types, true);
   return {
     msgid: translatableString,
     msgctxt: getContext(path),
@@ -156,8 +149,8 @@ const processPluralTranslate = (path, state, types) => {
     throw path.buildCodeFrameError('No Plural tag found');
   }
   return {
-    msgid: processTranslatableElement(singularPath, types),
-    msgid_plural: processTranslatableElement(pluralPath, types),
+    msgid: processElement(singularPath, types, true),
+    msgid_plural: processElement(pluralPath, types, true),
     msgctxt: getContext(path),
     reference: getLocation(path, state),
   };

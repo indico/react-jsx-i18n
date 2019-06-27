@@ -152,6 +152,20 @@ Object {
         ],
       ],
     ],
+    "This param is using string literals: {emphasize}hello world{/emphasize}": Array [
+      Array [
+        "Fragment",
+        null,
+        "Dieser Parameter verwendet String Literals: ",
+        Array [
+          "Param",
+          Object {
+            "name": "emphasize",
+          },
+          "Hallo Welt",
+        ],
+      ],
+    ],
     "You    are ugly!": Array [
       "Du    bist hässlich!",
     ],
@@ -312,7 +326,7 @@ Object {
         ],
       ],
     ],
-    "xxx foo bar{test}{x} y{/x} moo": Array [
+    "xxx foo bar{test}{x}y{/x} moo": Array [
       Array [
         "Fragment",
         null,
@@ -328,7 +342,7 @@ Object {
           Object {
             "name": "x",
           },
-          " y",
+          "y",
         ],
         " muh",
       ],

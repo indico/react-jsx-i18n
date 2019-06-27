@@ -158,7 +158,7 @@
     "<HTML> is unescaped when extracted": [
       "<HTML> wird unescaped extracted"
     ],
-    "xxx foo bar{test}{x} y{/x} moo": [
+    "xxx foo bar{test}{x}y{/x} moo": [
       [
         "Fragment",
         null,
@@ -174,7 +174,7 @@
           {
             "name": "x"
           },
-          " y"
+          "y"
         ],
         " muh"
       ]
@@ -209,6 +209,20 @@
             "name": "tag"
           },
           "hallo"
+        ]
+      ]
+    ],
+    "This param is using string literals: {emphasize}hello world{/emphasize}": [
+      [
+        "Fragment",
+        null,
+        "Dieser Parameter verwendet String Literals: ",
+        [
+          "Param",
+          {
+            "name": "emphasize"
+          },
+          "Hallo Welt"
         ]
       ]
     ],

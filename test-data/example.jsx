@@ -116,11 +116,13 @@ export const TestComponent = ({translate}) => {
       <br />
       <Translate>&lt;HTML&gt; is unescaped when extracted</Translate>
       <br />
-      {/* prettier-ignore */}
       <Translate>
         xxx foo bar
         <Param name="test" value={1} />
-        <Param name="x" value={'2'}> y</Param>{' '}
+        <Param name="x" value={'2'}>
+          {' '}
+          y
+        </Param>{' '}
         moo
       </Translate>
       <hr />
@@ -146,6 +148,12 @@ export const TestComponent = ({translate}) => {
         This is an emphasized translated value:{' '}
         <Param name="tag" wrapper={<em />}>
           hello
+        </Param>
+      </Translate>
+      <Translate>
+        This param is using string literals:{' '}
+        <Param name="emphasize" wrapper={<em />}>
+          {'hello' + ' ' + 'world'}
         </Param>
       </Translate>
     </div>

@@ -226,123 +226,123 @@ msgstr \\"\\"
 \\"Custom: Headers\\\\n\\"
 \\"Content-Type: text/plain;\\\\n\\"
 
-#: test-data/example.jsx:44
-#: test-data/example.jsx:45
-#: test-data/example.jsx:73
+#: test-data/example.jsx:37
+#: test-data/example.jsx:38
+#: test-data/example.jsx:84
 msgid \\"\\\\\\"<strong>Rats.</strong>\\\\\\"\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:46
-#: test-data/example.jsx:47
+#: test-data/example.jsx:39
+#: test-data/example.jsx:40
 msgid \\"foobar\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:49
+#: test-data/example.jsx:42
 msgid \\"You    are ugly!\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:50
+#: test-data/example.jsx:43
 msgid \\"cat\\"
 msgid_plural \\"cats\\"
 msgstr[0] \\"\\"
 msgstr[1] \\"\\"
 
-#: test-data/example.jsx:52
+#: test-data/example.jsx:46
 msgid \\"one {foo}\\"
 msgid_plural \\"many {foo}\\"
 msgstr[0] \\"\\"
 msgstr[1] \\"\\"
 
-#: test-data/example.jsx:54
+#: test-data/example.jsx:49
 msgid \\"foo   {weird} bar {hello}{test} xxx\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:55
+#: test-data/example.jsx:54
 msgid \\"foo: {foo}\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:57
+#: test-data/example.jsx:56
 msgid \\"mixed: {mixedCase}\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:75
-#: test-data/example.jsx:113
+#: test-data/example.jsx:86
+#: test-data/example.jsx:127
 msgid \\"You have {count} rat.\\"
 msgid_plural \\"You have {count} rats.\\"
 msgstr[0] \\"\\"
 msgstr[1] \\"\\"
 
-#: test-data/example.jsx:86
+#: test-data/example.jsx:97
 msgid \\"Hello & World\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:88
+#: test-data/example.jsx:99
 msgid \\"Hey {name}, you want to {link}click me{/link} and you know it!\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:93
-#: test-data/example.jsx:95
+#: test-data/example.jsx:107
+#: test-data/example.jsx:109
 msgid \\"Bye World\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:97
+#: test-data/example.jsx:111
 msgid \\"Some <HTML> & entities: → &\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:99
+#: test-data/example.jsx:114
 msgid \\"Hover me\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:101
+#: test-data/example.jsx:117
 msgid \\"<HTML> is unescaped when extracted\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:106
+#: test-data/example.jsx:120
 msgid \\"xxx foo bar{test}{x} y{/x} moo\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:123
+#: test-data/example.jsx:137
 msgid \\"Little cats:\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:125
+#: test-data/example.jsx:139
 msgid \\"Little dogs:\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:127
+#: test-data/example.jsx:141
 msgid \\"This is an emphasized dynamic value: {number}\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:130
+#: test-data/example.jsx:145
 msgid \\"This is an emphasized translated value: {tag}hello{/tag}\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:48
-#: test-data/example.jsx:123
+#: test-data/example.jsx:41
+#: test-data/example.jsx:137
 msgctxt \\"cat\\"
 msgid \\"offspring\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:51
+#: test-data/example.jsx:44
 msgctxt \\"big\\"
 msgid \\"cat\\"
 msgid_plural \\"cats\\"
 msgstr[0] \\"\\"
 msgstr[1] \\"\\"
 
-#: test-data/example.jsx:53
+#: test-data/example.jsx:48
 msgctxt \\"c\\"
 msgid \\"one {foo}\\"
 msgid_plural \\"many {foo}\\"
 msgstr[0] \\"\\"
 msgstr[1] \\"\\"
 
-#: test-data/example.jsx:56
+#: test-data/example.jsx:55
 msgctxt \\"params-test\\"
 msgid \\"foo: {foo}\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:125
+#: test-data/example.jsx:139
 msgctxt \\"dog\\"
 msgid \\"offspring\\"
 msgstr \\"\\"",
@@ -360,123 +360,123 @@ msgstr \\"\\"
 \\"Generated-By: react-jsx-i18n-extract\\\\n\\"
 \\"Content-Type: text/plain;\\\\n\\"
 
-#: test-data/example.jsx:44
-#: test-data/example.jsx:45
-#: test-data/example.jsx:73
+#: test-data/example.jsx:37
+#: test-data/example.jsx:38
+#: test-data/example.jsx:84
 msgid \\"\\\\\\"<strong>Rats.</strong>\\\\\\"\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:46
-#: test-data/example.jsx:47
+#: test-data/example.jsx:39
+#: test-data/example.jsx:40
 msgid \\"foobar\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:49
+#: test-data/example.jsx:42
 msgid \\"You    are ugly!\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:50
+#: test-data/example.jsx:43
 msgid \\"cat\\"
 msgid_plural \\"cats\\"
 msgstr[0] \\"\\"
 msgstr[1] \\"\\"
 
-#: test-data/example.jsx:52
+#: test-data/example.jsx:46
 msgid \\"one {foo}\\"
 msgid_plural \\"many {foo}\\"
 msgstr[0] \\"\\"
 msgstr[1] \\"\\"
 
-#: test-data/example.jsx:54
+#: test-data/example.jsx:49
 msgid \\"foo   {weird} bar {hello}{test} xxx\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:55
+#: test-data/example.jsx:54
 msgid \\"foo: {foo}\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:57
+#: test-data/example.jsx:56
 msgid \\"mixed: {mixedCase}\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:75
-#: test-data/example.jsx:113
+#: test-data/example.jsx:86
+#: test-data/example.jsx:127
 msgid \\"You have {count} rat.\\"
 msgid_plural \\"You have {count} rats.\\"
 msgstr[0] \\"\\"
 msgstr[1] \\"\\"
 
-#: test-data/example.jsx:86
+#: test-data/example.jsx:97
 msgid \\"Hello & World\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:88
+#: test-data/example.jsx:99
 msgid \\"Hey {name}, you want to {link}click me{/link} and you know it!\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:93
-#: test-data/example.jsx:95
+#: test-data/example.jsx:107
+#: test-data/example.jsx:109
 msgid \\"Bye World\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:97
+#: test-data/example.jsx:111
 msgid \\"Some <HTML> & entities: → &\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:99
+#: test-data/example.jsx:114
 msgid \\"Hover me\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:101
+#: test-data/example.jsx:117
 msgid \\"<HTML> is unescaped when extracted\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:106
+#: test-data/example.jsx:120
 msgid \\"xxx foo bar{test}{x} y{/x} moo\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:123
+#: test-data/example.jsx:137
 msgid \\"Little cats:\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:125
+#: test-data/example.jsx:139
 msgid \\"Little dogs:\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:127
+#: test-data/example.jsx:141
 msgid \\"This is an emphasized dynamic value: {number}\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:130
+#: test-data/example.jsx:145
 msgid \\"This is an emphasized translated value: {tag}hello{/tag}\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:48
-#: test-data/example.jsx:123
+#: test-data/example.jsx:41
+#: test-data/example.jsx:137
 msgctxt \\"cat\\"
 msgid \\"offspring\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:51
+#: test-data/example.jsx:44
 msgctxt \\"big\\"
 msgid \\"cat\\"
 msgid_plural \\"cats\\"
 msgstr[0] \\"\\"
 msgstr[1] \\"\\"
 
-#: test-data/example.jsx:53
+#: test-data/example.jsx:48
 msgctxt \\"c\\"
 msgid \\"one {foo}\\"
 msgid_plural \\"many {foo}\\"
 msgstr[0] \\"\\"
 msgstr[1] \\"\\"
 
-#: test-data/example.jsx:56
+#: test-data/example.jsx:55
 msgctxt \\"params-test\\"
 msgid \\"foo: {foo}\\"
 msgstr \\"\\"
 
-#: test-data/example.jsx:125
+#: test-data/example.jsx:139
 msgctxt \\"dog\\"
 msgid \\"offspring\\"
 msgstr \\"\\"",

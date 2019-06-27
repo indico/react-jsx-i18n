@@ -8,6 +8,9 @@ extends:
   - 'indico'
   - 'indico/babel'
   - 'indico/react'
+  - 'indico/prettier'
+  - 'prettier/babel'
+  - 'prettier/react'
   - 'plugin:jest/recommended'
 
 plugins:

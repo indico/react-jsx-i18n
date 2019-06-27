@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  Test\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-19 10:45+0200\n"
+"POT-Creation-Date: 2019-06-19 10:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de_DE\n"
@@ -14,117 +14,117 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
-#: test-data/example.jsx:44 test-data/example.jsx:45 test-data/example.jsx:73
+#: test-data/example.jsx:37 test-data/example.jsx:38 test-data/example.jsx:84
 msgid "\"<strong>Rats.</strong>\""
 msgstr "\"<strong>Ratten.</strong>\""
 
-#: test-data/example.jsx:46 test-data/example.jsx:47
+#: test-data/example.jsx:39 test-data/example.jsx:40
 msgid "foobar"
 msgstr "FooBar"
 
-#: test-data/example.jsx:49
+#: test-data/example.jsx:42
 msgid "You    are ugly!"
 msgstr "Du    bist hässlich!"
 
-#: test-data/example.jsx:50
+#: test-data/example.jsx:43
 msgid "cat"
 msgid_plural "cats"
 msgstr[0] "Katze"
 msgstr[1] "Katzen"
 
-#: test-data/example.jsx:52
+#: test-data/example.jsx:46
 msgid "one {foo}"
 msgid_plural "many {foo}"
 msgstr[0] "ein {foo}"
 msgstr[1] "viele {foo}"
 
-#: test-data/example.jsx:54
+#: test-data/example.jsx:49
 msgid "foo   {weird} bar {hello}{test} xxx"
 msgstr "Foo   {weird} Bar {hello}{test} XXX"
 
-#: test-data/example.jsx:55
+#: test-data/example.jsx:54
 msgid "foo: {foo}"
 msgstr "Foo: {foo}"
 
-#: test-data/example.jsx:57
+#: test-data/example.jsx:56
 msgid "mixed: {mixedCase}"
 msgstr "gemischt: {mixedCase}"
 
-#: test-data/example.jsx:75 test-data/example.jsx:113
+#: test-data/example.jsx:86 test-data/example.jsx:126
 msgid "You have {count} rat."
 msgid_plural "You have {count} rats."
 msgstr[0] "Du hast {count} Ratte."
 msgstr[1] "Du hast {count} Ratten."
 
-#: test-data/example.jsx:86
+#: test-data/example.jsx:97
 msgid "Hello & World"
 msgstr "Hallo & Welt"
 
-#: test-data/example.jsx:88
+#: test-data/example.jsx:99
 msgid "Hey {name}, you want to {link}click me{/link} and you know it!"
 msgstr "Hey {name}, du willst {link}mich anklicken{/link} und weißt das auch!"
 
-#: test-data/example.jsx:93 test-data/example.jsx:95
+#: test-data/example.jsx:107 test-data/example.jsx:109
 msgid "Bye World"
 msgstr "Tschüss Welt"
 
-#: test-data/example.jsx:97
+#: test-data/example.jsx:111
 msgid "Some <HTML> & entities: → &"
 msgstr "Etwas <HTML> & Entities: → &"
 
-#: test-data/example.jsx:99
+#: test-data/example.jsx:114
 msgid "Hover me"
 msgstr "Hover mich"
 
-#: test-data/example.jsx:101
+#: test-data/example.jsx:117
 msgid "<HTML> is unescaped when extracted"
 msgstr "<HTML> wird unescaped extracted"
 
-#: test-data/example.jsx:106
+#: test-data/example.jsx:119
 msgid "xxx foo bar{test}{x} y{/x} moo"
 msgstr "xxx foo bar{test}{x} y{/x} muh"
 
-#: test-data/example.jsx:123
+#: test-data/example.jsx:136
 msgid "Little cats:"
 msgstr "Junge Katzen:"
 
-#: test-data/example.jsx:125
+#: test-data/example.jsx:138
 msgid "Little dogs:"
 msgstr "Junge Hunde:"
 
-#: test-data/example.jsx:127
+#: test-data/example.jsx:140
 msgid "This is an emphasized dynamic value: {number}"
 msgstr "Das ist ein hervorgehobener dynamischer Wert: {number}"
 
-#: test-data/example.jsx:130
+#: test-data/example.jsx:144
 msgid "This is an emphasized translated value: {tag}hello{/tag}"
 msgstr "Das ist ein hervorgehobener übersetzter Wert: {tag}hallo{/tag}"
 
-#: test-data/example.jsx:48 test-data/example.jsx:123
+#: test-data/example.jsx:41 test-data/example.jsx:136
 msgctxt "cat"
 msgid "offspring"
 msgstr "Kätzchen"
 
-#: test-data/example.jsx:51
+#: test-data/example.jsx:44
 msgctxt "big"
 msgid "cat"
 msgid_plural "cats"
 msgstr[0] "KATZE"
 msgstr[1] "KATZEN"
 
-#: test-data/example.jsx:53
+#: test-data/example.jsx:48
 msgctxt "c"
 msgid "one {foo}"
 msgid_plural "many {foo}"
 msgstr[0] "ein {foo}"
 msgstr[1] "viele {foo}"
 
-#: test-data/example.jsx:56
+#: test-data/example.jsx:55
 msgctxt "params-test"
 msgid "foo: {foo}"
 msgstr "Foo: {foo}"
 
-#: test-data/example.jsx:125
+#: test-data/example.jsx:138
 msgctxt "dog"
 msgid "offspring"
 msgstr "Welpe"

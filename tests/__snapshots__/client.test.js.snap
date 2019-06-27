@@ -74,13 +74,15 @@ exports[`Example component works properly without translations 1`] = `
   <br />
   Hey 
   dude
-  , you want to 
+  , you want to
+   
   <a
     onClick={[Function]}
   >
     click me
   </a>
-   and you know it!
+   
+  and you know it!
   <br />
   Bye World
   <br />
@@ -126,11 +128,13 @@ exports[`Example component works properly without translations 1`] = `
    
   offspring
   <br />
-  This is an emphasized dynamic value: 
+  This is an emphasized dynamic value:
+   
   <em>
     1000
   </em>
-  This is an emphasized translated value: 
+  This is an emphasized translated value:
+   
   <em>
     hello
   </em>

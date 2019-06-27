@@ -6,3 +6,4 @@ coverage/
 tests/
 test-data/
 .*
+update-test-data.sh

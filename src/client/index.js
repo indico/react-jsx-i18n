@@ -85,7 +85,7 @@ const jsonToText = (values, component, props, ...children) => {
     if (children.length) {
       throw new Error('Placeholders with content are not supported in string()');
     } else {
-      if (!values.hasOwnProperty(props.name)) {
+      if (!Object.prototype.hasOwnProperty.call(values, props.name)) {
         throw new Error(`Placeholder '{${props.name}}' got no value`);
       }
       return values[props.name];
@@ -100,7 +100,7 @@ const jsonToText = (values, component, props, ...children) => {
 
 const interpolateValues = (string, values) => {
   return string.replace(/{([^}]+)}/g, (match, name) => {
-    if (!values.hasOwnProperty(name)) {
+    if (!Object.prototype.hasOwnProperty.call(values, name)) {
       throw new Error(`Placeholder '{${name}}' got no value`);
     }
     return values[name];

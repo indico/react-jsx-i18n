@@ -13,5 +13,9 @@ extends:
   - 'prettier/react'
   - 'plugin:jest/recommended'
 
+settings:
+  react:
+    version: detect
+
 plugins:
   - jest

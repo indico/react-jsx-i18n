@@ -44,8 +44,8 @@ const poToReact = (poFile, domain = 'messages') => {
       ...translations,
       '': {
         domain,
-        lang: po.headers.language,
-        plural_forms: po.headers['plural-forms'],
+        lang: po.headers['Language'],
+        plural_forms: po.headers['Plural-Forms'],
       },
     },
   };

@@ -224,7 +224,7 @@ Object {
   "pot": "msgid \\"\\"
 msgstr \\"\\"
 \\"Custom: Headers\\\\n\\"
-\\"Content-Type: text/plain;\\\\n\\"
+\\"Content-Type: text/plain\\\\n\\"
 
 #: test-data/example.jsx:37
 #: test-data/example.jsx:38
@@ -358,7 +358,6 @@ msgstr \\"\\"
 \\"Content-Transfer-Encoding: 8bit\\\\n\\"
 \\"MIME-Version: 1.0\\\\n\\"
 \\"Generated-By: react-jsx-i18n-extract\\\\n\\"
-\\"Content-Type: text/plain;\\\\n\\"
 
 #: test-data/example.jsx:37
 #: test-data/example.jsx:38
@@ -491,7 +490,6 @@ msgstr \\"\\"
 \\"Content-Type: text/plain; charset=utf-8\\\\n\\"
 \\"Content-Transfer-Encoding: 8bit\\\\n\\"
 \\"MIME-Version: 1.0\\\\n\\"
-\\"Generated-By: react-jsx-i18n-extract\\\\n\\"
-\\"Content-Type: text/plain;\\\\n\\"",
+\\"Generated-By: react-jsx-i18n-extract\\\\n\\"",
 }
 `;

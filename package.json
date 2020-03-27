@@ -32,11 +32,11 @@
   "dependencies": {
     "babel-plugin-extract-text": "^2.0.0",
     "chalk": "^2.4.2",
-    "gettext-parser": "^4.0.0",
-    "glob": "^7.1.4",
+    "gettext-parser": "^4.0.3",
+    "glob": "^7.1.6",
     "lodash.uniq": "^4.5.0",
-    "moment-timezone": "^0.5.25",
-    "yargs": "^13.2.4"
+    "moment-timezone": "^0.5.28",
+    "yargs": "^13.3.2"
   },
   "peerDependencies": {
     "@babel/core": "*",
@@ -45,28 +45,28 @@
     "prop-types": "*"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/preset-react": "^7.0.0",
-    "babel-eslint": "^10.0.2",
-    "babel-jest": "^24.8.0",
-    "eslint": "^6.0.1",
-    "eslint-config-indico": "^1.2.0",
-    "eslint-config-prettier": "^6.0.0",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.8.0",
+    "eslint-config-indico": "^1.2.1",
+    "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-babel": "^5.3.0",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-jest": "^22.7.1",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react": "^7.14.2",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jest": "^22.21.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
     "jed": "^1.1.1",
-    "jest": "^24.6",
-    "prettier": "^1.18.2",
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-test-renderer": "^16.8.6"
+    "react": "^16.13.1",
+    "react-test-renderer": "^16.13.1"
   },
   "jest": {
     "setupFiles": [

@@ -7,7 +7,7 @@ Object {
   1 | const InvalidBinaryExpression = () => (
   2 |     <Translate>
 > 3 |         {'foo' - 'bar'}
-    |         ^
+    |         ^^^^^^^^^^^^^^^
   4 |     </Translate>
   5 | );
   6 | ",
@@ -22,7 +22,7 @@ Object {
   1 | const InvalidExpression = () => (
   2 |     <Translate>
 > 3 |         {'foo'.toString()}
-    |         ^
+    |         ^^^^^^^^^^^^^^^^^^
   4 |     </Translate>
   5 | );
   6 | ",
@@ -37,7 +37,7 @@ Object {
   1 | const ParamInvalidChild = () => (
   2 |     <Translate>
 > 3 |         <Param name=\\"foo\\">{1}</Param>
-    |                           ^
+    |                           ^^^
   4 |     </Translate>
   5 | );
   6 | ",
@@ -52,7 +52,7 @@ Object {
   3 |         <Param name=\\"foo\\">
   4 |             a
 > 5 |             <span />
-    |             ^
+    |             ^^^^^^^^
   6 |         </Param>
   7 |     </Translate>
   8 | );",
@@ -67,7 +67,7 @@ Object {
   1 | const Test = () => (
   2 |     <Translate>
 > 3 |         <span />
-    |         ^
+    |         ^^^^^^^^
   4 |     </Translate>
   5 | );
   6 | ",
@@ -82,7 +82,7 @@ Object {
   1 | const Test = () => (
   2 |     <Translate>
 > 3 |         {...foo}
-    |         ^
+    |         ^^^^^^^^
   4 |     </Translate>
   5 | );
   6 | ",
@@ -97,7 +97,7 @@ Object {
   2 |     <PluralTranslate>
   3 |         <Singular />
 > 4 |         <Singular />
-    |         ^
+    |         ^^^^^^^^^^^^
   5 |     </PluralTranslate>
   6 | );
   7 | ",
@@ -112,7 +112,7 @@ Object {
   2 |     <PluralTranslate>
   3 |         <Plural />
 > 4 |         <Plural />
-    |         ^
+    |         ^^^^^^^^^^
   5 |     </PluralTranslate>
   6 | );
   7 | ",
@@ -155,7 +155,7 @@ Object {
   1 | const Test = () => (
   2 |     <PluralTranslate>
 > 3 |         <Param />
-    |         ^
+    |         ^^^^^^^^^
   4 |     </PluralTranslate>
   5 | );
   6 | ",
@@ -169,7 +169,7 @@ Object {
     "test-data/invalid/translate-string-no-args.jsx: Translate.string() called with no arguments
   1 | const Test = () => {
 > 2 |     Translate.string();
-    |     ^
+    |     ^^^^^^^^^^^^^^^^^^
   3 | };
   4 | ",
   ],
@@ -182,7 +182,7 @@ Object {
     "test-data/invalid/pluraltranslate-string-missing-args.jsx: PluralTranslate.string() called with less than 2 arguments
   1 | const Test = () => {
 > 2 |     PluralTranslate.string('foo');
-    |     ^
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   3 | };
   4 | ",
   ],
@@ -196,7 +196,7 @@ Object {
   1 | const Test = () => (
   2 |     <Translate>
 > 3 |         <Param />
-    |         ^
+    |         ^^^^^^^^^
   4 |     </Translate>
   5 | );
   6 | ",
@@ -211,7 +211,7 @@ Object {
   1 | const Test = () => (
   2 |     <Translate>
 > 3 |         <Param name=\\"test\\" />
-    |         ^
+    |         ^^^^^^^^^^^^^^^^^^^^^
   4 |     </Translate>
   5 | );
   6 | ",

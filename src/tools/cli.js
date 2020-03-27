@@ -50,7 +50,7 @@ yargs
       const files = flattenPaths(argv.paths, argv.ext);
       const {pot, errors} = extractFromFiles(files);
       if (errors) {
-        errors.forEach(console.error.bind(console));
+        errors.forEach(err => console.error(err));
         process.exit(1);
       }
       process.stdout.write(pot + '\n');

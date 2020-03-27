@@ -216,7 +216,7 @@ export const makeComponents = (...args) => {
       context: undefined,
     };
 
-    // eslint-disable-next-line no-shadow
+    // eslint-disable-next-line no-shadow, react/sort-comp
     static string(string, ...args) {
       const {context, params} = getContextParams(args);
       const gettextFunc = pickGettextFunc(context, gettext, pgettext);

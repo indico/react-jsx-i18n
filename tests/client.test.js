@@ -69,6 +69,7 @@ test('Pluralized translation works', () => {
 });
 
 test('JSX expressions evaluating to static strings work', () => {
+  // eslint-disable-next-line react/jsx-curly-brace-presence
   expectJSX(<Translate>This is a {'test'}</Translate>).toBe('translated-This is a test');
   expectJSX(<Translate>This is a {'te' + 'st'}</Translate>).toBe('translated-This is a test');
 });

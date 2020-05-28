@@ -166,8 +166,8 @@ Object {
         ],
       ],
     ],
-    "You    are ugly!": Array [
-      "Du    bist hässlich!",
+    "You are ugly!": Array [
+      "Du bist hässlich!",
     ],
     "You have {count} rat.": Array [
       Array [
@@ -233,11 +233,11 @@ Object {
     "dogoffspring": Array [
       "Welpe",
     ],
-    "foo   {weird} bar {hello}{test} xxx": Array [
+    "foo {weird} bar {hello}{test} xxx": Array [
       Array [
         "Fragment",
         null,
-        "Foo   ",
+        "Foo ",
         Array [
           "Param",
           Object {
@@ -326,7 +326,10 @@ Object {
         ],
       ],
     ],
-    "xxx foo bar{test}{x}y{/x} moo": Array [
+    "space invader": Array [
+      "Space-Invader",
+    ],
+    "xxx foo bar{test}{x} y{/x} moo": Array [
       Array [
         "Fragment",
         null,
@@ -342,7 +345,7 @@ Object {
           Object {
             "name": "x",
           },
-          "y",
+          " y",
         ],
         " muh",
       ],

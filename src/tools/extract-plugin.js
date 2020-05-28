@@ -1,9 +1,16 @@
 import {relative} from 'path';
 import cleanJSXElementLiteralChild from '@babel/types/lib/utils/react/cleanJSXElementLiteralChild';
 
-const collapseWhitespace = string => {
-  // for translated strings we never want consecutive whitespace
-  return string.replace(/\s+/g, ' ');
+const collapseWhitespace = (string, trim = true) => {
+  // for translated strings we never want consecutive or surrounding whitespace
+  if (!string) {
+    return string;
+  }
+  string = string.replace(/\s+/g, ' ');
+  if (trim) {
+    string = string.trim();
+  }
+  return string;
 };
 
 const processText = path => {
@@ -83,7 +90,13 @@ const processElement = (path, types, allowParam = false) => {
       );
     }
   });
-  return collapseWhitespace(stringParts.join('')).trim();
+  const string = collapseWhitespace(stringParts.join(''), false);
+  if (allowParam && string !== string.trim()) {
+    throw path.buildCodeFrameError(
+      `${elementName} content may not be surrounded by significant whitespace`
+    );
+  }
+  return string;
 };
 
 const getLocation = (path, state) => {
@@ -111,8 +124,10 @@ const processTranslateString = (path, state, funcName, types) => {
   if (args.length === 0) {
     throw path.buildCodeFrameError('Translate.string() called with no arguments');
   }
-  const msgid = processExpression(path, args[0], types);
-  const msgctxt = args[1] ? processExpression(path, args[1], types, true) : undefined;
+  const msgid = collapseWhitespace(processExpression(path, args[0], types));
+  const msgctxt = args[1]
+    ? collapseWhitespace(processExpression(path, args[1], types, true))
+    : undefined;
   return {
     msgid,
     msgctxt,
@@ -161,9 +176,12 @@ const processPluralTranslateString = (path, state, funcName, types) => {
   if (args.length < 2) {
     throw path.buildCodeFrameError('PluralTranslate.string() called with less than 2 arguments');
   }
-  const msgid = processExpression(path, args[0], types);
-  const msgid_plural = processExpression(path, args[1], types); // eslint-disable-line camelcase
-  const msgctxt = args[3] ? processExpression(path, args[3], types, true) : undefined;
+  const msgid = collapseWhitespace(processExpression(path, args[0], types));
+  // eslint-disable-next-line camelcase
+  const msgid_plural = collapseWhitespace(processExpression(path, args[1], types));
+  const msgctxt = args[3]
+    ? collapseWhitespace(processExpression(path, args[3], types, true))
+    : undefined;
   return {
     msgid,
     msgid_plural,

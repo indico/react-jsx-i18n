@@ -24,6 +24,11 @@ export class Param extends React.Component {
   }
 }
 
+const collapseWhitespace = string => {
+  // for translated strings we never want consecutive or surrounding whitespace
+  return string.replace(/\s+/g, ' ').trim();
+};
+
 const getTranslatableString = children => {
   const usedParams = new Set();
   const items = React.Children.map(children, child => {
@@ -41,10 +46,7 @@ const getTranslatableString = children => {
       if (usedParams.has(paramName)) {
         throw new Error(`Translate params must be unique; found ${paramName} more than once`);
       } else if (Array.isArray(paramContent)) {
-        paramContent = paramContent
-          .join('')
-          .replace(/\s+/g, ' ')
-          .trim();
+        paramContent = paramContent.join('');
       } else if (paramContent !== undefined && typeof paramContent !== 'string') {
         throw new Error(`Unexpected Param child type: ${typeof paramContent}`);
       } else if (paramContent === undefined && paramValue === undefined) {
@@ -56,10 +58,7 @@ const getTranslatableString = children => {
         : `{${paramName}}${paramContent}{/${paramName}}`;
     }
   });
-  return items
-    .join('')
-    .replace(/\s+/g, ' ')
-    .trim();
+  return collapseWhitespace(items.join(''));
 };
 
 const jsonToReact = (values, component, props, ...children) => {
@@ -220,7 +219,7 @@ export const makeComponents = (...args) => {
     static string(string, ...args) {
       const {context, params} = getContextParams(args);
       const gettextFunc = pickGettextFunc(context, gettext, pgettext);
-      return renderStringTranslation(gettextFunc(string), params);
+      return renderStringTranslation(gettextFunc(collapseWhitespace(string)), params);
     }
 
     constructor(props) {
@@ -235,6 +234,9 @@ export const makeComponents = (...args) => {
       if (translation === this.original) {
         // if there's no translation gettext gives us the input string
         // which does not contain the information needed to render it!
+        // unfortunately this means that we also cannot strip surrounding
+        // whitespace since we may have more than just text in the children,
+        // which is why we fail during extraction in that case
         return children;
       }
       return renderTranslation(translation, getParamValues(this));
@@ -256,7 +258,10 @@ export const makeComponents = (...args) => {
     static string(singular, plural, count = 1, ...args) {
       const {context, params} = getContextParams(args);
       const gettextFunc = pickGettextFunc(context, ngettext, npgettext);
-      return renderStringTranslation(gettextFunc(singular, plural, count), params);
+      return renderStringTranslation(
+        gettextFunc(collapseWhitespace(singular), collapseWhitespace(plural), count),
+        params
+      );
     }
 
     constructor(props) {

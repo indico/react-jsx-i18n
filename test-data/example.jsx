@@ -40,6 +40,7 @@ export const testStrings = translate => {
   const v4 = Translate.string('foobar');
   const meow = Translate.string('offspring', 'cat');
   const ugly = Translate.string('You    are ugly!');
+  const spaceInvader = Translate.string('  space invader ');
   const cat = count => PluralTranslate.string('cat', 'cats', count);
   const bigCat = count => PluralTranslate.string('cat', 'cats', count, 'big');
   const formattedPlural = count =>
@@ -66,6 +67,7 @@ export const testStrings = translate => {
     oneParam,
     twoParams,
     mixedCase,
+    spaceInvader,
     cat1: cat(1),
     cat2: cat(2),
     bigCat1: bigCat(1),

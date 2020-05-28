@@ -163,13 +163,14 @@ Object {
   "meow": "Kätzchen",
   "mixedCase": "gemischt: bar",
   "oneParam": "Foo: bar",
+  "spaceInvader": "Space-Invader",
   "twoParams": "Foo: bar",
-  "ugly": "Du    bist hässlich!",
+  "ugly": "Du bist hässlich!",
   "v1": "\\"<strong>Ratten.</strong>\\"",
   "v2": "\\"<strong>Ratten.</strong>\\"",
   "v3": "FooBar",
   "v4": "FooBar",
-  "weird": "Foo   stuff Bar world123 XXX",
+  "weird": "Foo stuff Bar world123 XXX",
 }
 `;
 
@@ -186,13 +187,14 @@ Object {
   "meow": "offspring",
   "mixedCase": "mixed: bar",
   "oneParam": "foo: bar",
+  "spaceInvader": "space invader",
   "twoParams": "foo: bar",
-  "ugly": "You    are ugly!",
+  "ugly": "You are ugly!",
   "v1": "\\"<strong>Rats.</strong>\\"",
   "v2": "\\"<strong>Rats.</strong>\\"",
   "v3": "foobar",
   "v4": "foobar",
-  "weird": "foo   stuff bar world123 xxx",
+  "weird": "foo stuff bar world123 xxx",
 }
 `;
 

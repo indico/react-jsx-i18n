@@ -209,10 +209,12 @@ export const makeComponents = (...args) => {
     static propTypes = {
       children: PropTypes.any.isRequired,
       context: PropTypes.string,
+      as: PropTypes.element,
     };
 
     static defaultProps = {
       context: undefined,
+      as: React.Fragment,
     };
 
     // eslint-disable-next-line no-shadow, react/sort-comp
@@ -228,7 +230,7 @@ export const makeComponents = (...args) => {
     }
 
     render() {
-      const {children, context} = this.props;
+      const {children, context, as, ...rest} = this.props;
       const gettextFunc = pickGettextFunc(context, gettext, pgettext);
       const translation = gettextFunc(this.original);
       if (translation === this.original) {
@@ -239,7 +241,11 @@ export const makeComponents = (...args) => {
         // which is why we fail during extraction in that case
         return children;
       }
-      return renderTranslation(translation, getParamValues(this));
+      return React.createElement(
+        as || React.Fragment,
+        rest,
+        renderTranslation(translation, getParamValues(this))
+      );
     }
   }
 
@@ -248,10 +254,12 @@ export const makeComponents = (...args) => {
       children: PropTypes.any.isRequired,
       count: PropTypes.number.isRequired,
       context: PropTypes.string,
+      as: PropTypes.element,
     };
 
     static defaultProps = {
       context: undefined,
+      as: React.Fragment,
     };
 
     // eslint-disable-next-line no-shadow
@@ -288,7 +296,7 @@ export const makeComponents = (...args) => {
     }
 
     render() {
-      const {count, context} = this.props;
+      const {count, context, as, ...rest} = this.props;
       const gettextFunc = pickGettextFunc(context, ngettext, npgettext);
       const translation = gettextFunc(this.singularString, this.pluralString, count);
       if (translation === this.singularString) {
@@ -297,7 +305,11 @@ export const makeComponents = (...args) => {
         return this.getChild(true);
       }
       const values = getParamValues(this.getChild(count !== 1));
-      return renderTranslation(translation, values);
+      return React.createElement(
+        as || React.Fragment,
+        rest,
+        renderTranslation(translation, values)
+      );
     }
   }
 

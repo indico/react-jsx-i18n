@@ -10,10 +10,6 @@ node_modules/
 /client/
 /tools/
 
-# Only apps should have lockfiles
-yarn.lock
-package-lock.json
-
 # Jest
 coverage/
 

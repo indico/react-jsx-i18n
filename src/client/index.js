@@ -296,17 +296,16 @@ export const makeComponents = (...args) => {
       const {count, context, as, ...rest} = this.props;
       const gettextFunc = pickGettextFunc(context, ngettext, npgettext);
       const translation = gettextFunc(this.singularString, this.pluralString, count);
+      let content;
       if (translation === this.singularString) {
-        return this.getChild(false);
+        content = this.getChild(false);
       } else if (translation === this.pluralString) {
-        return this.getChild(true);
+        content = this.getChild(true);
+      } else {
+        const values = getParamValues(this.getChild(count !== 1));
+        content = renderTranslation(translation, values);
       }
-      const values = getParamValues(this.getChild(count !== 1));
-      return React.createElement(
-        as || React.Fragment,
-        rest,
-        renderTranslation(translation, values)
-      );
+      return React.createElement(as, rest, content);
     }
   }
 

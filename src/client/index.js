@@ -209,7 +209,7 @@ export const makeComponents = (...args) => {
     static propTypes = {
       children: PropTypes.any.isRequired,
       context: PropTypes.string,
-      as: PropTypes.element,
+      as: PropTypes.elementType,
     };
 
     static defaultProps = {
@@ -233,19 +233,16 @@ export const makeComponents = (...args) => {
       const {children, context, as, ...rest} = this.props;
       const gettextFunc = pickGettextFunc(context, gettext, pgettext);
       const translation = gettextFunc(this.original);
-      if (translation === this.original) {
-        // if there's no translation gettext gives us the input string
-        // which does not contain the information needed to render it!
-        // unfortunately this means that we also cannot strip surrounding
-        // whitespace since we may have more than just text in the children,
-        // which is why we fail during extraction in that case
-        return children;
+      let content = children;
+      if (translation !== this.original) {
+        content = renderTranslation(translation, getParamValues(this));
       }
-      return React.createElement(
-        as || React.Fragment,
-        rest,
-        renderTranslation(translation, getParamValues(this))
-      );
+      // if there's no translation gettext gives us the input string
+      // which does not contain the information needed to render it!
+      // unfortunately this means that we also cannot strip surrounding
+      // whitespace since we may have more than just text in the children,
+      // which is why we fail during extraction in that case
+      return React.createElement(as, rest, content);
     }
   }
 
@@ -254,7 +251,7 @@ export const makeComponents = (...args) => {
       children: PropTypes.any.isRequired,
       count: PropTypes.number.isRequired,
       context: PropTypes.string,
-      as: PropTypes.element,
+      as: PropTypes.elementType,
     };
 
     static defaultProps = {

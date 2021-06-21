@@ -31,6 +31,20 @@ test('Basic translation works', () => {
       Fetchez la vache <Param name="number" value={5} />
     </Translate>
   ).toEqual(['translated-Fetchez la vache ', '5']);
+
+  expectJSX(<Translate as="p">kajak</Translate>).toEqual(
+    renderer.create(<p>translated-kajak</p>).toJSON()
+  );
+  expectJSX(
+    <Translate as="span" className="myclass">
+      Fetchez la vache <Param name="number" value={5} />
+    </Translate>
+  ).toEqual(
+    renderer
+      .create(<span className="myclass">{['translated-Fetchez la vache ', '5']}</span>)
+      .toJSON()
+  );
+
   expect(Translate.string('kajak')).toBe('translated-kajak');
   expect(Translate.string('hello {what}', {what: 'world'})).toBe('translated-hello world');
   expect(Translate.string('hello {whatElse}', {whatElse: 'planet'})).toBe(

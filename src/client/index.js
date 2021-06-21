@@ -209,10 +209,12 @@ export const makeComponents = (...args) => {
     static propTypes = {
       children: PropTypes.any.isRequired,
       context: PropTypes.string,
+      as: PropTypes.elementType,
     };
 
     static defaultProps = {
       context: undefined,
+      as: React.Fragment,
     };
 
     // eslint-disable-next-line no-shadow, react/sort-comp
@@ -228,18 +230,19 @@ export const makeComponents = (...args) => {
     }
 
     render() {
-      const {children, context} = this.props;
+      const {children, context, as, ...rest} = this.props;
       const gettextFunc = pickGettextFunc(context, gettext, pgettext);
       const translation = gettextFunc(this.original);
-      if (translation === this.original) {
-        // if there's no translation gettext gives us the input string
-        // which does not contain the information needed to render it!
-        // unfortunately this means that we also cannot strip surrounding
-        // whitespace since we may have more than just text in the children,
-        // which is why we fail during extraction in that case
-        return children;
+      let content = children;
+      if (translation !== this.original) {
+        content = renderTranslation(translation, getParamValues(this));
       }
-      return renderTranslation(translation, getParamValues(this));
+      // if there's no translation gettext gives us the input string
+      // which does not contain the information needed to render it!
+      // unfortunately this means that we also cannot strip surrounding
+      // whitespace since we may have more than just text in the children,
+      // which is why we fail during extraction in that case
+      return React.createElement(as, rest, content);
     }
   }
 
@@ -248,10 +251,12 @@ export const makeComponents = (...args) => {
       children: PropTypes.any.isRequired,
       count: PropTypes.number.isRequired,
       context: PropTypes.string,
+      as: PropTypes.elementType,
     };
 
     static defaultProps = {
       context: undefined,
+      as: React.Fragment,
     };
 
     // eslint-disable-next-line no-shadow
@@ -288,16 +293,19 @@ export const makeComponents = (...args) => {
     }
 
     render() {
-      const {count, context} = this.props;
+      const {count, context, as, ...rest} = this.props;
       const gettextFunc = pickGettextFunc(context, ngettext, npgettext);
       const translation = gettextFunc(this.singularString, this.pluralString, count);
+      let content;
       if (translation === this.singularString) {
-        return this.getChild(false);
+        content = this.getChild(false);
       } else if (translation === this.pluralString) {
-        return this.getChild(true);
+        content = this.getChild(true);
+      } else {
+        const values = getParamValues(this.getChild(count !== 1));
+        content = renderTranslation(translation, values);
       }
-      const values = getParamValues(this.getChild(count !== 1));
-      return renderTranslation(translation, values);
+      return React.createElement(as, rest, content);
     }
   }
 

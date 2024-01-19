@@ -289,3 +289,36 @@ test('Example strings work properly without translations', () => {
 test('Example strings work properly with translations', () => {
   expect(testStrings(true)).toMatchSnapshot();
 });
+
+test('Pluralized translation works with languages with only 1 plural', () => {
+  // eslint-disable-next-line no-shadow
+  const ngettext = () => jsonifyMessage('{count} 个座位');
+  const jed = {
+    gettext,
+    ngettext,
+    options: {
+      domain: 'test',
+      locale_data: {
+        test: {
+          '': {
+            plural_forms: 'nplurals=1; plural=0;',
+          },
+        },
+      },
+    },
+  };
+  // eslint-disable-next-line no-shadow
+  const {PluralTranslate} = makeComponents(jed);
+
+  // For languages with only one plural, the plural translation is
+  // used even if count == 1. In that case the corresponding <Plural>
+  // component must be rendered.
+  expectJSX(
+    <PluralTranslate count={1}>
+      <Singular>1 seat</Singular>
+      <Plural>
+        <Param name="count" value={42} /> seats
+      </Plural>
+    </PluralTranslate>
+  ).toEqual(['42', ' 个座位']);
+});

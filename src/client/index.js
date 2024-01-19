@@ -202,8 +202,27 @@ const getContextParams = args => {
   }
 };
 
+const getNPlurals = (...args) => {
+  // Only true in tests
+  if (args.length !== 1) {
+    return null;
+  }
+
+  const jed = args[0];
+  const {domain, locale_data: localeData} = jed.options;
+  const pluralForms = localeData[domain][''].plural_forms;
+
+  if (!pluralForms) {
+    return null;
+  }
+
+  const [, plurals] = pluralForms.match(/^nplurals=(\d+)/);
+  return Number(plurals);
+};
+
 export const makeComponents = (...args) => {
   const {gettext, ngettext, pgettext, npgettext} = getGettextFuncs(args);
+  const nPlurals = getNPlurals(...args);
 
   class Translate extends React.Component {
     static propTypes = {
@@ -302,7 +321,11 @@ export const makeComponents = (...args) => {
       } else if (translation === this.pluralString) {
         content = this.getChild(true);
       } else {
-        const values = getParamValues(this.getChild(count !== 1));
+        // For languages with only one plural, the plural translation is
+        // used even if count == 1. In that case the corresponding <Plural>
+        // component must be rendered.
+        const plural = nPlurals === 1 || count !== 1;
+        const values = getParamValues(this.getChild(plural));
         content = renderTranslation(translation, values);
       }
       return React.createElement(as, rest, content);

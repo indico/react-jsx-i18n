@@ -142,23 +142,11 @@ export class Plural extends React.Component {
   }
 }
 
-const getGettextFuncs = args => {
-  let gettext, ngettext, pgettext, npgettext;
-  if (args.length === 1) {
-    const [obj] = args;
-    gettext = obj.gettext.bind(obj);
-    ngettext = obj.ngettext.bind(obj);
-    pgettext = obj.pgettext ? obj.pgettext.bind(obj) : undefined;
-    npgettext = obj.npgettext ? obj.npgettext.bind(obj) : undefined;
-  } else if (args.length === 2) {
-    [gettext, ngettext] = args;
-  } else if (args.length === 4) {
-    [gettext, ngettext, pgettext, npgettext] = args;
-  } else {
-    throw new Error(
-      'Expected object containing gettext/ngettext(/pgettext/npgattext) or 2/4 args with the funcs'
-    );
-  }
+const getGettextFuncs = jedInstance => {
+  const gettext = jedInstance.gettext.bind(jedInstance);
+  const ngettext = jedInstance.ngettext.bind(jedInstance);
+  let pgettext = jedInstance.pgettext ? jedInstance.pgettext.bind(jedInstance) : undefined;
+  let npgettext = jedInstance.npgettext ? jedInstance.npgettext.bind(jedInstance) : undefined;
 
   if (!pgettext) {
     pgettext = (ctx, ...params) => gettext(...params);
@@ -202,27 +190,25 @@ const getContextParams = args => {
   }
 };
 
-const getNPlurals = (...args) => {
-  // Only true in tests
-  if (args.length !== 1) {
-    return null;
-  }
-
-  const jed = args[0];
-  const {domain, locale_data: localeData} = jed.options;
-  const pluralForms = localeData[domain][''].plural_forms;
+const getNPlurals = jedInstance => {
+  const {domain, locale_data: localeData} = jedInstance.options || {};
+  const pluralForms = localeData?.[domain]?.['']?.plural_forms;
 
   if (!pluralForms) {
     return null;
   }
 
-  const [, plurals] = pluralForms.match(/^nplurals=(\d+)/);
-  return Number(plurals);
+  const match = pluralForms.match(/^nplurals=(\d+)/);
+  if (!match) {
+    return null;
+  }
+
+  return Number(match[1]);
 };
 
-export const makeComponents = (...args) => {
-  const {gettext, ngettext, pgettext, npgettext} = getGettextFuncs(args);
-  const nPlurals = getNPlurals(...args);
+export const makeComponents = jedInstance => {
+  const {gettext, ngettext, pgettext, npgettext} = getGettextFuncs(jedInstance);
+  const nPlurals = getNPlurals(jedInstance);
 
   class Translate extends React.Component {
     static propTypes = {

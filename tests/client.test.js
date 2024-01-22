@@ -11,7 +11,7 @@ const gettext = expression => jsonifyMessage(`translated-${expression}`);
 const ngettext = (sExpression, pExpression, n) =>
   jsonifyMessage(n !== 1 ? `plural-${pExpression}` : `singular-${sExpression}`);
 
-const {Translate, PluralTranslate} = makeComponents(gettext, ngettext);
+const {Translate, PluralTranslate} = makeComponents({gettext, ngettext});
 
 // This prevents printing warnings to the console about missing error boundaries
 beforeEach(() => {
@@ -122,10 +122,10 @@ test('Invalid translate children fail', () => {
 
 test('Missing params in string translations fail (without translations)', () => {
   // eslint-disable-next-line no-shadow
-  const {Translate, PluralTranslate} = makeComponents(
-    msg => msg,
-    (msg, msgpl, n) => (n === 1 ? msg : msgpl)
-  );
+  const {Translate, PluralTranslate} = makeComponents({
+    gettext: msg => msg,
+    ngettext: (msg, msgpl, n) => (n === 1 ? msg : msgpl),
+  });
 
   expect(() => Translate.string('{foo}')).toThrow("Placeholder '{foo}' got no value");
   expect(() => PluralTranslate.string('{foo}', '{bar}', 1)).toThrow(
@@ -236,10 +236,10 @@ test('Prop updates are working with translation', () => {
 
 test('Prop updates are working without translation', () => {
   // eslint-disable-next-line no-shadow
-  const {Translate, PluralTranslate} = makeComponents(
-    msg => msg,
-    (msg, msgpl, n) => (n === 1 ? msg : msgpl)
-  );
+  const {Translate, PluralTranslate} = makeComponents({
+    gettext: msg => msg,
+    ngettext: (msg, msgpl, n) => (n === 1 ? msg : msgpl),
+  });
 
   class MyComponent extends React.Component {
     constructor() {

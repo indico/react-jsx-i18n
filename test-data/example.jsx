@@ -30,7 +30,7 @@ const pgettext = (ctx, msg) =>
 const npgettext = (ctx, msg, msgpl, n) =>
   TRANSLATE ? jedTranslated.npgettext(ctx, msg, msgpl, n) : jedEmpty.npgettext(ctx, msg, msgpl, n);
 
-const {Translate, PluralTranslate} = makeComponents(gettext, ngettext, pgettext, npgettext);
+const {Translate, PluralTranslate} = makeComponents({gettext, ngettext, pgettext, npgettext});
 
 export const testStrings = translate => {
   TRANSLATE = translate;

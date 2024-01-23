@@ -3,8 +3,9 @@
   "version": "0.4.0",
   "description": "Provides gettext-enhanced React components, a babel plugin for extracting the strings and a script to compile translated strings to a format usable by the components.",
   "main": "client/index.js",
+  "types": "client/index.d.ts",
   "scripts": {
-    "build": "rm -rf client/ tools/ && babel src/ --out-dir ./ && chmod +x tools/cli.js",
+    "build": "rm -rf client/ tools/ && babel src/ --out-dir ./ && chmod +x tools/cli.js && cp src/client/index.d.ts client/index.d.ts",
     "prepare": "npm run build",
     "eslint": "eslint --ext .js --ext .jsx src/ tests/ test-data/",
     "update-test-data": "./update-test-data.sh",

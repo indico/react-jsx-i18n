@@ -1,28 +1,23 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import PropTypes from 'prop-types';
 
-export class Param extends React.Component {
-  static propTypes = {
-    // eslint-disable-next-line react/no-unused-prop-types
-    name: PropTypes.string.isRequired,
-    value: PropTypes.any,
-    wrapper: PropTypes.element,
-    children: PropTypes.string,
-  };
-
-  static defaultProps = {
-    value: undefined,
-    wrapper: undefined,
-    children: undefined,
-  };
-
-  render() {
-    const {wrapper, value, children} = this.props;
-    return wrapper
-      ? React.cloneElement(wrapper, {}, value !== undefined ? value : children)
-      : value;
-  }
+export function Param({wrapper, value, children}) {
+  return wrapper ? React.cloneElement(wrapper, {}, value !== undefined ? value : children) : value;
 }
+
+Param.propTypes = {
+  // eslint-disable-next-line react/no-unused-prop-types
+  name: PropTypes.string.isRequired,
+  value: PropTypes.any,
+  wrapper: PropTypes.element,
+  children: PropTypes.string,
+};
+
+Param.defaultProps = {
+  value: undefined,
+  wrapper: undefined,
+  children: undefined,
+};
 
 const collapseWhitespace = string => {
   // for translated strings we never want consecutive or surrounding whitespace
@@ -120,27 +115,21 @@ const renderStringTranslation = (translation, values) => {
   }
 };
 
-export class Singular extends React.Component {
-  static propTypes = {
-    children: PropTypes.any.isRequired,
-  };
-
-  render() {
-    const {children} = this.props;
-    return children;
-  }
+export function Singular({children}) {
+  return children;
 }
 
-export class Plural extends React.Component {
-  static propTypes = {
-    children: PropTypes.any.isRequired,
-  };
+Singular.propTypes = {
+  children: PropTypes.any.isRequired,
+};
 
-  render() {
-    const {children} = this.props;
-    return children;
-  }
+export function Plural({children}) {
+  return children;
 }
+
+Plural.propTypes = {
+  children: PropTypes.any.isRequired,
+};
 
 const getGettextFuncs = jedInstance => {
   const gettext = jedInstance.gettext.bind(jedInstance);
@@ -210,85 +199,57 @@ export const makeComponents = jedInstance => {
   const {gettext, ngettext, pgettext, npgettext} = getGettextFuncs(jedInstance);
   const nPlurals = getNPlurals(jedInstance);
 
-  class Translate extends React.Component {
-    static propTypes = {
-      children: PropTypes.any.isRequired,
-      context: PropTypes.string,
-      as: PropTypes.elementType,
-    };
+  function Translate({children, context, as, ...rest}) {
+    const original = useMemo(() => getTranslatableString(children), [children]);
 
-    static defaultProps = {
-      context: undefined,
-      as: React.Fragment,
-    };
-
-    // eslint-disable-next-line no-shadow, react/sort-comp
-    static string(string, ...args) {
-      const {context, params} = getContextParams(args);
-      const gettextFunc = pickGettextFunc(context, gettext, pgettext);
-      return renderStringTranslation(gettextFunc(collapseWhitespace(string)), params);
+    const gettextFunc = pickGettextFunc(context, gettext, pgettext);
+    const translation = gettextFunc(original);
+    let content = children;
+    if (translation !== original) {
+      content = renderTranslation(translation, getParamValues({props: {children}}));
     }
-
-    constructor(props) {
-      super(props);
-      this.original = getTranslatableString(props.children);
-    }
-
-    render() {
-      const {children, context, as, ...rest} = this.props;
-      const gettextFunc = pickGettextFunc(context, gettext, pgettext);
-      const translation = gettextFunc(this.original);
-      let content = children;
-      if (translation !== this.original) {
-        content = renderTranslation(translation, getParamValues(this));
-      }
-      // if there's no translation gettext gives us the input string
-      // which does not contain the information needed to render it!
-      // unfortunately this means that we also cannot strip surrounding
-      // whitespace since we may have more than just text in the children,
-      // which is why we fail during extraction in that case
-      return React.createElement(as, rest, content);
-    }
+    // if there's no translation gettext gives us the input string
+    // which does not contain the information needed to render it!
+    // unfortunately this means that we also cannot strip surrounding
+    // whitespace since we may have more than just text in the children,
+    // which is why we fail during extraction in that case
+    return React.createElement(as, rest, content);
   }
 
-  class PluralTranslate extends React.Component {
-    static propTypes = {
-      children: PropTypes.any.isRequired,
-      count: PropTypes.number.isRequired,
-      context: PropTypes.string,
-      as: PropTypes.elementType,
-    };
+  Translate.string = function string(original, ...args) {
+    const {context, params} = getContextParams(args);
+    const gettextFunc = pickGettextFunc(context, gettext, pgettext);
+    return renderStringTranslation(gettextFunc(collapseWhitespace(original)), params);
+  };
 
-    static defaultProps = {
-      context: undefined,
-      as: React.Fragment,
-    };
+  Translate.propTypes = {
+    children: PropTypes.any.isRequired,
+    context: PropTypes.string,
+    as: PropTypes.elementType,
+  };
 
-    // eslint-disable-next-line no-shadow
-    static string(singular, plural, count = 1, ...args) {
-      const {context, params} = getContextParams(args);
-      const gettextFunc = pickGettextFunc(context, ngettext, npgettext);
-      return renderStringTranslation(
-        gettextFunc(collapseWhitespace(singular), collapseWhitespace(plural), count),
-        params
-      );
-    }
+  Translate.defaultProps = {
+    context: undefined,
+    as: React.Fragment,
+  };
 
-    constructor(props) {
-      super(props);
-      React.Children.forEach(props.children, child => {
+  function PluralTranslate({children, count, context, as, ...rest}) {
+    const [singularString, pluralString] = useMemo(() => {
+      let singular, plural;
+      React.Children.forEach(children, child => {
         if (!React.isValidElement(child)) {
           throw new Error(`Unexpected PluralTranslate child: ${child}`);
         } else if (child.type === Singular) {
-          this.singularString = getTranslatableString(child.props.children);
+          singular = getTranslatableString(child.props.children);
         } else if (child.type === Plural) {
-          this.pluralString = getTranslatableString(child.props.children);
+          plural = getTranslatableString(child.props.children);
         }
       });
-    }
 
-    getChild(plural) {
-      const {children} = this.props;
+      return [singular, plural];
+    }, [children]);
+
+    function getChild(plural) {
       const component = plural ? Plural : Singular;
       for (const child of React.Children.toArray(children)) {
         if (React.isValidElement(child) && child.type === component) {
@@ -297,26 +258,45 @@ export const makeComponents = jedInstance => {
       }
     }
 
-    render() {
-      const {count, context, as, ...rest} = this.props;
-      const gettextFunc = pickGettextFunc(context, ngettext, npgettext);
-      const translation = gettextFunc(this.singularString, this.pluralString, count);
-      let content;
-      if (translation === this.singularString) {
-        content = this.getChild(false);
-      } else if (translation === this.pluralString) {
-        content = this.getChild(true);
-      } else {
-        // For languages with only one plural, the plural translation is
-        // used even if count == 1. In that case the corresponding <Plural>
-        // component must be rendered.
-        const plural = nPlurals === 1 || count !== 1;
-        const values = getParamValues(this.getChild(plural));
-        content = renderTranslation(translation, values);
-      }
-      return React.createElement(as, rest, content);
+    const gettextFunc = pickGettextFunc(context, ngettext, npgettext);
+    const translation = gettextFunc(singularString, pluralString, count);
+    let content;
+    if (translation === singularString) {
+      content = getChild(false);
+    } else if (translation === pluralString) {
+      content = getChild(true);
+    } else {
+      // For languages with only one plural, the plural translation is
+      // used even if count == 1. In that case the corresponding <Plural>
+      // component must be rendered.
+      const plural = nPlurals === 1 || count !== 1;
+      const values = getParamValues(getChild(plural));
+      content = renderTranslation(translation, values);
     }
+    return React.createElement(as, rest, content);
   }
+
+  PluralTranslate.propTypes = {
+    children: PropTypes.any.isRequired,
+    count: PropTypes.number.isRequired,
+    context: PropTypes.string,
+    as: PropTypes.elementType,
+  };
+
+  PluralTranslate.defaultProps = {
+    context: undefined,
+    as: React.Fragment,
+  };
+
+  // eslint-disable-next-line no-shadow
+  PluralTranslate.string = function string(singular, plural, count = 1, ...args) {
+    const {context, params} = getContextParams(args);
+    const gettextFunc = pickGettextFunc(context, ngettext, npgettext);
+    return renderStringTranslation(
+      gettextFunc(collapseWhitespace(singular), collapseWhitespace(plural), count),
+      params
+    );
+  };
 
   return {Translate, PluralTranslate};
 };

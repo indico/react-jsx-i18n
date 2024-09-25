@@ -45,10 +45,16 @@ yargs
         coerce: val => val.split(','),
         describe: 'file extensions to consider',
       });
+      y.option('base', {
+        alias: 'b',
+        default: null,
+        type: 'string',
+        describe: 'base dir to generate relative file paths; default to current dir',
+      });
     },
     argv => {
       const files = flattenPaths(argv.paths, argv.ext);
-      const {pot, errors} = extractFromFiles(files);
+      const {pot, errors} = extractFromFiles(files, argv.base || process.cwd());
       if (errors) {
         errors.forEach(err => console.error(err));
         process.exit(1);

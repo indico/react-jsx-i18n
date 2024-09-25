@@ -99,8 +99,8 @@ const processElement = (path, types, allowParam = false) => {
   return string;
 };
 
-const getLocation = (path, state) => {
-  const filename = relative(process.cwd(), state.file.opts.filename);
+const getLocation = (base, path, state) => {
+  const filename = relative(base, state.file.opts.filename);
   return `${filename}:${path.node.loc.start.line}`;
 };
 
@@ -110,16 +110,16 @@ const getContext = path => {
   return contextAttr ? contextAttr.value.value : undefined;
 };
 
-const processTranslate = (path, state, types) => {
+const processTranslate = (base, path, state, types) => {
   const translatableString = processElement(path, types, true);
   return {
     msgid: translatableString,
     msgctxt: getContext(path),
-    reference: getLocation(path, state),
+    reference: getLocation(base, path, state),
   };
 };
 
-const processTranslateString = (path, state, funcName, types) => {
+const processTranslateString = (base, path, state, funcName, types) => {
   const args = path.node.arguments;
   if (args.length === 0) {
     throw path.buildCodeFrameError('Translate.string() called with no arguments');
@@ -131,11 +131,11 @@ const processTranslateString = (path, state, funcName, types) => {
   return {
     msgid,
     msgctxt,
-    reference: getLocation(path, state),
+    reference: getLocation(base, path, state),
   };
 };
 
-const processPluralTranslate = (path, state, types) => {
+const processPluralTranslate = (base, path, state, types) => {
   let singularPath, pluralPath;
   path
     .get('children')
@@ -167,11 +167,11 @@ const processPluralTranslate = (path, state, types) => {
     msgid: processElement(singularPath, types, true),
     msgid_plural: processElement(pluralPath, types, true),
     msgctxt: getContext(path),
-    reference: getLocation(path, state),
+    reference: getLocation(base, path, state),
   };
 };
 
-const processPluralTranslateString = (path, state, funcName, types) => {
+const processPluralTranslateString = (base, path, state, funcName, types) => {
   const args = path.node.arguments;
   if (args.length < 2) {
     throw path.buildCodeFrameError('PluralTranslate.string() called with less than 2 arguments');
@@ -186,11 +186,11 @@ const processPluralTranslateString = (path, state, funcName, types) => {
     msgid,
     msgid_plural,
     msgctxt,
-    reference: getLocation(path, state),
+    reference: getLocation(base, path, state),
   };
 };
 
-const makeI18nPlugin = () => {
+const makeI18nPlugin = base => {
   const entries = [];
   const i18nPlugin = ({types}) => {
     return {
@@ -198,9 +198,9 @@ const makeI18nPlugin = () => {
         JSXElement(path, state) {
           const elementName = path.node.openingElement.name.name;
           if (elementName === 'Translate') {
-            entries.push(processTranslate(path, state, types));
+            entries.push(processTranslate(base, path, state, types));
           } else if (elementName === 'PluralTranslate') {
-            entries.push(processPluralTranslate(path, state, types));
+            entries.push(processPluralTranslate(base, path, state, types));
           }
         },
         CallExpression(path, state) {
@@ -224,9 +224,9 @@ const makeI18nPlugin = () => {
           // we got a proper call of one of our translation functions
           const qualifiedFuncName = `${elementName}.${funcName}`;
           if (elementName === 'Translate') {
-            entries.push(processTranslateString(path, state, qualifiedFuncName, types));
+            entries.push(processTranslateString(base, path, state, qualifiedFuncName, types));
           } else if (elementName === 'PluralTranslate') {
-            entries.push(processPluralTranslateString(path, state, qualifiedFuncName, types));
+            entries.push(processPluralTranslateString(base, path, state, qualifiedFuncName, types));
           }
         },
       },

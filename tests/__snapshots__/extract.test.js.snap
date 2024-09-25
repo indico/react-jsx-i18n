@@ -511,6 +511,147 @@ msgstr \\"\\"",
 }
 `;
 
+exports[`Messages are properly extracted 3`] = `
+Object {
+  "pot": "msgid \\"\\"
+msgstr \\"\\"
+\\"POT-Creation-Date: 2018-04-18 22:20+0000\\\\n\\"
+\\"Content-Type: text/plain; charset=utf-8\\\\n\\"
+\\"Content-Transfer-Encoding: 8bit\\\\n\\"
+\\"MIME-Version: 1.0\\\\n\\"
+\\"Generated-By: react-jsx-i18n-extract\\\\n\\"
+
+#: example.jsx:37
+#: example.jsx:38
+#: example.jsx:86
+msgid \\"\\\\\\"<strong>Rats.</strong>\\\\\\"\\"
+msgstr \\"\\"
+
+#: example.jsx:39
+#: example.jsx:40
+msgid \\"foobar\\"
+msgstr \\"\\"
+
+#: example.jsx:42
+msgid \\"You are ugly!\\"
+msgstr \\"\\"
+
+#: example.jsx:43
+msgid \\"space invader\\"
+msgstr \\"\\"
+
+#: example.jsx:44
+msgid \\"cat\\"
+msgid_plural \\"cats\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: example.jsx:47
+msgid \\"one {foo}\\"
+msgid_plural \\"many {foo}\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: example.jsx:50
+msgid \\"foo {weird} bar {hello}{test} xxx\\"
+msgstr \\"\\"
+
+#: example.jsx:55
+msgid \\"foo: {foo}\\"
+msgstr \\"\\"
+
+#: example.jsx:57
+msgid \\"mixed: {mixedCase}\\"
+msgstr \\"\\"
+
+#: example.jsx:88
+#: example.jsx:131
+msgid \\"You have {count} rat.\\"
+msgid_plural \\"You have {count} rats.\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: example.jsx:99
+msgid \\"Hello & World\\"
+msgstr \\"\\"
+
+#: example.jsx:101
+msgid \\"Hey {name}, you want to {link}click me{/link} and you know it!\\"
+msgstr \\"\\"
+
+#: example.jsx:109
+#: example.jsx:111
+msgid \\"Bye World\\"
+msgstr \\"\\"
+
+#: example.jsx:113
+msgid \\"Some <HTML> & entities: → &\\"
+msgstr \\"\\"
+
+#: example.jsx:116
+msgid \\"Hover me\\"
+msgstr \\"\\"
+
+#: example.jsx:119
+msgid \\"<HTML> is unescaped when extracted\\"
+msgstr \\"\\"
+
+#: example.jsx:121
+msgid \\"xxx foo bar{test}{x} y{/x} moo\\"
+msgstr \\"\\"
+
+#: example.jsx:141
+msgid \\"Little cats:\\"
+msgstr \\"\\"
+
+#: example.jsx:143
+msgid \\"Little dogs:\\"
+msgstr \\"\\"
+
+#: example.jsx:145
+msgid \\"This is an emphasized dynamic value: {number}\\"
+msgstr \\"\\"
+
+#: example.jsx:149
+msgid \\"This is an emphasized translated value: {tag}hello{/tag}\\"
+msgstr \\"\\"
+
+#: example.jsx:155
+msgid \\"This param is using string literals: {emphasize}hello world{/emphasize}\\"
+msgstr \\"\\"
+
+#: example.jsx:41
+#: example.jsx:141
+msgctxt \\"cat\\"
+msgid \\"offspring\\"
+msgstr \\"\\"
+
+#: example.jsx:45
+msgctxt \\"big\\"
+msgid \\"cat\\"
+msgid_plural \\"cats\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: example.jsx:49
+msgctxt \\"c\\"
+msgid \\"one {foo}\\"
+msgid_plural \\"many {foo}\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: example.jsx:56
+msgctxt \\"params-test\\"
+msgid \\"foo: {foo}\\"
+msgstr \\"\\"
+
+#: example.jsx:143
+msgctxt \\"dog\\"
+msgid \\"offspring\\"
+msgstr \\"\\"",
+}
+`;
+
 exports[`Non-string call ignored 1`] = `
 Object {
   "pot": "msgid \\"\\"

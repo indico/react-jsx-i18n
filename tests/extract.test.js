@@ -1,10 +1,12 @@
 import extractFromFiles from '../src/tools/extract';
 
-const expectExtracted = (file, headers) => expect(extractFromFiles([file], headers, false));
+const expectExtracted = (file, headers, base) =>
+  expect(extractFromFiles([file], base || process.cwd(), headers, false));
 
 test('Messages are properly extracted', () => {
   expectExtracted('test-data/example.jsx', {Custom: 'Headers'}).toMatchSnapshot();
   expectExtracted('test-data/example.jsx').toMatchSnapshot();
+  expectExtracted('test-data/example.jsx', undefined, 'test-data').toMatchSnapshot();
 });
 
 test('Invalid stuff fails', () => {

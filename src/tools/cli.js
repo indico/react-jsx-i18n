@@ -51,10 +51,20 @@ yargs
         type: 'string',
         describe: 'base dir to generate relative file paths; default to current dir',
       });
+      y.option('add-location', {
+        alias: 'L',
+        type: 'string',
+        choices: ['full', 'file', 'never'],
+        default: 'full',
+      });
     },
     argv => {
       const files = flattenPaths(argv.paths, argv.ext);
-      const {pot, errors} = extractFromFiles(files, argv.base || process.cwd());
+      const cfg = {
+        base: argv.base || process.cwd(),
+        addLocation: argv.addLocation,
+      };
+      const {pot, errors} = extractFromFiles(files, cfg);
       if (errors) {
         errors.forEach(err => console.error(err));
         process.exit(1);

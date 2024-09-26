@@ -652,6 +652,249 @@ msgstr \\"\\"",
 }
 `;
 
+exports[`Messages are properly extracted 4`] = `
+Object {
+  "pot": "msgid \\"\\"
+msgstr \\"\\"
+\\"POT-Creation-Date: 2018-04-18 22:20+0000\\\\n\\"
+\\"Content-Type: text/plain; charset=utf-8\\\\n\\"
+\\"Content-Transfer-Encoding: 8bit\\\\n\\"
+\\"MIME-Version: 1.0\\\\n\\"
+\\"Generated-By: react-jsx-i18n-extract\\\\n\\"
+
+#: test-data/example.jsx
+msgid \\"\\\\\\"<strong>Rats.</strong>\\\\\\"\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgid \\"foobar\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgid \\"You are ugly!\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgid \\"space invader\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgid \\"cat\\"
+msgid_plural \\"cats\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: test-data/example.jsx
+msgid \\"one {foo}\\"
+msgid_plural \\"many {foo}\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: test-data/example.jsx
+msgid \\"foo {weird} bar {hello}{test} xxx\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgid \\"foo: {foo}\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgid \\"mixed: {mixedCase}\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgid \\"You have {count} rat.\\"
+msgid_plural \\"You have {count} rats.\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: test-data/example.jsx
+msgid \\"Hello & World\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgid \\"Hey {name}, you want to {link}click me{/link} and you know it!\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgid \\"Bye World\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgid \\"Some <HTML> & entities: → &\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgid \\"Hover me\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgid \\"<HTML> is unescaped when extracted\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgid \\"xxx foo bar{test}{x} y{/x} moo\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgid \\"Little cats:\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgid \\"Little dogs:\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgid \\"This is an emphasized dynamic value: {number}\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgid \\"This is an emphasized translated value: {tag}hello{/tag}\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgid \\"This param is using string literals: {emphasize}hello world{/emphasize}\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgctxt \\"cat\\"
+msgid \\"offspring\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgctxt \\"big\\"
+msgid \\"cat\\"
+msgid_plural \\"cats\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: test-data/example.jsx
+msgctxt \\"c\\"
+msgid \\"one {foo}\\"
+msgid_plural \\"many {foo}\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: test-data/example.jsx
+msgctxt \\"params-test\\"
+msgid \\"foo: {foo}\\"
+msgstr \\"\\"
+
+#: test-data/example.jsx
+msgctxt \\"dog\\"
+msgid \\"offspring\\"
+msgstr \\"\\"",
+}
+`;
+
+exports[`Messages are properly extracted 5`] = `
+Object {
+  "pot": "msgid \\"\\"
+msgstr \\"\\"
+\\"POT-Creation-Date: 2018-04-18 22:20+0000\\\\n\\"
+\\"Content-Type: text/plain; charset=utf-8\\\\n\\"
+\\"Content-Transfer-Encoding: 8bit\\\\n\\"
+\\"MIME-Version: 1.0\\\\n\\"
+\\"Generated-By: react-jsx-i18n-extract\\\\n\\"
+
+msgid \\"\\\\\\"<strong>Rats.</strong>\\\\\\"\\"
+msgstr \\"\\"
+
+msgid \\"foobar\\"
+msgstr \\"\\"
+
+msgid \\"You are ugly!\\"
+msgstr \\"\\"
+
+msgid \\"space invader\\"
+msgstr \\"\\"
+
+msgid \\"cat\\"
+msgid_plural \\"cats\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+msgid \\"one {foo}\\"
+msgid_plural \\"many {foo}\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+msgid \\"foo {weird} bar {hello}{test} xxx\\"
+msgstr \\"\\"
+
+msgid \\"foo: {foo}\\"
+msgstr \\"\\"
+
+msgid \\"mixed: {mixedCase}\\"
+msgstr \\"\\"
+
+msgid \\"You have {count} rat.\\"
+msgid_plural \\"You have {count} rats.\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+msgid \\"Hello & World\\"
+msgstr \\"\\"
+
+msgid \\"Hey {name}, you want to {link}click me{/link} and you know it!\\"
+msgstr \\"\\"
+
+msgid \\"Bye World\\"
+msgstr \\"\\"
+
+msgid \\"Some <HTML> & entities: → &\\"
+msgstr \\"\\"
+
+msgid \\"Hover me\\"
+msgstr \\"\\"
+
+msgid \\"<HTML> is unescaped when extracted\\"
+msgstr \\"\\"
+
+msgid \\"xxx foo bar{test}{x} y{/x} moo\\"
+msgstr \\"\\"
+
+msgid \\"Little cats:\\"
+msgstr \\"\\"
+
+msgid \\"Little dogs:\\"
+msgstr \\"\\"
+
+msgid \\"This is an emphasized dynamic value: {number}\\"
+msgstr \\"\\"
+
+msgid \\"This is an emphasized translated value: {tag}hello{/tag}\\"
+msgstr \\"\\"
+
+msgid \\"This param is using string literals: {emphasize}hello world{/emphasize}\\"
+msgstr \\"\\"
+
+msgctxt \\"cat\\"
+msgid \\"offspring\\"
+msgstr \\"\\"
+
+msgctxt \\"big\\"
+msgid \\"cat\\"
+msgid_plural \\"cats\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+msgctxt \\"c\\"
+msgid \\"one {foo}\\"
+msgid_plural \\"many {foo}\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+msgctxt \\"params-test\\"
+msgid \\"foo: {foo}\\"
+msgstr \\"\\"
+
+msgctxt \\"dog\\"
+msgid \\"offspring\\"
+msgstr \\"\\"",
+}
+`;
+
 exports[`Non-string call ignored 1`] = `
 Object {
   "pot": "msgid \\"\\"

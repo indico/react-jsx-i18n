@@ -6,9 +6,9 @@ import moment from 'moment-timezone';
 import {mergeEntries} from 'babel-plugin-extract-text/src/builders';
 import makeI18nPlugin from './extract-plugin';
 
-const extractFromFiles = (files, base, headers = undefined, highlightErrors = true) => {
+const extractFromFiles = (files, cfg, headers = undefined, highlightErrors = true) => {
   const errors = [];
-  const {i18nPlugin, entries} = makeI18nPlugin(base);
+  const {i18nPlugin, entries} = makeI18nPlugin(cfg);
 
   files.forEach(file => {
     try {

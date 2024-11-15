@@ -114,18 +114,12 @@ const getContext = path => {
   return contextAttr ? contextAttr.value.value : undefined;
 };
 
-const getTranslatorComment = path => {
-  const element = path.node.openingElement;
-  const commentAttr = element.attributes.filter(attr => attr.name.name === 'comment')[0];
-  return commentAttr ? commentAttr.value.value : undefined;
-};
-
-const processTranslate = (cfg, path, state, types) => {
+const processTranslate = (cfg, path, state, comment, types) => {
   const translatableString = processElement(path, types, true);
   return {
     msgid: translatableString,
     msgctxt: getContext(path),
-    extracted: getTranslatorComment(path),
+    extracted: comment,
     reference: getLocation(cfg, path, state),
   };
 };
@@ -147,7 +141,7 @@ const processTranslateString = (cfg, path, state, funcName, comment, types) => {
   };
 };
 
-const processPluralTranslate = (cfg, path, state, types) => {
+const processPluralTranslate = (cfg, path, state, comment, types) => {
   let singularPath, pluralPath;
   path
     .get('children')
@@ -179,7 +173,7 @@ const processPluralTranslate = (cfg, path, state, types) => {
     msgid: processElement(singularPath, types, true),
     msgid_plural: processElement(pluralPath, types, true),
     msgctxt: getContext(path),
-    extracted: getTranslatorComment(path),
+    extracted: comment,
     reference: getLocation(cfg, path, state),
   };
 };
@@ -224,10 +218,12 @@ const makeI18nPlugin = cfg => {
         },
         JSXElement(path, state) {
           const elementName = path.node.openingElement.name.name;
+          const line = path.node.loc.start.line;
+          const comment = getPrecedingComment(line, comments);
           if (elementName === 'Translate') {
-            entries.push(processTranslate(cfg, path, state, types));
+            entries.push(processTranslate(cfg, path, state, comment, types));
           } else if (elementName === 'PluralTranslate') {
-            entries.push(processPluralTranslate(cfg, path, state, types));
+            entries.push(processPluralTranslate(cfg, path, state, comment, types));
           }
         },
         CallExpression(path, state) {

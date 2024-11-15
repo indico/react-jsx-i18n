@@ -18,6 +18,10 @@ Translate.string('foo');
 // No 'i18n:' prefix, should not be extracted
 Translate.string('foo');
 
+// i18n: Space between the comment and the 'Translate' call, this should not be extracted
+
+Translate.string('foo');
+
 // i18n: Both strings
 // i18n: should be extracted
 Translate.string('bar');

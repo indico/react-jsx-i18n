@@ -33,3 +33,7 @@ test('Invalid stuff fails', () => {
 test('Non-string call ignored', () => {
   expectExtracted('test-data/invalid/skipped-strings.jsx').toMatchSnapshot();
 });
+
+test('Translator comments are properly extracted', () => {
+  expectExtracted('test-data/comments.jsx', undefined, undefined, 'never').toMatchSnapshot();
+});

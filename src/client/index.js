@@ -225,11 +225,13 @@ export const makeComponents = jedInstance => {
   Translate.propTypes = {
     children: PropTypes.any.isRequired,
     context: PropTypes.string,
+    comment: PropTypes.string,
     as: PropTypes.elementType,
   };
 
   Translate.defaultProps = {
     context: undefined,
+    comment: undefined,
     as: React.Fragment,
   };
 
@@ -280,11 +282,13 @@ export const makeComponents = jedInstance => {
     children: PropTypes.any.isRequired,
     count: PropTypes.number.isRequired,
     context: PropTypes.string,
+    comment: PropTypes.string,
     as: PropTypes.elementType,
   };
 
   PluralTranslate.defaultProps = {
     context: undefined,
+    comment: undefined,
     as: React.Fragment,
   };
 

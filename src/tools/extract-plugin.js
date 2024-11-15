@@ -124,7 +124,7 @@ const processTranslate = (cfg, path, state, comment, types) => {
   };
 };
 
-const processTranslateString = (cfg, path, state, funcName, comment, types) => {
+const processTranslateString = (cfg, path, state, comment, types) => {
   const args = path.node.arguments;
   if (args.length === 0) {
     throw path.buildCodeFrameError('Translate.string() called with no arguments');
@@ -178,7 +178,7 @@ const processPluralTranslate = (cfg, path, state, comment, types) => {
   };
 };
 
-const processPluralTranslateString = (cfg, path, state, funcName, comment, types) => {
+const processPluralTranslateString = (cfg, path, state, comment, types) => {
   const args = path.node.arguments;
   if (args.length < 2) {
     throw path.buildCodeFrameError('PluralTranslate.string() called with less than 2 arguments');
@@ -259,17 +259,12 @@ const makeI18nPlugin = cfg => {
             return;
           }
           // we got a proper call of one of our translation functions
-          const qualifiedFuncName = `${elementName}.${funcName}`;
           const line = path.node.loc.start.line;
           const comment = getPrecedingComment(line, translatorComments);
           if (elementName === 'Translate') {
-            entries.push(
-              processTranslateString(cfg, path, state, qualifiedFuncName, comment, types)
-            );
+            entries.push(processTranslateString(cfg, path, state, comment, types));
           } else if (elementName === 'PluralTranslate') {
-            entries.push(
-              processPluralTranslateString(cfg, path, state, qualifiedFuncName, comment, types)
-            );
+            entries.push(processPluralTranslateString(cfg, path, state, comment, types));
           }
         },
       },

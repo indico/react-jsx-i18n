@@ -199,27 +199,41 @@ const processPluralTranslateString = (cfg, path, state, funcName, comment, types
 };
 
 function getPrecedingComment(line, comments) {
-  return comments.find(comment => comment.line === line - 1)?.comment;
+  if (!comments[line - 1]) {
+    return;
+  }
+  const comment = [];
+  for (let i = line - 1; i >= 0; i--) {
+    if (comments[i]?.length > 0) {
+      comment.push(comments[i].join('\n'));
+    } else {
+      break;
+    }
+  }
+  return comment.reverse().join('\n');
 }
 
 const makeI18nPlugin = cfg => {
   const entries = [];
-  let comments = [];
+  const translatorComments = {};
   const i18nPlugin = ({types}) => {
     return {
       visitor: {
         Program(path) {
-          comments = path.container.comments
+          path.container.comments
             .filter(comment => comment.value.trim().startsWith('i18n:'))
-            .map(comment => ({
-              comment: comment.value.trim(),
-              line: comment.loc.start.line,
-            }));
+            .forEach(comment => {
+              const endLine = comment.loc.end.line;
+              if (!translatorComments[endLine]) {
+                translatorComments[endLine] = [];
+              }
+              translatorComments[endLine].push(comment.value.trim());
+            });
         },
         JSXElement(path, state) {
           const elementName = path.node.openingElement.name.name;
           const line = path.node.loc.start.line;
-          const comment = getPrecedingComment(line, comments);
+          const comment = getPrecedingComment(line, translatorComments);
           if (elementName === 'Translate') {
             entries.push(processTranslate(cfg, path, state, comment, types));
           } else if (elementName === 'PluralTranslate') {
@@ -247,7 +261,7 @@ const makeI18nPlugin = cfg => {
           // we got a proper call of one of our translation functions
           const qualifiedFuncName = `${elementName}.${funcName}`;
           const line = path.node.loc.start.line;
-          const comment = getPrecedingComment(line, comments);
+          const comment = getPrecedingComment(line, translatorComments);
           if (elementName === 'Translate') {
             entries.push(
               processTranslateString(cfg, path, state, qualifiedFuncName, comment, types)

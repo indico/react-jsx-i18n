@@ -84,7 +84,7 @@ function mergeEntries(entries, headers) {
 
 function mergeReference(existingReference, newReference) {
   if (existingReference) {
-    if (existingReference.includes(newReference)) {
+    if (!newReference || existingReference.includes(newReference)) {
       return existingReference;
     }
 

@@ -233,7 +233,7 @@ const makeI18nPlugin = cfg => {
                 comment.value
                   .trim()
                   .slice(TRANSLATOR_COMMENT_TAG.length)
-                  .trim()
+                  .trimStart()
               );
             });
         },

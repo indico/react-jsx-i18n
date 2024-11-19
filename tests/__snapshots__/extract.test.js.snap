@@ -906,3 +906,70 @@ msgstr \\"\\"
 \\"Generated-By: react-jsx-i18n-extract\\\\n\\"",
 }
 `;
+
+exports[`Translator comments are properly extracted 1`] = `
+Object {
+  "pot": "msgid \\"\\"
+msgstr \\"\\"
+\\"POT-Creation-Date: 2018-04-18 22:20+0000\\\\n\\"
+\\"Content-Type: text/plain; charset=utf-8\\\\n\\"
+\\"Content-Transfer-Encoding: 8bit\\\\n\\"
+\\"MIME-Version: 1.0\\\\n\\"
+\\"Generated-By: react-jsx-i18n-extract\\\\n\\"
+
+#. foo comment 1
+#. plural foo comment 1
+#. foo comment 2
+#. plural foo comment 2
+msgid \\"foo\\"
+msgid_plural \\"foos\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#. multiline
+#.    comment
+#. multiline
+#.  *  comment with leading asterisks
+msgid \\"multiline\\"
+msgstr \\"\\"
+
+#. Both strings
+#. should be extracted
+#. are not guaranteed to work
+#.   because you should not be using this anyway
+msgid \\"bar\\"
+msgstr \\"\\"
+
+#. translator comment
+msgid \\"baz\\"
+msgid_plural \\"bazs\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#. Title
+msgid \\"Hello & World\\"
+msgstr \\"\\"
+
+#. multiple
+#. translator
+#. comments
+msgid \\"foo bar\\"
+msgstr \\"\\"
+
+#. rat counter
+msgid \\"You have {count} rat.\\"
+msgid_plural \\"You have {count} rats.\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#. xxx comment
+msgid \\"xxx\\"
+msgstr \\"\\"
+
+#. yyy comment
+msgid \\"yyy\\"
+msgid_plural \\"yyys\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"",
+}
+`;

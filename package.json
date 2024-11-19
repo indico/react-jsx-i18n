@@ -1,6 +1,6 @@
 {
   "name": "react-jsx-i18n",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Provides gettext-enhanced React components, a babel plugin for extracting the strings and a script to compile translated strings to a format usable by the components.",
   "main": "client/index.js",
   "types": "client/index.d.ts",
@@ -31,7 +31,6 @@
   },
   "homepage": "https://github.com/indico/react-jsx-i18n#readme",
   "dependencies": {
-    "babel-plugin-extract-text": "^2.0.0",
     "chalk": "^2.4.2",
     "gettext-parser": "^4.0.3",
     "glob": "^7.1.6",
@@ -42,8 +41,8 @@
   "peerDependencies": {
     "@babel/core": "*",
     "@babel/preset-react": "*",
-    "react": "*",
-    "prop-types": "*"
+    "prop-types": "*",
+    "react": "*"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",

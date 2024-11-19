@@ -1,6 +1,8 @@
 import {relative} from 'path';
 import cleanJSXElementLiteralChild from '@babel/types/lib/utils/react/cleanJSXElementLiteralChild';
 
+const TRANSLATOR_COMMENT_TAG = 'i18n:';
+
 const collapseWhitespace = (string, trim = true) => {
   // for translated strings we never want consecutive or surrounding whitespace
   if (!string) {
@@ -114,16 +116,17 @@ const getContext = path => {
   return contextAttr ? contextAttr.value.value : undefined;
 };
 
-const processTranslate = (cfg, path, state, types) => {
+const processTranslate = (cfg, path, state, comment, types) => {
   const translatableString = processElement(path, types, true);
   return {
     msgid: translatableString,
     msgctxt: getContext(path),
+    extracted: comment,
     reference: getLocation(cfg, path, state),
   };
 };
 
-const processTranslateString = (cfg, path, state, funcName, types) => {
+const processTranslateString = (cfg, path, state, comment, types) => {
   const args = path.node.arguments;
   if (args.length === 0) {
     throw path.buildCodeFrameError('Translate.string() called with no arguments');
@@ -136,10 +139,11 @@ const processTranslateString = (cfg, path, state, funcName, types) => {
     msgid,
     msgctxt,
     reference: getLocation(cfg, path, state),
+    extracted: comment,
   };
 };
 
-const processPluralTranslate = (cfg, path, state, types) => {
+const processPluralTranslate = (cfg, path, state, comment, types) => {
   let singularPath, pluralPath;
   path
     .get('children')
@@ -171,11 +175,12 @@ const processPluralTranslate = (cfg, path, state, types) => {
     msgid: processElement(singularPath, types, true),
     msgid_plural: processElement(pluralPath, types, true),
     msgctxt: getContext(path),
+    extracted: comment,
     reference: getLocation(cfg, path, state),
   };
 };
 
-const processPluralTranslateString = (cfg, path, state, funcName, types) => {
+const processPluralTranslateString = (cfg, path, state, comment, types) => {
   const args = path.node.arguments;
   if (args.length < 2) {
     throw path.buildCodeFrameError('PluralTranslate.string() called with less than 2 arguments');
@@ -191,20 +196,61 @@ const processPluralTranslateString = (cfg, path, state, funcName, types) => {
     msgid_plural,
     msgctxt,
     reference: getLocation(cfg, path, state),
+    extracted: comment,
   };
 };
 
+function getPrecedingComment(line, comments) {
+  if (!comments[line - 1]) {
+    return;
+  }
+  const comment = [];
+  for (let i = line - 1; i >= 0; i--) {
+    if (comments[i]?.length > 0) {
+      comment.push(comments[i].join('\n'));
+    } else {
+      break;
+    }
+  }
+  return comment.reverse().join('\n');
+}
+
 const makeI18nPlugin = cfg => {
   const entries = [];
+  let currFile = '';
+  let translatorComments = {};
   const i18nPlugin = ({types}) => {
     return {
       visitor: {
+        Program(path, state) {
+          if (currFile !== state.file.opts.filename) {
+            // clear translator comments when the file changes
+            currFile = state.file.opts.filename;
+            translatorComments = {};
+          }
+          path.container.comments
+            .filter(comment => comment.value.trim().startsWith(TRANSLATOR_COMMENT_TAG))
+            .forEach(comment => {
+              const endLine = comment.loc.end.line;
+              if (!translatorComments[endLine]) {
+                translatorComments[endLine] = [];
+              }
+              translatorComments[endLine].push(
+                comment.value
+                  .trim()
+                  .slice(TRANSLATOR_COMMENT_TAG.length)
+                  .trimStart()
+              );
+            });
+        },
         JSXElement(path, state) {
           const elementName = path.node.openingElement.name.name;
+          const line = path.node.loc.start.line;
+          const comment = getPrecedingComment(line, translatorComments);
           if (elementName === 'Translate') {
-            entries.push(processTranslate(cfg, path, state, types));
+            entries.push(processTranslate(cfg, path, state, comment, types));
           } else if (elementName === 'PluralTranslate') {
-            entries.push(processPluralTranslate(cfg, path, state, types));
+            entries.push(processPluralTranslate(cfg, path, state, comment, types));
           }
         },
         CallExpression(path, state) {
@@ -226,11 +272,12 @@ const makeI18nPlugin = cfg => {
             return;
           }
           // we got a proper call of one of our translation functions
-          const qualifiedFuncName = `${elementName}.${funcName}`;
+          const line = path.node.loc.start.line;
+          const comment = getPrecedingComment(line, translatorComments);
           if (elementName === 'Translate') {
-            entries.push(processTranslateString(cfg, path, state, qualifiedFuncName, types));
+            entries.push(processTranslateString(cfg, path, state, comment, types));
           } else if (elementName === 'PluralTranslate') {
-            entries.push(processPluralTranslateString(cfg, path, state, qualifiedFuncName, types));
+            entries.push(processPluralTranslateString(cfg, path, state, comment, types));
           }
         },
       },

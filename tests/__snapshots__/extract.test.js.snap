@@ -942,7 +942,9 @@ msgstr \\"\\"
 
 #. translator comment
 msgid \\"baz\\"
-msgstr \\"\\"
+msgid_plural \\"bazs\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
 
 #. Title
 msgid \\"Hello & World\\"

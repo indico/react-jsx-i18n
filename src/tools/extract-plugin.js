@@ -217,11 +217,17 @@ function getPrecedingComment(line, comments) {
 
 const makeI18nPlugin = cfg => {
   const entries = [];
-  const translatorComments = {};
+  let currFile = '';
+  let translatorComments = {};
   const i18nPlugin = ({types}) => {
     return {
       visitor: {
-        Program(path) {
+        Program(path, state) {
+          if (currFile !== state.file.opts.filename) {
+            // clear translator comments when the file changes
+            currFile = state.file.opts.filename;
+            translatorComments = {};
+          }
           path.container.comments
             .filter(comment => comment.value.trim().startsWith(TRANSLATOR_COMMENT_TAG))
             .forEach(comment => {

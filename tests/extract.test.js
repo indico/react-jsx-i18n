@@ -1,7 +1,14 @@
 import extractFromFiles from '../src/tools/extract';
 
 const expectExtracted = (file, headers, base, addLocation = 'full') =>
-  expect(extractFromFiles([file], {base: base || process.cwd(), addLocation}, headers, false));
+  expect(
+    extractFromFiles(
+      Array.isArray(file) ? file : [file],
+      {base: base || process.cwd(), addLocation},
+      headers,
+      false
+    )
+  );
 
 test('Messages are properly extracted', () => {
   expectExtracted('test-data/example.jsx', {Custom: 'Headers'}).toMatchSnapshot();
@@ -35,5 +42,12 @@ test('Non-string call ignored', () => {
 });
 
 test('Translator comments are properly extracted', () => {
-  expectExtracted('test-data/comments.jsx', undefined, undefined, 'never').toMatchSnapshot();
+  // Test with multiple files to ensure the internal state (i.e. translatorComments) is
+  // properly reset when the file changes
+  expectExtracted(
+    ['test-data/comments1.jsx', 'test-data/comments2.jsx'],
+    undefined,
+    undefined,
+    'never'
+  ).toMatchSnapshot();
 });

@@ -213,7 +213,7 @@ function getPrecedingComment(line, comments) {
   return comment.reverse().join('\n');
 }
 
-const COMMENT_PREFIX = 'i18n:';
+const TRANSLATOR_COMMENT_TAG = 'i18n:';
 
 const makeI18nPlugin = cfg => {
   const entries = [];
@@ -223,7 +223,7 @@ const makeI18nPlugin = cfg => {
       visitor: {
         Program(path) {
           path.container.comments
-            .filter(comment => comment.value.trim().startsWith(COMMENT_PREFIX))
+            .filter(comment => comment.value.trim().startsWith(TRANSLATOR_COMMENT_TAG))
             .forEach(comment => {
               const endLine = comment.loc.end.line;
               if (!translatorComments[endLine]) {
@@ -232,7 +232,7 @@ const makeI18nPlugin = cfg => {
               translatorComments[endLine].push(
                 comment.value
                   .trim()
-                  .slice(COMMENT_PREFIX.length)
+                  .slice(TRANSLATOR_COMMENT_TAG.length)
                   .trim()
               );
             });

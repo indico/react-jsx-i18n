@@ -917,54 +917,54 @@ msgstr \\"\\"
 \\"MIME-Version: 1.0\\\\n\\"
 \\"Generated-By: react-jsx-i18n-extract\\\\n\\"
 
-#. i18n: foo comment 1
-#. i18n: plural foo comment 1
-#. i18n: foo comment 2
-#. i18n: plural foo comment 2
+#. foo comment 1
+#. plural foo comment 1
+#. foo comment 2
+#. plural foo comment 2
 msgid \\"foo\\"
 msgid_plural \\"foos\\"
 msgstr[0] \\"\\"
 msgstr[1] \\"\\"
 
-#. i18n: multiline
+#. multiline
 #.    comment
-#. i18n: multiline
+#. multiline
 #.  *  comment with leading asterisks
 msgid \\"multiline\\"
 msgstr \\"\\"
 
-#. i18n: Both strings
-#. i18n: should be extracted
-#. i18n: are not guaranteed to work
+#. Both strings
+#. should be extracted
+#. are not guaranteed to work
 #.   because you should not be using this anyway
 msgid \\"bar\\"
 msgstr \\"\\"
 
-#. i18n: translator comment
+#. translator comment
 msgid \\"baz\\"
 msgstr \\"\\"
 
-#. i18n: Title
+#. Title
 msgid \\"Hello & World\\"
 msgstr \\"\\"
 
-#. i18n: multiple
-#. i18n: translator
-#. i18n: comments
+#. multiple
+#. translator
+#. comments
 msgid \\"foo bar\\"
 msgstr \\"\\"
 
-#. i18n: rat counter
+#. rat counter
 msgid \\"You have {count} rat.\\"
 msgid_plural \\"You have {count} rats.\\"
 msgstr[0] \\"\\"
 msgstr[1] \\"\\"
 
-#. i18n: xxx comment
+#. xxx comment
 msgid \\"xxx\\"
 msgstr \\"\\"
 
-#. i18n: yyy comment
+#. yyy comment
 msgid \\"yyy\\"
 msgid_plural \\"yyys\\"
 msgstr[0] \\"\\"

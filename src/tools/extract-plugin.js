@@ -1,6 +1,8 @@
 import {relative} from 'path';
 import cleanJSXElementLiteralChild from '@babel/types/lib/utils/react/cleanJSXElementLiteralChild';
 
+const TRANSLATOR_COMMENT_TAG = 'i18n:';
+
 const collapseWhitespace = (string, trim = true) => {
   // for translated strings we never want consecutive or surrounding whitespace
   if (!string) {
@@ -212,8 +214,6 @@ function getPrecedingComment(line, comments) {
   }
   return comment.reverse().join('\n');
 }
-
-const TRANSLATOR_COMMENT_TAG = 'i18n:';
 
 const makeI18nPlugin = cfg => {
   const entries = [];

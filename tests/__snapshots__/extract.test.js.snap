@@ -918,10 +918,19 @@ msgstr \\"\\"
 \\"Generated-By: react-jsx-i18n-extract\\\\n\\"
 
 #. i18n: foo comment 1
+#. i18n: plural foo comment 1
 #. i18n: foo comment 2
+#. i18n: plural foo comment 2
+msgid \\"foo\\"
+msgid_plural \\"foos\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
 #. i18n: multiline
 #.    comment
-msgid \\"foo\\"
+#. i18n: multiline
+#.  *  comment with leading asterisks
+msgid \\"multiline\\"
 msgstr \\"\\"
 
 #. i18n: Both strings

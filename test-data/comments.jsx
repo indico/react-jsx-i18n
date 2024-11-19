@@ -6,14 +6,23 @@ const {Translate, PluralTranslate} = makeComponents();
 
 // i18n: foo comment 1
 Translate.string('foo');
+// i18n: plural foo comment 1
+PluralTranslate.string('foo', 'foos', 42);
 
 // i18n: foo comment 2
 Translate.string('foo');
+// i18n: plural foo comment 2
+PluralTranslate.string('foo', 'foos', 42);
 
 /* i18n: multiline
    comment
 */
-Translate.string('foo');
+Translate.string('multiline');
+
+/* i18n: multiline
+ *  comment with leading asterisks
+ */
+Translate.string('multiline');
 
 // No 'i18n:' prefix, should not be extracted
 Translate.string('foo');

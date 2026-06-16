@@ -31,7 +31,7 @@ export interface TranslateProps {
   context?: string;
 
   /** An element type to render as */
-  as?: React.ComponentType;
+  as?: React.ElementType;
   children: React.ReactNode;
 }
 
@@ -53,7 +53,7 @@ export interface PluralTranslateProps {
   context?: string;
 
   /** An element type to render as */
-  as?: React.ComponentType;
+  as?: React.ElementType;
   children: React.ReactNode;
 }
 
